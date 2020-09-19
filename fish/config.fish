@@ -50,11 +50,8 @@ function jdk
  jdk 11 2> /dev/null
 
 set -x SBT_OPTS "-Xmx3000M -Xss4m -XX:ReservedCodeCacheSize=384m"
-
 set -x QMK_HOME "$HOME/code/my/qmk_firmware"
-
 set -x LEDGER_FILE "$HOME/Documents/ledger/2020.ledger"
-
 set -x PATH $PATH "/Users/green/Library/Application Support/Coursier/bin"
-
 set -x ANDROID_SDK_ROOT "$HOME/Library/Android/sdk"
+set -x PATH $PATH "$HOME/.emacs.d/bin"
