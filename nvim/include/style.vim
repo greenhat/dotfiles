@@ -2,10 +2,7 @@ set termguicolors
 
 set background=light
 
-" colorscheme NeoSolarized
 " colorscheme solarized
-" colorscheme solarized8_flat
-" colorscheme selenized
 
 let g:gruvbox_contrast_light='hard'
 let g:gruvbox_italic=1
@@ -13,10 +10,13 @@ let g:gruvbox_italicize_comments=1
 autocmd vimenter * colorscheme gruvbox
 
 hi CocCodeLens guifg=LightGray
+autocmd vimenter * hi CocCodeLens guifg=LightGray
 " type hints
 hi CocHintSign guifg= LightGray
+autocmd vimenter * hi CocHintSign guifg= LightGray
 " Doc comments in Rust ///
 hi SpecialComment guifg=Grey
+autocmd vimenter * hi SpecialComment guifg=Grey
 
 " let g:airline_theme='solarized'
 autocmd vimenter * let g:airline_theme='gruvbox'

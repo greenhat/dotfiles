@@ -22,9 +22,15 @@ endfunction
 " Use <c-space> to trigger completion.
 " inoremap <silent><expr> <c-space> coc#refresh()
 
+" OLD
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -45,10 +51,20 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
   else
-    call CocAction('doHover')
+    execute '!' . &keywordprg . " " . expand('<cword>')
   endif
 endfunction
+
+" function! s:show_documentation()
+"   if (index(['vim','help'], &filetype) >= 0)
+"     execute 'h '.expand('<cword>')
+"   else
+"     call CocAction('doHover')
+"   endif
+" endfunction
 
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -72,9 +88,9 @@ augroup end
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
 
-" Remap for do codeAction of current line
-nmap <leader>ca  <Plug>(coc-codeaction)
-" Fix autofix problem of current line
+" Remap keys for applying codeAction to the current buffer.
+nmap <leader>aa  <Plug>(coc-codeaction-cursor)
+" Apply AutoFix to problem on the current line.
 nmap <leader>cq  <Plug>(coc-fix-current)
 
 " Introduce function text object
@@ -110,9 +126,9 @@ nnoremap <silent> <leader>cd  :<C-u>CocList diagnostics<cr>
 " Show commands
 nnoremap <silent> <leader>cc  :<C-u>CocList commands<cr>
 " Find symbol of current document
-nnoremap <silent> <leader>co  :<C-u>CocList outline<cr>
+nnoremap <silent> <leader>o  :<C-u>CocList outline<cr>
 " Search workspace symbols
-nnoremap <silent> <leader>cs  :<C-u>CocList -I symbols<cr>
+nnoremap <silent> <leader>s  :<C-u>CocList -I symbols<cr>
 " Do default action for next item.
 nnoremap <silent> <leader>cj  :<C-u>CocNext<CR>
 " Do default action for previous item.
@@ -120,10 +136,10 @@ nnoremap <silent> <leader>ck  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <leader>cp  :<C-u>CocListResume<CR>
 
-" Notify coc.nvim that <enter> has been pressed.
-" Currently used for the formatOnType feature.
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-      \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" Add (Neo)Vim's native statusline support.
+" NOTE: Please see `:h coc-status` for integrations with external plugins that
+" provide custom statusline: lightline.vim, vim-airline.
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Toggle panel with Tree Views
 nnoremap <silent> <leader>v :<C-u>CocCommand metals.tvp<CR>
@@ -133,6 +149,16 @@ nnoremap <silent> <leader>vb :<C-u>CocCommand metals.tvp metalsBuild<CR>
 nnoremap <silent> <leader>vc :<C-u>CocCommand metals.tvp metalsCompile<CR>
 " Reveal current current class (trait or object) in Tree View 'metalsBuild'
 nnoremap <silent> <leader>vf :<C-u>CocCommand metals.revealInTreeView metalsBuild<CR>
+
+" Remap <C-f> and <C-b> for scroll float windows/popups.
+if has('nvim-0.4.0') || has('patch-8.2.0750')
+  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+endif
 
 " Terminal
 " ------------------------------------------------------------------------
@@ -161,10 +187,10 @@ nnoremap <silent> <leader>hd :SignifyHunkDiff<cr>
 nnoremap <silent> <leader>hu :SignifyHunkUndo<cr>
 
 " hunk text object
-omap ic <plug>(signify-motion-inner-pending)
-xmap ic <plug>(signify-motion-inner-visual)
-omap ac <plug>(signify-motion-outer-pending)
-xmap ac <plug>(signify-motion-outer-visual)
+omap ih <plug>(signify-motion-inner-pending)
+xmap ih <plug>(signify-motion-inner-visual)
+omap ah <plug>(signify-motion-outer-pending)
+xmap ah <plug>(signify-motion-outer-visual)
 
 " Grepper
 " Search for the current word
@@ -215,3 +241,9 @@ vmap <leader>re <Plug>(extractVariableVisual)
 
 " ALE
 nmap <silent> <leader>qd <Plug>(ale_detail)
+
+inoremap <C-S> <Esc>:update<cr>gi
+nnoremap <C-S> :update<cr>
+
+" Copy link to a clipboard instead of opening a browser:
+let g:gh_open_command = 'fn() { echo "$@" | xclip -selection clipboard; }; fn '

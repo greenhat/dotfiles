@@ -3,9 +3,9 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 "
 " theme
-Plug 'iCyMind/NeoSolarized'
-Plug 'altercation/vim-colors-solarized'
-Plug 'lifepillar/vim-solarized8'
+" Plug 'iCyMind/NeoSolarized'
+" Plug 'altercation/vim-colors-solarized'
+" Plug 'lifepillar/vim-solarized8'
 Plug 'morhetz/gruvbox'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -19,13 +19,17 @@ Plug 'mhinz/vim-signify'
 
 Plug 'tpope/vim-surround'
 
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
 
 Plug 'tpope/vim-unimpaired'
 
 Plug 'mhinz/vim-grepper'
 
-Plug 'janko/vim-test'
+" Plug 'janko/vim-test'
+
+" " Build the extra binary if cargo exists on your system.
+" Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
+" let g:clap_theme = 'solarized_light'
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -42,16 +46,18 @@ Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-repeat'
 
 " for org-mode
-Plug 'mattn/calendar-vim'
+" Plug 'mattn/calendar-vim'
 
-Plug 'jqno/jqno-extractvariable.vim'
+" Plug 'jqno/jqno-extractvariable.vim'
 
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+" Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+
+Plug 'subnut/nvim-ghost.nvim', {'do': ':call nvim_ghost#installer#install()'}
 
 Plug 'editorconfig/editorconfig-vim'
 " Plug 'sgur/vim-editorconfig'
 
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 
 Plug 'tpope/vim-abolish'
 
@@ -60,6 +66,17 @@ Plug 'ledger/vim-ledger'
 Plug 'mhinz/vim-crates'
 
 " Plug 'chaoren/vim-wordmotion'
+
+Plug 'jiangmiao/auto-pairs'
+
+Plug 'ruanyl/vim-gh-line'
+
+" breaks vim-sneak 's' 
+" Plug 'maxbrunsfeld/vim-yankstack'
+
+" Plug 'junegunn/vim-peekaboo'
+
+Plug 'cespare/vim-toml'
 
 " This must be called before importing any Lua modules added above.
 call plug#end()
