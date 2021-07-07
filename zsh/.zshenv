@@ -4,3 +4,4 @@ path=("$HOME/.local/bin" "$path[@]")
 export PATH
 
 export EDITOR=nvim
+export BROWSER=/usr/bin/brave

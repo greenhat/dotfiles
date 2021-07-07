@@ -247,3 +247,7 @@ nnoremap <C-S> :update<cr>
 
 " Copy link to a clipboard instead of opening a browser:
 let g:gh_open_command = 'fn() { echo "$@" | xclip -selection clipboard; }; fn '
+
+" fix gx once and for all 
+" via https://github.com/vim/vim/issues/4738
+nnoremap <silent> gx :execute 'silent! !xdg-open ' . shellescape(expand('<cWORD>'), 1)<cr>
