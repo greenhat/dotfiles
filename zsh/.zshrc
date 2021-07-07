@@ -29,6 +29,7 @@ alias hg='history | grep'
 autoload -Uz vcs_info
 precmd() { vcs_info }
 
+# via https://stackoverflow.com/questions/59009508/how-to-only-show-current-folder-and-git-branch-and-for-home-in-zsh
 # format vcs_info variable
 zstyle ':vcs_info:git:*' formats ':%F{green}%b%f'
 # zstyle ':vcs_info:git:*' formats '%b'
