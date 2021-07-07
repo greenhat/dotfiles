@@ -1,12 +1,6 @@
 /*
 !/.gitignore
 
-!/fish/
-/fish/*
-!/fish/config.fish
-!/fish/fishfile
-!/fish/functions
-
 !/kitty/
 
 !/nvim/
@@ -23,3 +17,8 @@
 !/tmux/
 
 !/i3/
+
+!/zsh/
+/zsh/.zcompdump
+
+!/sway/
