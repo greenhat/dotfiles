@@ -22,3 +22,5 @@
 /zsh/.zcompdump
 
 !/sway/
+
+!/waybar/
