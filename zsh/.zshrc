@@ -20,3 +20,20 @@ source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
 alias hg='history | grep'
+
+# Prompt themes
+# autoload -Uz promptinit
+# promptinit
+
+# Load version control information
+autoload -Uz vcs_info
+precmd() { vcs_info }
+
+# format vcs_info variable
+zstyle ':vcs_info:git:*' formats ':%F{green}%b%f'
+# zstyle ':vcs_info:git:*' formats '%b'
+
+# Set up the prompt
+setopt PROMPT_SUBST
+# PROMPT='%1~ %F{green}${vcs_info_msg_0_}%f $ '
+PROMPT='%F{blue}%1~%f${vcs_info_msg_0_} $ '
