@@ -41,3 +41,7 @@ PROMPT='%F{blue}%1~%f${vcs_info_msg_0_} $ '
 
 # delete key
 bindkey  "^[[3~"  delete-char
+
+# Z 
+[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
+
