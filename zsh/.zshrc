@@ -38,3 +38,6 @@ zstyle ':vcs_info:git:*' formats ':%F{green}%b%f'
 setopt PROMPT_SUBST
 # PROMPT='%1~ %F{green}${vcs_info_msg_0_}%f $ '
 PROMPT='%F{blue}%1~%f${vcs_info_msg_0_} $ '
+
+# delete key
+bindkey  "^[[3~"  delete-char
