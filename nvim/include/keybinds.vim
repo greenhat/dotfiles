@@ -246,7 +246,7 @@ inoremap <C-S> <Esc>:update<cr>gi
 nnoremap <C-S> :update<cr>
 
 " Copy link to a clipboard instead of opening a browser:
-let g:gh_open_command = 'fn() { echo "$@" | xclip -selection clipboard; }; fn '
+let g:gh_open_command = 'fn() { echo "$@" | wl-copy; }; fn '
 
 " fix gx once and for all 
 " via https://github.com/vim/vim/issues/4738
