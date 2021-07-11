@@ -29,7 +29,8 @@ set $term kitty
 set $menu wofi --allow-images --show run | xargs swaymsg exec --
 
 # Lock
-bindsym $mod+9 exec swaylock -f -c 222222
+# bindsym $mod+9 exec swaylock -f -c 222222
+bindsym $mod+9 exec miner_lock.sh
 
 ### Output configuration
 #
@@ -55,9 +56,13 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
 
+# exec swayidle -w \
+#          timeout 300 'miner_lock.sh' \
+#          timeout 600 'swaymsg "output * dpms off"' resume 'miner_lock_resume.sh' \
+#          before-sleep 'swaylock -f -c 222222'
+
 exec swayidle -w \
-         timeout 300 'swaylock -f -c 222222' \
-         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+         timeout 600 'miner_lock.sh' resume 'miner_lock_resume.sh' \
          before-sleep 'swaylock -f -c 222222'
 
 ### Input configuration
