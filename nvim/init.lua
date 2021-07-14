@@ -38,6 +38,7 @@ require('packer').startup(function()
   use 'hrsh7th/nvim-compe' -- Autocompletion plugin
   use 'L3MON4D3/LuaSnip' -- Snippets plugin
   use 'ishan9299/nvim-solarized-lua'
+  use 'tpope/vim-dispatch'
 end)
 
 --Incremental live completion
@@ -47,7 +48,7 @@ vim.o.inccommand = 'nosplit'
 vim.o.hlsearch = false
 
 --Make line numbers default
-vim.wo.number = true
+vim.wo.number = false
 
 --Do not save when switching buffers
 vim.o.hidden = true
@@ -77,7 +78,7 @@ vim.cmd [[colorscheme solarized-flat]]
 
 --Set statusbar
 vim.g.lightline = {
-  colorscheme = 'onedark',
+  colorscheme = 'solarized',
   active = { left = { { 'mode', 'paste' }, { 'gitbranch', 'readonly', 'filename', 'modified' } } },
   component_function = { gitbranch = 'fugitive#head' },
 }
@@ -185,8 +186,9 @@ for _, lsp in ipairs(servers) do
 end
 
 -- Example custom server
-local sumneko_root_path = vim.fn.getenv("HOME").."/.local/bin/sumneko_lua" -- Change to your sumneko root installation
-local sumneko_binary = sumneko_root_path .. '/bin/linux/lua-language-server'
+-- local sumneko_root_path = vim.fn.getenv("HOME").."/.local/bin/sumneko_lua" -- Change to your sumneko root installation
+-- local sumneko_binary = sumneko_root_path .. '/bin/linux/lua-language-server'
+local sumneko_binary = 'lua-language-server'
 
 -- Make runtime files discoverable to the server
 local runtime_path = vim.split(package.path, ';')
@@ -194,7 +196,8 @@ table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
 require('lspconfig').sumneko_lua.setup {
-  cmd = { sumneko_binary, '-E', sumneko_root_path .. '/main.lua' },
+  -- cmd = { sumneko_binary, '-E', sumneko_root_path .. '/main.lua' },
+  cmd = { sumneko_binary },
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
@@ -341,4 +344,12 @@ vim.api.nvim_set_keymap('s', '<S-Tab>', 'v:lua.s_tab_complete()', { expr = true 
 -- Map compe confirm and complete functions
 vim.api.nvim_set_keymap('i', '<cr>', 'compe#confirm("<cr>")', { expr = true })
 vim.api.nvim_set_keymap('i', '<c-space>', 'compe#complete()', { expr = true })
+
+
+-- Gpush for fugitive
+vim.cmd [[ command! -bang -bar -nargs=* Gpush execute 'Dispatch<bang> -dir=' .  fnameescape(FugitiveGitDir()) 'git push' <q-args> ]]
+
+-- Ctrl-S to "save"
+vim.api.nvim_set_keymap('i', '<C-S>', '<Esc> :update<cr>gi', { noremap = true })
+vim.api.nvim_set_keymap('n', '<C-S>', ':update<cr>', { noremap = true })
 
