@@ -29,8 +29,8 @@ set $term kitty
 set $menu wofi --allow-images --show run | xargs swaymsg exec --
 
 # Lock
-# bindsym $mod+9 exec swaylock -f -c 222222
-bindsym $mod+9 exec miner_lock.sh
+bindsym $mod+9 exec swaylock -f -c 222222
+# bindsym $mod+9 exec miner_lock.sh
 
 ### Output configuration
 #
