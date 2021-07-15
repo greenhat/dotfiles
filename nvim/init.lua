@@ -586,5 +586,8 @@ require('rust-tools').setup({
 vim.cmd[[autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 100)]]
 vim.cmd[[autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync(nil, 100)]]
 
+-- vim-crates
+vim.cmd[[autocmd BufRead Cargo.toml call crates#toggle()]]
+
 -- TODO: project-wide grep for word under cursor in telescope (or grepper plugin)
 -- TODO: vim-crates (show outdated crates)
