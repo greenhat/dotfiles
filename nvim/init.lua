@@ -21,13 +21,13 @@ require('packer').startup(function()
   use 'tpope/vim-fugitive' -- Git commands in nvim
   use 'tpope/vim-rhubarb' -- Fugitive-companion to interact with github
   use 'tpope/vim-commentary' -- "gc" to comment visual regions/lines
-  use 'ludovicchabant/vim-gutentags' -- Automatic tags management
+  -- use 'ludovicchabant/vim-gutentags' -- Automatic tags management
   -- UI to select things (files, grep results, open buffers...)
   use { 'nvim-telescope/telescope.nvim', requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } } }
-  use 'joshdick/onedark.vim' -- Theme inspired by Atom
+  -- use 'joshdick/onedark.vim' -- Theme inspired by Atom
   use 'itchyny/lightline.vim' -- Fancier statusline
   -- Add indentation guides even on blank lines
-  use 'lukas-reineke/indent-blankline.nvim'
+  -- use 'lukas-reineke/indent-blankline.nvim'
   -- Add git related info in the signs columns and popups
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   -- Highlight, edit, and navigate code using a fast incremental parsing library
@@ -39,13 +39,15 @@ require('packer').startup(function()
   use 'L3MON4D3/LuaSnip' -- Snippets plugin
   use 'ishan9299/nvim-solarized-lua'
   use 'tpope/vim-dispatch'
+  use 'kevinhwang91/rnvimr'
+  use 'windwp/nvim-autopairs'
 end)
 
 --Incremental live completion
 vim.o.inccommand = 'nosplit'
 
 --Set highlight on search
-vim.o.hlsearch = false
+vim.o.hlsearch = true
 
 --Make line numbers default
 vim.wo.number = false
@@ -70,11 +72,34 @@ vim.o.smartcase = true
 vim.o.updatetime = 250
 vim.wo.signcolumn = 'yes'
 
+-- This causes neovim to use the system clipboard for all yanking operations,
+-- instead of needing to use the '+' or '*' registers explicitly.
+vim.cmd("set clipboard+=unnamedplus")
+
+-- Always expand tabs to spaces.
+vim.o.expandtab = true
+
+-- While typing a search, start highlighting results.
+vim.o.incsearch = true
+
+vim.o.ignorecase = true	-- ignore case when using a search pattern
+vim.o.smartcase = true	-- override 'ignorecase' when pattern has upper case character
+
+-- When scrolling, always keep the cursor N lines from the edges.
+vim.o.scrolloff = 3
+
+-- When a file has been detected to have been changed outside of Vim and it has not 
+-- been changed inside of Vim, automatically read it again. When the file has been deleted this is not done.
+vim.o.autoread = true
+
+-- disable automatic newline at the end of file
+vim.o.fixendofline = false
+
 --Set colorscheme (order is important here)
 vim.o.termguicolors = true
 -- vim.g.onedark_terminal_italics = 2
 -- vim.cmd [[colorscheme onedark]]
-vim.cmd [[colorscheme solarized-flat]]
+vim.cmd [[colorscheme solarized-high]]
 
 --Set statusbar
 vim.g.lightline = {
@@ -102,11 +127,34 @@ vim.g.indent_blankline_show_trailing_blankline_indent = false
 -- Gitsigns
 require('gitsigns').setup {
   signs = {
-    add = { hl = 'GitGutterAdd', text = '+' },
-    change = { hl = 'GitGutterChange', text = '~' },
-    delete = { hl = 'GitGutterDelete', text = '_' },
-    topdelete = { hl = 'GitGutterDelete', text = '‾' },
-    changedelete = { hl = 'GitGutterChange', text = '~' },
+    add = { hl = 'GitSignsAdd', text = '|' },
+    change = { hl = 'GitSignsChange', text = '|' }, 
+    delete = { hl = 'GitSignsDelete', text = '_' },
+    topdelete = { hl = 'GitSignsDelete', text = '‾' },
+    changedelete = { hl = 'GitSignsChange', text = '~' },
+  },
+  numhl = false,
+  linehl = false,
+  keymaps = {
+	  -- Default keymap options
+	  noremap = true,
+	  buffer = true,
+
+	  ['n ]c'] = { expr = true, "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'"},
+	  ['n [c'] = { expr = true, "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'"},
+
+	  ['n <leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
+	  ['v <leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
+	  ['n <leader>hu'] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
+	  ['n <leader>hr'] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
+	  ['v <leader>hr'] = '<cmd>lua require"gitsigns".reset_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
+	  ['n <leader>hR'] = '<cmd>lua require"gitsigns".reset_buffer()<CR>',
+	  ['n <leader>hd'] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
+	  ['n <leader>hb'] = '<cmd>lua require"gitsigns".blame_line(true)<CR>',
+
+	  -- Text objects
+	  ['o ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
+	  ['x ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>'
   },
 }
 
@@ -123,7 +171,8 @@ require('telescope').setup {
 }
 --Add leader shortcuts
 vim.api.nvim_set_keymap('n', '<leader><space>', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>sf', [[<cmd>lua require('telescope.builtin').find_files({previewer = false})<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fa', [[<cmd>lua require('telescope.builtin').git_files({previewer = false})<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fA', [[<cmd>lua require('telescope.builtin').find_files({previewer = false})<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>sb', [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>sh', [[<cmd>lua require('telescope.builtin').help_tags()<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>st', [[<cmd>lua require('telescope.builtin').tags()<CR>]], { noremap = true, silent = true })
@@ -160,16 +209,16 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gy', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>aa', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   -- vim.api.nvim_buf_set_keymap(bufnr, 'v', '<leader>ca', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '[g', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', ']g', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>so', [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]], opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>o', [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]], opts)
   vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
 end
 
@@ -285,7 +334,7 @@ require('compe').setup {
   source = {
     path = true,
     nvim_lsp = true,
-    luasnip = true,
+    -- luasnip = true,
     buffer = false,
     calc = false,
     nvim_lua = false,
@@ -353,3 +402,46 @@ vim.cmd [[ command! -bang -bar -nargs=* Gpush execute 'Dispatch<bang> -dir=' .  
 vim.api.nvim_set_keymap('i', '<C-S>', '<Esc> :update<cr>gi', { noremap = true })
 vim.api.nvim_set_keymap('n', '<C-S>', ':update<cr>', { noremap = true })
 
+-- Hitting escape twice should clear any search highlights.
+vim.api.nvim_set_keymap('n', '<ESC><ESC>', ':nohlsearch<CR>', { noremap = true, silent = true})
+
+-- map <Esc> to exit terminal-mode
+vim.api.nvim_set_keymap('t', '<ESC>', '<C-\\><C-n>', { noremap = true, silent = true})
+
+-- To use `ALT+{h,j,k,l}` to navigate windows from any mode:
+vim.api.nvim_set_keymap('t', '<A-h>', '<C-\\><C-n><C-w>h', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('t', '<A-j>', '<C-\\><C-n><C-w>j', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('t', '<A-k>', '<C-\\><C-n><C-w>k', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('t', '<A-l>', '<C-\\><C-n><C-w>l', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('i', '<A-h>', '<C-\\><C-n><C-w>h', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('i', '<A-j>', '<C-\\><C-n><C-w>j', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('i', '<A-k>', '<C-\\><C-n><C-w>k', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('i', '<A-l>', '<C-\\><C-n><C-w>l', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<A-h>', '<C-w>h', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<A-j>', '<C-w>j', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<A-k>', '<C-w>k', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<A-l>', '<C-w>l', { noremap = true, silent = true})
+
+
+-- fix gx once and for all (via https://github.com/vim/vim/issues/4738)
+vim.api.nvim_set_keymap('n', 'gx', ':execute "silent! !xdg-open " . shellescape(expand("<cWORD>"), 1)<cr>', {noremap = true, silent = true})
+
+-- close current window
+-- nnoremap <C-l> <C-w>c
+-- inoremap <C-l> <Esc><C-w>c
+-- tnoremap <C-l> <C-\><C-N><C-w>c
+
+-- https://github.com/windwp/nvim-autopairs
+require('nvim-autopairs').setup({
+        map_cr = true
+})
+
+vim.api.nvim_set_keymap('n', '<leader>fr', ':RnvimrToggle<CR>', {noremap = true, silent = true})
+
+-- TODO: show doc on K
+-- TODO: highlight symbol under cursor on hold
+-- TODO: format on save
+-- TODO: treesitter text objects
+-- TODO: workspace symbols
+-- TODO: project-wide grep for word under cursor in telescope (or grepper plugin)
+-- TODO: copy link on github
