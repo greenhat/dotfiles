@@ -42,6 +42,8 @@ require('packer').startup(function()
   use 'kevinhwang91/rnvimr'
   use 'windwp/nvim-autopairs'
   use 'justinmk/vim-sneak'
+  use 'tpope/vim-unimpaired'
+  use 'milkypostman/vim-togglelist'
 end)
 
 --Incremental live completion
@@ -182,6 +184,7 @@ vim.api.nvim_set_keymap('n', '<leader>sd', [[<cmd>lua require('telescope.builtin
 vim.api.nvim_set_keymap('n', '<leader>sp', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>so', [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>?', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>sc', [[<cmd>lua require('telescope.builtin').commands()<CR>]], { noremap = true, silent = true })
 
 -- Highlight on yank
 vim.api.nvim_exec(
@@ -444,6 +447,9 @@ vim.api.nvim_set_keymap('n', '<leader>fr', ':RnvimrToggle<CR>', {noremap = true,
 -- similar to EasyMotion. If enabled, Sneak overlays text with "labels" which can
 -- be jumped-to by typing the label character
 vim.cmd('let g:sneak#label=1')
+
+-- toggle quickfix
+vim.api.nvim_set_keymap('n', '<leader>qq', ':call ToggleQuickfixList()<CR>', { noremap = true, silent = true })
 
 -- TODO: show doc on K
 -- TODO: highlight symbol under cursor on hold
