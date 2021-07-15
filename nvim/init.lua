@@ -41,6 +41,7 @@ require('packer').startup(function()
   use 'tpope/vim-dispatch'
   use 'kevinhwang91/rnvimr'
   use 'windwp/nvim-autopairs'
+  use 'justinmk/vim-sneak'
 end)
 
 --Incremental live completion
@@ -97,6 +98,7 @@ vim.o.fixendofline = false
 
 --Set colorscheme (order is important here)
 vim.o.termguicolors = true
+vim.o.background = "light"
 -- vim.g.onedark_terminal_italics = 2
 -- vim.cmd [[colorscheme onedark]]
 vim.cmd [[colorscheme solarized-high]]
@@ -437,6 +439,11 @@ require('nvim-autopairs').setup({
 })
 
 vim.api.nvim_set_keymap('n', '<leader>fr', ':RnvimrToggle<CR>', {noremap = true, silent = true})
+
+-- Label-mode minimizes the steps to jump to a location, using a clever interface
+-- similar to EasyMotion. If enabled, Sneak overlays text with "labels" which can
+-- be jumped-to by typing the label character
+vim.cmd('let g:sneak#label=1')
 
 -- TODO: show doc on K
 -- TODO: highlight symbol under cursor on hold
