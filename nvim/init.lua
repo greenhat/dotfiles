@@ -44,6 +44,8 @@ require('packer').startup(function()
   use 'justinmk/vim-sneak'
   use 'tpope/vim-unimpaired'
   use 'milkypostman/vim-togglelist'
+  use 'mhinz/vim-crates'
+  use { 'ruifm/gitlinker.nvim', requires = 'nvim-lua/plenary.nvim', }
 end)
 
 --Incremental live completion
@@ -450,6 +452,10 @@ vim.cmd('let g:sneak#label=1')
 
 -- toggle quickfix
 vim.api.nvim_set_keymap('n', '<leader>qq', ':call ToggleQuickfixList()<CR>', { noremap = true, silent = true })
+
+require('gitlinker').setup({
+        mappings = "<leader>gh"
+})
 
 -- TODO: show doc on K
 -- TODO: highlight symbol under cursor on hold
