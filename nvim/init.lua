@@ -39,7 +39,7 @@ require('packer').startup(function()
   -- Additional textobjects for treesitter
   use 'nvim-treesitter/nvim-treesitter-textobjects'
   use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
-  use 'kabouzeid/nvim-lspinstall'
+  -- use 'kabouzeid/nvim-lspinstall'
   use 'hrsh7th/nvim-compe' -- Autocompletion plugin
   use 'L3MON4D3/LuaSnip' -- Snippets plugin
   use 'tpope/vim-dispatch'
@@ -88,6 +88,8 @@ vim.cmd("set clipboard+=unnamedplus")
 
 -- Always expand tabs to spaces.
 vim.o.expandtab = true
+vim.o.shiftwidth = 4
+vim.o.tabstop = 4
 
 -- While typing a search, start highlighting results.
 vim.o.incsearch = true
@@ -164,8 +166,8 @@ require('gitsigns').setup {
 
 	  ['n <leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
 	  ['v <leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
-	  ['n <leader>hu'] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
-	  ['n <leader>hr'] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
+	  ['n <leader>hS'] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
+	  ['n <leader>hu'] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
 	  ['v <leader>hr'] = '<cmd>lua require"gitsigns".reset_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
 	  ['n <leader>hR'] = '<cmd>lua require"gitsigns".reset_buffer()<CR>',
 	  ['n <leader>hd'] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
@@ -258,22 +260,12 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- Enable the following language servers
--- local servers = { 'clangd', 'rust_analyzer', 'tsserver' }
--- for _, lsp in ipairs(servers) do
---   nvim_lsp[lsp].setup {
---     on_attach = on_attach,
---     capabilities = capabilities,
---   }
--- end
-
--- nvim-lspinstall
-require'lspinstall'.setup() -- important
-local servers = require'lspinstall'.installed_servers()
-for _, server in pairs(servers) do
-  require'lspconfig'[server].setup{
+local servers = { 'clangd', 'rust_analyzer', 'tsserver' }
+for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup {
     on_attach = on_attach,
     capabilities = capabilities,
-}
+  }
 end
 
 -- Example custom server
@@ -570,7 +562,24 @@ require('rust-tools').setup({
     -- all the opts to send to nvim-lspconfig
     -- these override the defaults set by rust-tools.nvim
     -- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
-    server = { settings = {'rust-analyzer.checkOnSave.command', 'clippy' }} -- rust-analyer options
+    server = { 
+        on_attach = on_attach,
+        capabilities = capabilities,
+        flags = {
+            allow_incremental_sync = true,
+            debounce_text_changes = 500,
+        },
+        settings = { 
+            ["rust-analyzer"] = {
+                cargo = {
+                    allFeatures = true, 
+                },
+                checkOnSave = {
+                    command = "clippy"
+                },
+            },
+        },
+    }
 })
 
 -- format on save 
@@ -578,3 +587,4 @@ vim.cmd[[autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 100)]]
 vim.cmd[[autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync(nil, 100)]]
 
 -- TODO: project-wide grep for word under cursor in telescope (or grepper plugin)
+-- TODO: vim-crates (show outdated crates)
