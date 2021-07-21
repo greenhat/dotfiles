@@ -206,6 +206,7 @@ require('telescope').setup {
         ['<C-d>'] = false,
       },
     },
+    layout_strategy = 'vertical',
     file_sorter =  require('telescope.sorters').get_fzy_sorter,
     file_ignore_patterns = {},
     generic_sorter =  require('telescope.sorters').get_fzy_sorter,
