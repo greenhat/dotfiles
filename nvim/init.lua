@@ -26,6 +26,7 @@ require('packer').startup(function()
   use 'tpope/vim-fugitive' -- Git commands in nvim
   use 'tpope/vim-rhubarb' -- Fugitive-companion to interact with github
   use 'tpope/vim-commentary'
+  use 'tpope/vim-repeat'
 
   -- https://github.com/b3nj5m1n/kommentary/issues/41
   -- does not support dot command
