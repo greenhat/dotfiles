@@ -26,6 +26,7 @@ require('packer').startup(function()
   use 'tpope/vim-fugitive' -- Git commands in nvim
   use 'tpope/vim-rhubarb' -- Fugitive-companion to interact with github
   use 'tpope/vim-commentary' -- "gc" to comment visual regions/lines
+  use 'tpope/vim-surround'
   -- use 'ludovicchabant/vim-gutentags' -- Automatic tags management
   -- UI to select things (files, grep results, open buffers...)
   use { 'nvim-telescope/telescope.nvim', requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } } }
@@ -100,7 +101,7 @@ vim.o.smartcase = true	-- override 'ignorecase' when pattern has upper case char
 -- When scrolling, always keep the cursor N lines from the edges.
 vim.o.scrolloff = 3
 
--- When a file has been detected to have been changed outside of Vim and it has not 
+-- When a file has been detected to have been changed outside of Vim and it has not
 -- been changed inside of Vim, automatically read it again. When the file has been deleted this is not done.
 vim.o.autoread = true
 
@@ -125,8 +126,25 @@ vim.cmd [[let g:gruvbox_contrast_light="hard"]]
 --   component_function = { gitbranch = 'fugitive#head' },
 -- }
 require('lualine').setup({
-        -- options = { theme = 'solarized' }
-        options = { theme = 'gruvbox_light' }
+    -- options = { theme = 'solarized' }
+    options = { theme = 'gruvbox_light', icons_enabled = 1 },
+    sections = {
+        lualine_a = {'mode'},
+        lualine_b = {'branch'},
+        lualine_c = {{'filename', file_status = true, path = 1}},
+        -- lualine_x = {'encoding', 'fileformat', 'filetype'},
+        -- lualine_x = {{'filetype', colored = true}},
+        lualine_x = {},
+        lualine_y = {
+            {
+                'diagnostics',
+                sources = {'nvim_lsp'},
+                sections = {'error', 'warn', 'info', 'hint'},
+                symbols = {error = 'E', warn = 'W', info = 'I', hint = 'H'}
+            }
+        },
+        lualine_z = {'location'}
+    },
 })
 
 --Remap space as leader key
@@ -149,7 +167,7 @@ vim.g.maplocalleader = ' '
 require('gitsigns').setup {
   signs = {
     add = { hl = 'GitSignsAdd', text = '|' },
-    change = { hl = 'GitSignsChange', text = '|' }, 
+    change = { hl = 'GitSignsChange', text = '|' },
     delete = { hl = 'GitSignsDelete', text = '_' },
     topdelete = { hl = 'GitSignsDelete', text = '‾' },
     changedelete = { hl = 'GitSignsChange', text = '~' },
@@ -249,8 +267,8 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>a', [[<cmd>lua require('telescope.builtin').lsp_code_actions({layout_config = {width = 0.3, height = 0.2}})<CR>]], opts)
   -- vim.api.nvim_buf_set_keymap(bufnr, 'v', '<leader>ca', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', opts)
   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>e', [[<cmd>lua require('telescope.builtin').lsp_workspace_diagnostics()<CR>]], opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>E', [[<cmd>lua require('telescope.builtin').lsp_workspace_diagnostics({ default_text = ':error:' })<CR>]], opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>E', [[<cmd>lua require('telescope.builtin').lsp_workspace_diagnostics()<CR>]], opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>e', [[<cmd>lua require('telescope.builtin').lsp_workspace_diagnostics({ default_text = ':error:' })<CR>]], opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '[g', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', ']g', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
@@ -339,6 +357,12 @@ require('nvim-treesitter.configs').setup {
         ['if'] = '@function.inner',
         ['ac'] = '@class.outer',
         ['ic'] = '@class.inner',
+        ['aC'] = '@conditional.outer',
+        ['iC'] = '@conditional.inner',
+        ['ab'] = '@block.outer',
+        ['ib'] = '@block.inner',
+        ['ia'] = '@parameter.inner',
+        ['as'] = '@statement.outer',
       },
     },
     move = {
@@ -561,7 +585,7 @@ require('rust-tools').setup({
     -- all the opts to send to nvim-lspconfig
     -- these override the defaults set by rust-tools.nvim
     -- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
-    server = { 
+    server = {
         -- example at https://github.com/simrat39/rust-tools.nvim/issues/28
         on_attach = on_attach,
         capabilities = capabilities,
@@ -569,20 +593,24 @@ require('rust-tools').setup({
             allow_incremental_sync = true,
             debounce_text_changes = 500,
         },
-        settings = { 
+        settings = {
             ["rust-analyzer"] = {
                 cargo = {
-                    allFeatures = true, 
+                    allFeatures = true,
                 },
                 checkOnSave = {
                     command = "clippy"
                 },
+                assist = {
+                    importGranularity = "item",
+                    importEnforceGranularity = true
+                }
             },
         },
     }
 })
 
--- format on save 
+-- format on save
 vim.cmd[[autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 100)]]
 vim.cmd[[autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync(nil, 100)]]
 
