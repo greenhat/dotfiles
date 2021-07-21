@@ -25,7 +25,24 @@ require('packer').startup(function()
   ---
   use 'tpope/vim-fugitive' -- Git commands in nvim
   use 'tpope/vim-rhubarb' -- Fugitive-companion to interact with github
-  use 'tpope/vim-commentary' -- "gc" to comment visual regions/lines
+  use 'tpope/vim-commentary'
+
+  -- https://github.com/b3nj5m1n/kommentary/issues/41
+  -- does not support dot command
+  --[[ use 'b3nj5m1n/kommentary'
+
+    use {
+      "folke/todo-comments.nvim",
+      requires = "nvim-lua/plenary.nvim",
+      config = function()
+        require("todo-comments").setup {
+          -- your configuration comes here
+          -- or leave it empty to use the default settings
+          -- refer to the configuration section below
+        }
+      end
+    } ]]
+
   use 'tpope/vim-surround'
   -- use 'ludovicchabant/vim-gutentags' -- Automatic tags management
   -- UI to select things (files, grep results, open buffers...)
