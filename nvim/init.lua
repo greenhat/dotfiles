@@ -30,7 +30,6 @@ require('packer').startup(function()
 
   -- https://github.com/b3nj5m1n/kommentary/issues/41
   -- does not support dot command
-  --[[ use 'b3nj5m1n/kommentary'
 
     use {
       "folke/todo-comments.nvim",
@@ -42,7 +41,7 @@ require('packer').startup(function()
           -- refer to the configuration section below
         }
       end
-    } ]]
+    }
 
   use 'tpope/vim-surround'
   -- use 'ludovicchabant/vim-gutentags' -- Automatic tags management
