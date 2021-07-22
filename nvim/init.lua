@@ -69,6 +69,7 @@ require('packer').startup(function()
   use 'mhinz/vim-crates'
   use { 'ruifm/gitlinker.nvim', requires = 'nvim-lua/plenary.nvim', }
   use { 'simrat39/rust-tools.nvim', requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' }, { 'nvim-telescope/telescope.nvim'} }}
+  use 'scalameta/nvim-metals'
 end)
 
 --Incremental live completion
@@ -634,4 +635,47 @@ vim.cmd[[autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync(nil, 100)]]
 
 -- vim-crates
 vim.cmd[[autocmd BufRead Cargo.toml call crates#toggle()]]
+
+vim.cmd[[set guifont=Iosevka\ Fixed:h7:b]]
+
+-- Scala Metals
+
+-- Without doing this, autocommands that deal with filetypes prohibit messages from being shown... and since we heavily rely on this, this must be set.
+-- https://github.com/scalameta/nvim-metals
+vim.opt_global.shortmess:remove("F"):append("c")
+
+-- Metals LSP
+vim.cmd([[augroup lsp]])
+vim.cmd([[autocmd!]])
+vim.cmd([[autocmd FileType scala setlocal omnifunc=v:lua.vim.lsp.omnifunc]])
+vim.cmd([[autocmd FileType scala,sbt lua require("metals").initialize_or_attach(metals_config)]])
+vim.cmd([[augroup end]])
+-- Need for symbol highlights to work correctly
+vim.cmd([[hi! link LspReferenceText CursorColumn]])
+vim.cmd([[hi! link LspReferenceRead CursorColumn]])
+vim.cmd([[hi! link LspReferenceWrite CursorColumn]])
+
+metals_config = require("metals").bare_config
+
+-- Example of settings
+metals_config.settings = {
+  showImplicitArguments = true,
+  excludedPackages = { "akka.actor.typed.javadsl", "com.github.swagger.akka.javadsl" },
+}
+
+-- Example of how to ovewrite a handler
+metals_config.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+  virtual_text = { prefix = "" },
+})
+
+-- I *highly* recommend setting statusBarProvider to true, however if you do,
+-- you *have* to have a setting to display this in your statusline or else
+-- you'll not see any messages from metals. There is more info in the help
+-- docs about this
+-- metals_config.init_options.statusBarProvider = "on"
+
+
+metals_config.capabilities = capabilities
+metals_config.on_attach = on_attach
+
 
