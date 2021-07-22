@@ -38,11 +38,11 @@
 ## In MacOS, 
 # FontFamily = "Monaco"
 ## In Linux
-FontFamily = "Iosevka Fixed Semibold"
+#FontFamily = "Iosevka Fixed Semibold"
 ## In Windows
 # FontFamily = "Windows"
 ## Fontsize is
-FontSize = 7
+#FontSize = 7
 ## linespace is
 # Linespace = 6
 
@@ -89,7 +89,7 @@ FontSize = 7
 # OptionsToUseGuideWidth = "tabstop"
 
 ## Animates the scrolling behavior of Neovim when the scroll command is entered.
-# SmoothScroll = false
+SmoothScroll = true
 ## Disables horizontal scrolling for smooth scrolling with the touchpad.
 # DisableHorizontalScroll = true
 
