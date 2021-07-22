@@ -45,3 +45,4 @@ bindkey  "^[[3~"  delete-char
 # Z 
 [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
 
+alias dc='docker-compose'
