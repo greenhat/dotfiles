@@ -70,6 +70,7 @@ require('packer').startup(function()
   use { 'ruifm/gitlinker.nvim', requires = 'nvim-lua/plenary.nvim', }
   use { 'simrat39/rust-tools.nvim', requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' }, { 'nvim-telescope/telescope.nvim'} }}
   use 'scalameta/nvim-metals'
+  use 'mtikekar/nvim-send-to-term'
 end)
 
 --Incremental live completion
@@ -485,6 +486,8 @@ vim.api.nvim_set_keymap('n', '<C-S>', ':update<cr>', { noremap = true })
 
 -- Hitting escape twice should clear any search highlights.
 vim.api.nvim_set_keymap('n', '<ESC><ESC>', ':nohlsearch<CR>', { noremap = true, silent = true})
+-- run on this config loading to avoid highlight on reload
+vim.cmd[[:nohlsearch]]
 
 -- map <Esc> to exit terminal-mode
 vim.api.nvim_set_keymap('t', '<ESC>', '<C-\\><C-n>', { noremap = true, silent = true})
@@ -678,4 +681,9 @@ metals_config.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp
 metals_config.capabilities = capabilities
 metals_config.on_attach = on_attach
 
-
+-- nvim-send-to-term
+vim.cmd[[
+nmap <leader>mm <Plug>SendLine
+nmap <leader>m <Plug>Send
+vmap <leader>m <Plug>Send
+]]
