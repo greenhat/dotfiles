@@ -22,9 +22,16 @@
 
 !/zsh/
 /zsh/.zcompdump
+/zsh/.zsh_history
+/zsh/.zsh_sessions
+/zsh/.zcompcache
 
 !/sway/
 
 !/waybar/
 
 !/goneovim/
+
+!/skhd/
+
+!/yabai/

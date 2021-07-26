@@ -510,7 +510,8 @@ vim.api.nvim_set_keymap('n', '<A-l>', '<C-w>l', { noremap = true, silent = true}
 
 
 -- fix gx once and for all (via https://github.com/vim/vim/issues/4738)
-vim.api.nvim_set_keymap('n', 'gx', ':execute "silent! !xdg-open " . shellescape(expand("<cWORD>"), 1)<cr>', {noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('n', 'gx', ':execute "silent! !xdg-open " . shellescape(expand("<cWORD>"), 1)<cr>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', 'gx', ':execute "silent! !open " . shellescape(expand("<cWORD>"), 1)<cr>', {noremap = true, silent = true})
 
 -- close current window
 -- nnoremap <C-l> <C-w>c
@@ -641,7 +642,7 @@ vim.cmd[[autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync(nil, 100)]]
 -- vim-crates
 vim.cmd[[autocmd BufRead Cargo.toml call crates#toggle()]]
 
-vim.cmd[[set guifont=Iosevka\ Fixed:h7:b]]
+-- vim.cmd[[set guifont=Iosevka\ Fixed:h7:b]]
 
 -- Scala Metals
 
