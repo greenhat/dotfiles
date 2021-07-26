@@ -6,7 +6,7 @@
 #
 
 # Autostart
-exec dropbox
+# exec dropbox
 exec udiskie --tray
 
 ### Variables

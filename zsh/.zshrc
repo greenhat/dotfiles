@@ -46,3 +46,4 @@ bindkey  "^[[3~"  delete-char
 [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
 
 alias dc='docker-compose'
+alias pm='sudo pacman'
