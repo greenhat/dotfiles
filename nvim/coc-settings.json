@@ -1,13 +1,19 @@
 {
   "coc.preferences.formatOnType": true,
   "coc.preferences.formatOnSaveFiletypes": ["scala", "rust"],
+  "coc.preferences.jumpCommand": "drop",
   "coc.source.buffer.disableSyntaxes": ["comment", "string"],
   "codeLens.enable": true,
   "metals.statusBarEnabled": true,
   "diagnostic.checkCurrentLine": true,
-  "coc.preferences.useQuickfixForLocations": true,
+  "coc.preferences.useQuickfixForLocations": false,
   "suggest.fixInsertedWord": false,
-  "rust-analyzer.completion.addCallParenthesis": false,
+  "rust-analyzer.completion.addCallParenthesis": true,
   "rust-analyzer.checkOnSave.command": "clippy",
-  "diagnostic.displayByAle": false,
+  "rust-analyzer.completion.autoimport.enable": true,
+  "rust-analyzer.assist.importMergeBehavior": "none",
+  "rust-analyzer.cargo.loadOutDirsFromCheck": true,
+  "rust-analyzer.procMacro.enable": true,
+  "rust-analyzer.cargo.allFeatures": true,
+  "rust-analyzer.updates.channel": "nightly"
 }

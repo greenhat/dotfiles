@@ -72,7 +72,7 @@ runtime plugin/grepper.vim
 " case-insensitive
 let g:grepper.git.grepprg .= 'i'
 
-set shell=bash
+set shell=zsh
 
 set foldmethod=syntax
 set nofoldenable
@@ -119,4 +119,34 @@ let g:ale_cursor_detail = 0
 " Use cargo clippy instead of check
 let g:ale_rust_cargo_use_clippy = 1
 let g:airline#extensions#ale#enabled = 1
+
+" always change to current file directory
+" set autochdir
+
+" CoC. Give more space for displaying messages.
+set cmdheight=1
+
+" Details:bp("buffer previous") moves us to a different buffer in the current
+" window (bn would work, too), then bd # ("buffer delete" "alternate file")
+" deletes the buffer we just moved away
+command! Bd bp\|bd \#
+
+command! -bang -bar -nargs=* Gpush execute 'Dispatch<bang> -dir=' .
+      \ fnameescape(FugitiveGitDir()) 'git push' <q-args>
+
+" Firenvim
+let g:firenvim_config = { 
+    \ 'globalSettings': {
+        \ 'alt': 'all',
+    \  },
+    \ 'localSettings': {
+        \ '.*': {
+            \ 'cmdline': 'neovim',
+            \ 'content': 'text',
+            \ 'priority': 0,
+            \ 'selector': 'textarea',
+            \ 'takeover': 'never',
+        \ },
+    \ }
+\ }
 
