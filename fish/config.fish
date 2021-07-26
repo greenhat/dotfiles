@@ -27,7 +27,7 @@ alias cat=bat
 
 set -x PATH $PATH "$HOME/.cargo/bin"
 
-set -x RUST_BACKTRACE 1
+set -x RUST_BACKTRACE "full"
 
 # tmux pane pwd
 function cdp
@@ -40,14 +40,7 @@ function cdpd
     set tmuxpanedirname (tmux display-message -p -F "#{pane_current_path}" -t1) && cd $tmuxpanedirname
 end
 
-function jdk 
-    set jdkversion $argv
-    set -x JAVA_HOME (/usr/libexec/java_home -v "$jdkversion")
-    java -version
- end
-
- # default JDK
- jdk 11 2> /dev/null
+set -x JAVA_HOME (/usr/libexec/java_home -v "11")
 
 set -x SBT_OPTS "-Xmx3000M -Xss4m -XX:ReservedCodeCacheSize=384m"
 set -x QMK_HOME "$HOME/code/my/qmk_firmware"
