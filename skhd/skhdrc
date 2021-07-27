@@ -83,7 +83,7 @@ alt - h [
 "kitty" ~
 ]
 # muscle memory :)
-cmd - h : yabai -m window --focus west || yabai -m display --focus prev
+cmd - h : echo
 
 alt - j [
 * : yabai -m window --focus stack.prev || yabai -m window --focus south

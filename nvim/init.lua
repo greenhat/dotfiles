@@ -493,6 +493,7 @@ vim.cmd[[:nohlsearch]]
 
 -- map <Esc> to exit terminal-mode
 vim.api.nvim_set_keymap('t', '<ESC>', '<C-\\><C-n>', { noremap = true, silent = true})
+vim.cmd[[tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi']]
 
 -- To use `ALT+{h,j,k,l}` to navigate windows from any mode:
 -- vim.api.nvim_set_keymap('t', '<A-h>', '<C-\\><C-n><C-w>h', { noremap = true, silent = true})
