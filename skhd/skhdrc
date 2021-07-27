@@ -77,10 +77,26 @@
 # ############################################################### #
 
 # focus window
+# ctrl - h : yabai -m window --focus west || yabai -m display --focus prev
+alt - h [
+* : yabai -m window --focus west || yabai -m display --focus prev
+"kitty" ~
+]
+# muscle memory :)
 cmd - h : yabai -m window --focus west || yabai -m display --focus prev
-cmd - j : yabai -m window --focus stack.prev || yabai -m window --focus south
-cmd - k : yabai -m window --focus stack.next || yabai -m window --focus north
-cmd - l : yabai -m window --focus east || yabai -m display --focus next
+
+alt - j [
+* : yabai -m window --focus stack.prev || yabai -m window --focus south
+"kitty" ~
+]
+alt - k [
+* : yabai -m window --focus stack.next || yabai -m window --focus north
+"kitty" ~
+]
+alt - l [
+* : yabai -m window --focus east || yabai -m display --focus next
+"kitty" ~
+]
 
 # swap managed window
 ctrl + alt - h : yabai -m window --swap west
@@ -89,15 +105,22 @@ ctrl + alt - k : yabai -m window --swap north
 ctrl + alt - l : yabai -m window --swap east
 
 # move managed window
-shift + cmd - h : yabai -m window --warp west
-shift + cmd - j : yabai -m window --warp south
-shift + cmd - k : yabai -m window --warp north
-shift + cmd - l : yabai -m window --warp east 
+shift + ctrl - h : yabai -m window --warp west
+shift + ctrl - j : yabai -m window --warp south
+shift + ctrl - k : yabai -m window --warp north
+shift + ctrl - l : yabai -m window --warp east 
 
+# stack
 ctrl + cmd - h : yabai -m window --stack west
 ctrl + cmd - j : yabai -m window --stack south
 ctrl + cmd - k : yabai -m window --stack north
 ctrl + cmd - l : yabai -m window --stack east
+
+# resize managed window
+alt + cmd - h : yabai -m window --resize left:-20:0
+alt + cmd - j : yabai -m window --resize top:0:20
+alt + cmd - k : yabai -m window --resize top:0:-20
+alt + cmd - l : yabai -m window --resize left:20:0
 
 # balance size of windows
 # shift + alt - 0 : yabai -m space --balance
@@ -125,7 +148,7 @@ ctrl + cmd - l : yabai -m window --stack east
 # focus monitor
 # ctrl + alt - z  : yabai -m display --focus prev
 # ctrl + alt - 1  : yabai -m display --focus 1
-cmd - 1 : yabai -m display --focus 1
+ctrl + alt - 1 : yabai -m display --focus 1
 cmd - d : yabai -m display --focus recent
 
 # send window to monitor and follow focus
