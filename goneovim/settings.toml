@@ -89,7 +89,7 @@
 # OptionsToUseGuideWidth = "tabstop"
 
 ## Animates the scrolling behavior of Neovim when the scroll command is entered.
-SmoothScroll = true
+SmoothScroll = false
 ## Disables horizontal scrolling for smooth scrolling with the touchpad.
 # DisableHorizontalScroll = true
 
