@@ -11,5 +11,5 @@ export BROWSER=/usr/bin/brave
 export TERM=xterm
 export XCOMPOSEFILE=/tmp/compose
 export SHELL=/bin/zsh
-export GPG_TTY=$(tty)
+# export GPG_TTY=$(tty)
 export CLICOLOR=1

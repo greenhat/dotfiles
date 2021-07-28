@@ -5,6 +5,8 @@
 # Read `man 5 sway` for a complete reference.
 #
 
+# for_window [title="__focused__"] title_format "%title (%app_id)"
+
 # Autostart
 # exec dropbox
 exec udiskie --tray
@@ -12,7 +14,11 @@ exec udiskie --tray
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
-set $mod Mod4
+# Cmd
+# set $mod Mod4
+# Alt
+set $mod Mod1
+
 # Home row direction keys, like vim
 set $left h
 set $down j

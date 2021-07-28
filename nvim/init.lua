@@ -510,36 +510,32 @@ vim.cmd[[tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi']]
 -- vim.api.nvim_set_keymap('n', '<A-l>', '<C-w>l', { noremap = true, silent = true})
 
 vim.cmd[[
-function! YabaiOrSplitSwitchOrDisplay(wincmd, direction, display)
+
+au FocusGained * silent execute '!swaymsg unbindsym Mod1+h, unbindsym Mod1+j, unbindsym Mod1+k, unbindsym Mod1+l'
+au FocusLost * silent execute '!swaymsg bindsym Mod1+h focus left , bindsym Mod1+j focus down, bindsym Mod1+k focus up, bindsym Mod1+l focus right'
+
+function! SwayOrSplitSwitch(wincmd, direction)
   let previous_winnr = winnr()
   silent! execute "wincmd " . a:wincmd
   if previous_winnr == winnr()
-    call system("yabai -m window --focus " . a:direction . " || yabai -m display --focus " . a:display)
+    call system("swaymsg focus " . a:direction)
   endif
 endfunction
 
-function! YabaiOrSplitSwitchOrStack(wincmd, direction, stack)
-  let previous_winnr = winnr()
-  silent! execute "wincmd " . a:wincmd
-  if previous_winnr == winnr()
-    call system("yabai -m window --focus " . a:stack . " || yabai -m window --focus " . a:direction)
-  endif
-endfunction
+nnoremap <silent> <A-h> :call SwayOrSplitSwitch('h', 'left')<cr>
+nnoremap <silent> <A-j> :call SwayOrSplitSwitch('j', 'down')<cr>
+nnoremap <silent> <A-k> :call SwayOrSplitSwitch('k', 'up')<cr>
+nnoremap <silent> <A-l> :call SwayOrSplitSwitch('l', 'right')<cr>
 
-nnoremap <silent> <A-h> :call YabaiOrSplitSwitchOrDisplay('h', 'west', 'prev')<cr>
-nnoremap <silent> <A-j> :call YabaiOrSplitSwitchOrStack('j', 'south', 'stack.prev')<cr>
-nnoremap <silent> <A-k> :call YabaiOrSplitSwitchOrStack('k', 'north', 'stack.next')<cr>
-nnoremap <silent> <A-l> :call YabaiOrSplitSwitchOrDisplay('l', 'east', 'next')<cr>
-
-inoremap <silent> <A-h> <C-\><C-n>: call YabaiOrSplitSwitchOrDisplay('h', 'west', 'prev')<cr>
-inoremap <silent> <A-j> <C-\><C-n>: call YabaiOrSplitSwitchOrStack('j', 'south', 'stack.prev')<cr>
-inoremap <silent> <A-k> <C-\><C-n>: call YabaiOrSplitSwitchOrStack('k', 'north', 'stack.next')<cr>
-inoremap <silent> <A-l> <C-\><C-n>: call YabaiOrSplitSwitchOrDisplay('l', 'east', 'next')<cr>
+inoremap <silent> <A-h> <C-\><C-n>: call SwayOrSplitSwitch('h', 'left')<cr>
+inoremap <silent> <A-j> <C-\><C-n>: call SwayOrSplitSwitch('j', 'down')<cr>
+inoremap <silent> <A-k> <C-\><C-n>: call SwayOrSplitSwitch('k', 'up')<cr>
+inoremap <silent> <A-l> <C-\><C-n>: call SwayOrSplitSwitch('l', 'right')<cr>
     
-tnoremap <silent> <A-h> <C-\><C-n>: call YabaiOrSplitSwitchOrDisplay('h', 'west', 'prev')<cr>
-tnoremap <silent> <A-j> <C-\><C-n>: call YabaiOrSplitSwitchOrStack('j', 'south', 'stack.prev')<cr>
-tnoremap <silent> <A-k> <C-\><C-n>: call YabaiOrSplitSwitchOrStack('k', 'north', 'stack.next')<cr>
-tnoremap <silent> <A-l> <C-\><C-n>: call YabaiOrSplitSwitchOrDisplay('l', 'east', 'next')<cr>
+tnoremap <silent> <A-h> <C-\><C-n>: call SwayOrSplitSwitch('h', 'left')<cr>
+tnoremap <silent> <A-j> <C-\><C-n>: call SwayOrSplitSwitch('j', 'down')<cr>
+tnoremap <silent> <A-k> <C-\><C-n>: call SwayOrSplitSwitch('k', 'up')<cr>
+tnoremap <silent> <A-l> <C-\><C-n>: call SwayOrSplitSwitch('l', 'right')<cr>
 ]]
 
 -- fix gx once and for all (via https://github.com/vim/vim/issues/4738)
@@ -675,7 +671,7 @@ vim.cmd[[autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync(nil, 100)]]
 -- vim-crates
 vim.cmd[[autocmd BufRead Cargo.toml call crates#toggle()]]
 
--- vim.cmd[[set guifont=Iosevka\ Fixed:h7:b]]
+vim.cmd[[set guifont=Iosevka\ Fixed:h7:b]]
 
 -- Scala Metals
 
