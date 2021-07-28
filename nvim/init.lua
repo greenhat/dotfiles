@@ -493,24 +493,58 @@ vim.cmd[[:nohlsearch]]
 
 -- map <Esc> to exit terminal-mode
 vim.api.nvim_set_keymap('t', '<ESC>', '<C-\\><C-n>', { noremap = true, silent = true})
+vim.cmd[[tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi']]
 
 -- To use `ALT+{h,j,k,l}` to navigate windows from any mode:
-vim.api.nvim_set_keymap('t', '<A-h>', '<C-\\><C-n><C-w>h', { noremap = true, silent = true})
-vim.api.nvim_set_keymap('t', '<A-j>', '<C-\\><C-n><C-w>j', { noremap = true, silent = true})
-vim.api.nvim_set_keymap('t', '<A-k>', '<C-\\><C-n><C-w>k', { noremap = true, silent = true})
-vim.api.nvim_set_keymap('t', '<A-l>', '<C-\\><C-n><C-w>l', { noremap = true, silent = true})
-vim.api.nvim_set_keymap('i', '<A-h>', '<C-\\><C-n><C-w>h', { noremap = true, silent = true})
-vim.api.nvim_set_keymap('i', '<A-j>', '<C-\\><C-n><C-w>j', { noremap = true, silent = true})
-vim.api.nvim_set_keymap('i', '<A-k>', '<C-\\><C-n><C-w>k', { noremap = true, silent = true})
-vim.api.nvim_set_keymap('i', '<A-l>', '<C-\\><C-n><C-w>l', { noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<A-h>', '<C-w>h', { noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<A-j>', '<C-w>j', { noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<A-k>', '<C-w>k', { noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<A-l>', '<C-w>l', { noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('t', '<A-h>', '<C-\\><C-n><C-w>h', { noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('t', '<A-j>', '<C-\\><C-n><C-w>j', { noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('t', '<A-k>', '<C-\\><C-n><C-w>k', { noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('t', '<A-l>', '<C-\\><C-n><C-w>l', { noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('i', '<A-h>', '<C-\\><C-n><C-w>h', { noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('i', '<A-j>', '<C-\\><C-n><C-w>j', { noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('i', '<A-k>', '<C-\\><C-n><C-w>k', { noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('i', '<A-l>', '<C-\\><C-n><C-w>l', { noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('n', '<A-h>', '<C-w>h', { noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('n', '<A-j>', '<C-w>j', { noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('n', '<A-k>', '<C-w>k', { noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('n', '<A-l>', '<C-w>l', { noremap = true, silent = true})
 
+vim.cmd[[
+function! YabaiOrSplitSwitchOrDisplay(wincmd, direction, display)
+  let previous_winnr = winnr()
+  silent! execute "wincmd " . a:wincmd
+  if previous_winnr == winnr()
+    call system("yabai -m window --focus " . a:direction . " || yabai -m display --focus " . a:display)
+  endif
+endfunction
+
+function! YabaiOrSplitSwitchOrStack(wincmd, direction, stack)
+  let previous_winnr = winnr()
+  silent! execute "wincmd " . a:wincmd
+  if previous_winnr == winnr()
+    call system("yabai -m window --focus " . a:stack . " || yabai -m window --focus " . a:direction)
+  endif
+endfunction
+
+nnoremap <silent> <A-h> :call YabaiOrSplitSwitchOrDisplay('h', 'west', 'prev')<cr>
+nnoremap <silent> <A-j> :call YabaiOrSplitSwitchOrStack('j', 'south', 'stack.prev')<cr>
+nnoremap <silent> <A-k> :call YabaiOrSplitSwitchOrStack('k', 'north', 'stack.next')<cr>
+nnoremap <silent> <A-l> :call YabaiOrSplitSwitchOrDisplay('l', 'east', 'next')<cr>
+
+inoremap <silent> <A-h> <C-\><C-n>: call YabaiOrSplitSwitchOrDisplay('h', 'west', 'prev')<cr>
+inoremap <silent> <A-j> <C-\><C-n>: call YabaiOrSplitSwitchOrStack('j', 'south', 'stack.prev')<cr>
+inoremap <silent> <A-k> <C-\><C-n>: call YabaiOrSplitSwitchOrStack('k', 'north', 'stack.next')<cr>
+inoremap <silent> <A-l> <C-\><C-n>: call YabaiOrSplitSwitchOrDisplay('l', 'east', 'next')<cr>
+    
+tnoremap <silent> <A-h> <C-\><C-n>: call YabaiOrSplitSwitchOrDisplay('h', 'west', 'prev')<cr>
+tnoremap <silent> <A-j> <C-\><C-n>: call YabaiOrSplitSwitchOrStack('j', 'south', 'stack.prev')<cr>
+tnoremap <silent> <A-k> <C-\><C-n>: call YabaiOrSplitSwitchOrStack('k', 'north', 'stack.next')<cr>
+tnoremap <silent> <A-l> <C-\><C-n>: call YabaiOrSplitSwitchOrDisplay('l', 'east', 'next')<cr>
+]]
 
 -- fix gx once and for all (via https://github.com/vim/vim/issues/4738)
-vim.api.nvim_set_keymap('n', 'gx', ':execute "silent! !xdg-open " . shellescape(expand("<cWORD>"), 1)<cr>', {noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('n', 'gx', ':execute "silent! !xdg-open " . shellescape(expand("<cWORD>"), 1)<cr>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', 'gx', ':execute "silent! !open " . shellescape(expand("<cWORD>"), 1)<cr>', {noremap = true, silent = true})
 
 -- close current window
 -- nnoremap <C-l> <C-w>c
@@ -641,7 +675,7 @@ vim.cmd[[autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync(nil, 100)]]
 -- vim-crates
 vim.cmd[[autocmd BufRead Cargo.toml call crates#toggle()]]
 
-vim.cmd[[set guifont=Iosevka\ Fixed:h7:b]]
+-- vim.cmd[[set guifont=Iosevka\ Fixed:h7:b]]
 
 -- Scala Metals
 
