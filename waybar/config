@@ -8,7 +8,7 @@
     "modules-center": ["sway/window"],
     // "modules-right": ["mpd", "idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "sway/language", "battery", "battery#bat2", "clock", "tray"],
     // "modules-right": ["network", "cpu", "memory", "temperature", "backlight", "sway/language", "battery", "battery#bat2", "clock", "tray"],
-    "modules-right": ["cpu", "memory", "temperature", "backlight", "sway/language", "battery", "battery#bat2", "clock", "tray"],
+    "modules-right": ["cpu", "memory", "temperature", "sway/language", "clock", "tray"],
     // Modules configuration
     // "sway/workspaces": {
     //     "disable-scroll": true,
