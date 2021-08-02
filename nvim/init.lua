@@ -61,6 +61,7 @@ require('packer').startup(function()
   use { 'simrat39/rust-tools.nvim', requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' }, { 'nvim-telescope/telescope.nvim'} }}
   use 'scalameta/nvim-metals'
   use 'mtikekar/nvim-send-to-term'
+  use 'editorconfig/editorconfig-vim'
 end)
 
 --Incremental live completion
