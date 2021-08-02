@@ -33,18 +33,6 @@ require('packer').startup(function()
   -- https://github.com/b3nj5m1n/kommentary/issues/41
   -- does not support dot command
 
-    use {
-      "folke/todo-comments.nvim",
-      requires = "nvim-lua/plenary.nvim",
-      config = function()
-        require("todo-comments").setup {
-          -- your configuration comes here
-          -- or leave it empty to use the default settings
-          -- refer to the configuration section below
-        }
-      end
-    }
-
   use 'tpope/vim-surround'
   -- use 'ludovicchabant/vim-gutentags' -- Automatic tags management
   -- UI to select things (files, grep results, open buffers...)
@@ -140,6 +128,8 @@ vim.cmd [[colorscheme gruvbox]]
 -- vim.cmd [[let g:gruvbox_contrast_light="medium"]]
 vim.cmd [[let g:gruvbox_contrast_light="hard"]]
 
+vim.g.rnvimr_vanilla = true
+
 --Set statusbar
 -- vim.g.lightline = {
 --   colorscheme = 'solarized',
@@ -223,8 +213,9 @@ require('telescope').setup {
   defaults = {
     mappings = {
       i = {
-        ['<C-u>'] = false,
-        ['<C-d>'] = false,
+        ["<esc>"] = require('telescope.actions').close,
+    --     ['<C-u>'] = false,
+    --     ['<C-d>'] = false,
       },
     },
     layout_strategy = 'vertical',
@@ -232,6 +223,20 @@ require('telescope').setup {
     file_ignore_patterns = {},
     generic_sorter =  require('telescope.sorters').get_fzy_sorter,
   },
+  pickers = {
+  buffers = {
+    mappings = {
+      i = {
+        ["<c-d>"] = require("telescope.actions").delete_buffer,
+        -- -- or right hand side can also be the name of the action as string
+        -- ["<c-d>"] = "delete_buffer",
+      },
+      n = {
+        ["<c-d>"] = require("telescope.actions").delete_buffer,
+      }
+    }
+  }
+  }
 }
 --Add leader shortcuts
 vim.api.nvim_set_keymap('n', '<leader>tt', [[<cmd>lua require('telescope.builtin').builtin()<CR>]], { noremap = true, silent = true })
@@ -667,6 +672,7 @@ require('rust-tools').setup({
 -- format on save
 vim.cmd[[autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 100)]]
 vim.cmd[[autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync(nil, 100)]]
+vim.cmd[[autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)]]
 
 -- vim-crates
 vim.cmd[[autocmd BufRead Cargo.toml call crates#toggle()]]
