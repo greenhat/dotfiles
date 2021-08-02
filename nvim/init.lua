@@ -20,6 +20,7 @@ vim.g.send_disable_mapping = true
 local use = require('packer').use
 require('packer').startup(function()
   use 'wbthomason/packer.nvim' -- Package manager
+  use 'nvim-lua/plenary.nvim'
   -- Themes
   -- use 'joshdick/onedark.vim' -- Theme inspired by Atom
   use 'ishan9299/nvim-solarized-lua'
@@ -36,7 +37,8 @@ require('packer').startup(function()
   use 'tpope/vim-surround'
   -- use 'ludovicchabant/vim-gutentags' -- Automatic tags management
   -- UI to select things (files, grep results, open buffers...)
-  use { 'nvim-telescope/telescope.nvim', requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } } }
+  -- use { 'nvim-telescope/telescope.nvim', requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } } }
+  use { '$HOME/src/work/telescope.nvim', requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } } }
   use { 'hoob3rt/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons', opt = true} }
   -- Add indentation guides even on blank lines
   -- use 'lukas-reineke/indent-blankline.nvim'
@@ -296,7 +298,7 @@ local on_attach = function(_, bufnr)
   -- vim.api.nvim_buf_set_keymap(bufnr, 'v', '<leader>ca', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', opts)
   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>E', [[<cmd>lua require('telescope.builtin').lsp_workspace_diagnostics()<CR>]], opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>e', [[<cmd>lua require('telescope.builtin').lsp_workspace_diagnostics({ default_text = ':error:' })<CR>]], opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>e', [[<cmd>lua require('telescope.builtin').lsp_workspace_diagnostics({ default_text = ':error:', line_width = 90, only_cwd = true })<CR>]], opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '[g', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', ']g', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
@@ -517,8 +519,11 @@ vim.cmd[[tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi']]
 
 vim.cmd[[
 
-au FocusGained * silent execute '!sleep .1 && swaymsg unbindsym Mod1+h, unbindsym Mod1+j, unbindsym Mod1+k, unbindsym Mod1+l'
-au FocusLost * silent execute '!swaymsg bindsym Mod1+h focus left , bindsym Mod1+j focus down, bindsym Mod1+k focus up, bindsym Mod1+l focus right'
+augroup sway
+autocmd!
+autocmd FocusGained * silent execute "!sh -c 'sleep 0.1 && swaymsg unbindsym Mod1+h, unbindsym Mod1+j, unbindsym Mod1+k, unbindsym Mod1+l' &"
+autocmd FocusLost * silent execute '!swaymsg bindsym Mod1+h focus left , bindsym Mod1+j focus down, bindsym Mod1+k focus up, bindsym Mod1+l focus right'
+augroup end
 
 function! SwayOrSplitSwitch(wincmd, direction)
   let previous_winnr = winnr()
@@ -545,8 +550,8 @@ tnoremap <silent> <A-l> <C-\><C-n>: call SwayOrSplitSwitch('l', 'right')<cr>
 ]]
 
 -- fix gx once and for all (via https://github.com/vim/vim/issues/4738)
--- vim.api.nvim_set_keymap('n', 'gx', ':execute "silent! !xdg-open " . shellescape(expand("<cWORD>"), 1)<cr>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', 'gx', ':execute "silent! !open " . shellescape(expand("<cWORD>"), 1)<cr>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', 'gx', ':execute "silent! !xdg-open " . shellescape(expand("<cWORD>"), 1)<cr>', {noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('n', 'gx', ':execute "silent! !open " . shellescape(expand("<cWORD>"), 1)<cr>', {noremap = true, silent = true})
 
 -- close current window
 -- nnoremap <C-l> <C-w>c
@@ -569,11 +574,13 @@ vim.api.nvim_set_keymap('n', '<leader>qq', ':call ToggleQuickfixList()<CR>', { n
 require('gitlinker').setup({
         mappings = "<leader>gh"
 })
-
+vim.cmd([[augroup cursor ]])
+vim.cmd([[autocmd!]])
 vim.cmd([[autocmd CursorHold   * lua vim.lsp.buf.document_highlight()]])
 vim.cmd([[autocmd CursorHoldI  * lua vim.lsp.buf.document_highlight()]])
 vim.cmd([[autocmd CursorMoved  * lua vim.lsp.buf.clear_references()]])
 vim.cmd([[autocmd CursorMovedI * lua vim.lsp.buf.clear_references()]])
+vim.cmd([[augroup end ]])
 
 require('rust-tools').setup({
     tools = { -- rust-tools options
@@ -671,12 +678,24 @@ require('rust-tools').setup({
 })
 
 -- format on save
+vim.cmd([[augroup autoformat ]])
+vim.cmd([[autocmd!]])
 vim.cmd[[autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 100)]]
 vim.cmd[[autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync(nil, 100)]]
 vim.cmd[[autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)]]
+vim.cmd([[augroup end ]])
+
+vim.cmd([[augroup custom_tab ]])
+vim.cmd([[autocmd!]])
+vim.cmd[[autocmd FileType lua lua vim.o.shiftwidth = 2 ]]
+vim.cmd([[augroup end ]])
+
 
 -- vim-crates
+vim.cmd([[augroup vimcrates]])
+vim.cmd([[autocmd!]])
 vim.cmd[[autocmd BufRead Cargo.toml call crates#toggle()]]
+vim.cmd([[augroup end ]])
 
 vim.cmd[[set guifont=Iosevka\ Fixed:h7:b]]
 
