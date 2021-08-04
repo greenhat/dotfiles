@@ -6,6 +6,7 @@
 #
 
 for_window [title="__focused__"] title_format "%title (%app_id)"
+titlebar_padding 4 1
 
 # Autostart
 # exec dropbox
