@@ -523,6 +523,7 @@ augroup sway
 autocmd!
 autocmd FocusGained * silent execute "!sh -c 'sleep 0.1 && swaymsg unbindsym Mod1+h, unbindsym Mod1+j, unbindsym Mod1+k, unbindsym Mod1+l' &"
 autocmd FocusLost * silent execute '!swaymsg bindsym Mod1+h focus left , bindsym Mod1+j focus down, bindsym Mod1+k focus up, bindsym Mod1+l focus right'
+autocmd VimLeave * silent execute '!swaymsg bindsym Mod1+h focus left , bindsym Mod1+j focus down, bindsym Mod1+k focus up, bindsym Mod1+l focus right'
 augroup end
 
 function! SwayOrSplitSwitch(wincmd, direction)
