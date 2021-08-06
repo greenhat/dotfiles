@@ -80,6 +80,7 @@ require('packer').startup(function()
   use 'mtikekar/nvim-send-to-term'
   use 'editorconfig/editorconfig-vim'
 
+  use 'tversteeg/registers.nvim'
 end)
 
 --Incremental live completion
