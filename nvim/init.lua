@@ -23,7 +23,7 @@ require('packer').startup(function()
   use 'nvim-lua/plenary.nvim'
   -- Themes
   -- use 'joshdick/onedark.vim' -- Theme inspired by Atom
-  use 'ishan9299/nvim-solarized-lua'
+  -- use 'ishan9299/nvim-solarized-lua'
   use {"npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
   ---
   use 'tpope/vim-fugitive' -- Git commands in nvim
@@ -55,7 +55,10 @@ require('packer').startup(function()
   use 'tpope/vim-dispatch'
   use 'kevinhwang91/rnvimr'
   use 'windwp/nvim-autopairs'
-  use 'justinmk/vim-sneak'
+
+  -- use 'justinmk/vim-sneak'
+    use 'ggandor/lightspeed.nvim'
+
   use 'tpope/vim-unimpaired'
   use 'milkypostman/vim-togglelist'
   use 'mhinz/vim-crates'
@@ -436,51 +439,51 @@ require('compe').setup {
 }
 
 -- Utility functions for compe and luasnip
-local t = function(str)
-  return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
+-- local t = function(str)
+--   return vim.api.nvim_replace_termcodes(str, true, true, true)
+-- end
 
-local check_back_space = function()
-  local col = vim.fn.col '.' - 1
-  if col == 0 or vim.fn.getline('.'):sub(col, col):match '%s' then
-    return true
-  else
-    return false
-  end
-end
+-- local check_back_space = function()
+--   local col = vim.fn.col '.' - 1
+--   if col == 0 or vim.fn.getline('.'):sub(col, col):match '%s' then
+--     return true
+--   else
+--     return false
+--   end
+-- end
 
 -- Use (s-)tab to:
 --- move to prev/next item in completion menuone
 --- jump to prev/next snippet's placeholder
-local luasnip = require 'luasnip'
+-- local luasnip = require 'luasnip'
 
-_G.tab_complete = function()
-  if vim.fn.pumvisible() == 1 then
-    return t '<C-n>'
-  elseif luasnip.expand_or_jumpable() then
-    return t '<Plug>luasnip-expand-or-jump'
-  elseif check_back_space() then
-    return t '<Tab>'
-  else
-    return vim.fn['compe#complete']()
-  end
-end
+-- _G.tab_complete = function()
+--   if vim.fn.pumvisible() == 1 then
+--     return t '<C-n>'
+--   elseif luasnip.expand_or_jumpable() then
+--     return t '<Plug>luasnip-expand-or-jump'
+--   elseif check_back_space() then
+--     return t '<Tab>'
+--   else
+--     return vim.fn['compe#complete']()
+--   end
+-- end
 
-_G.s_tab_complete = function()
-  if vim.fn.pumvisible() == 1 then
-    return t '<C-p>'
-  elseif luasnip.jumpable(-1) then
-    return t '<Plug>luasnip-jump-prev'
-  else
-    return t '<S-Tab>'
-  end
-end
+-- _G.s_tab_complete = function()
+--   if vim.fn.pumvisible() == 1 then
+--     return t '<C-p>'
+--   elseif luasnip.jumpable(-1) then
+--     return t '<Plug>luasnip-jump-prev'
+--   else
+--     return t '<S-Tab>'
+--   end
+-- end
 
--- Map tab to the above tab complete functiones
-vim.api.nvim_set_keymap('i', '<Tab>', 'v:lua.tab_complete()', { expr = true })
-vim.api.nvim_set_keymap('s', '<Tab>', 'v:lua.tab_complete()', { expr = true })
-vim.api.nvim_set_keymap('i', '<S-Tab>', 'v:lua.s_tab_complete()', { expr = true })
-vim.api.nvim_set_keymap('s', '<S-Tab>', 'v:lua.s_tab_complete()', { expr = true })
+-- -- Map tab to the above tab complete functiones
+-- vim.api.nvim_set_keymap('i', '<Tab>', 'v:lua.tab_complete()', { expr = true })
+-- vim.api.nvim_set_keymap('s', '<Tab>', 'v:lua.tab_complete()', { expr = true })
+-- vim.api.nvim_set_keymap('i', '<S-Tab>', 'v:lua.s_tab_complete()', { expr = true })
+-- vim.api.nvim_set_keymap('s', '<S-Tab>', 'v:lua.s_tab_complete()', { expr = true })
 
 -- Map compe confirm and complete functions
 -- vim.api.nvim_set_keymap('i', '<cr>', 'compe#confirm("<cr>")', { expr = true })
@@ -567,7 +570,7 @@ vim.api.nvim_set_keymap('n', '<leader>fr', ':RnvimrToggle<CR>', {noremap = true,
 -- Label-mode minimizes the steps to jump to a location, using a clever interface
 -- similar to EasyMotion. If enabled, Sneak overlays text with "labels" which can
 -- be jumped-to by typing the label character
-vim.cmd('let g:sneak#label=1')
+-- vim.cmd('let g:sneak#label=1')
 
 -- toggle quickfix
 vim.api.nvim_set_keymap('n', '<leader>qq', ':call ToggleQuickfixList()<CR>', { noremap = true, silent = true })
@@ -746,3 +749,20 @@ nmap <leader>mm <Plug>SendLine
 nmap <leader>m <Plug>Send
 vmap <leader>m <Plug>Send
 ]]
+
+-- lightspeed
+-- To keep using `;` and `,` in the native way
+function repeat_ft(reverse)
+  local ls = require'lightspeed'
+  ls.ft['instant-repeat?'] = true
+  ls.ft:to(reverse, ls.ft['prev-t-like?'])
+end
+vim.api.nvim_set_keymap('n', ';', '<cmd>lua repeat_ft(false)<cr>',
+  {noremap = true, silent = true})
+vim.api.nvim_set_keymap('x', ';', '<cmd>lua repeat_ft(false)<cr>',
+  {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', ',', '<cmd>lua repeat_ft(true)<cr>',
+  {noremap = true, silent = true})
+vim.api.nvim_set_keymap('x', ',', '<cmd>lua repeat_ft(true)<cr>',
+  {noremap = true, silent = true})
+
