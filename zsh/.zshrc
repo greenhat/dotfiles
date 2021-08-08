@@ -52,9 +52,9 @@ case $TERM in
             vcs_info
             print -Pn "\033]0;%~\007"
         }
-        preexec () {
-            print -Pn "\033]0;<$1> %~\007"
-        }
+        # preexec () {
+        #     print -Pn "\033]0;<$1> %~\007"
+        # }
         ;;
 esac
 
