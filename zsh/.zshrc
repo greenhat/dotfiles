@@ -51,9 +51,11 @@ alias vim='nvim'
 # image viewer
 alias icat="kitty +kitten icat"
 
+# set title bar in the terminal to "[command] pwd"
 case $TERM in
     *xterm*|rxvt|(dt|k|E)term)
         precmd () {
+            vcs_info
             print -Pn "\033]0;%~\007"
         }
         preexec () {
@@ -61,3 +63,14 @@ case $TERM in
         }
         ;;
 esac
+
+export FZF_DEFAULT_OPTS='--layout=reverse'
+export FZF_DEFAULT_COMMAND='fd --type f'
+
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
+export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :500 {}'"
+export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+
+alias pi="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
+alias pd="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns"

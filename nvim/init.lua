@@ -814,7 +814,7 @@ require'fzf-lua'.setup {
     --   vim.api.nvim_buf_set_keymap(0, "t", "<Esc>", "<C-c>", { nowait = true, silent = true })
     -- end
   },
-  fzf_layout = 'default',
+  fzf_layout = 'reverse',
   lsp = {
     workspace_diag_only_cwd = true,
   }
