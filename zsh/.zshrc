@@ -47,4 +47,15 @@ bindkey  "^[[3~"  delete-char
 
 alias dc='docker-compose'
 alias pm='sudo pacman'
+alias vim='nvim'
 
+case $TERM in
+    *xterm*|rxvt|(dt|k|E)term)
+        precmd () {
+            print -Pn "\033]0;%~\007"
+        }
+        preexec () {
+            print -Pn "\033]0;<$1> %~\007"
+        }
+        ;;
+esac
