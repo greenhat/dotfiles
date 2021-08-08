@@ -10,7 +10,7 @@ titlebar_padding 4 1
 
 exec_always swaymsg border none
 
-# fix clipping issue after closing window on a stack
+# hotkey to fix clipping issue after closing window on a stack
 bindsym $mod+Shift+r exec "swaymsg resize shrink width 10px; swaymsg resize grow width 10px "
 
 
