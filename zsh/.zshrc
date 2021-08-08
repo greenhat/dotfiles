@@ -19,15 +19,9 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
-alias hg='history | grep'
-
-# Prompt themes
-# autoload -Uz promptinit
-# promptinit
 
 # Load version control information
 autoload -Uz vcs_info
-precmd() { vcs_info }
 
 # via https://stackoverflow.com/questions/59009508/how-to-only-show-current-folder-and-git-branch-and-for-home-in-zsh
 # format vcs_info variable
@@ -64,11 +58,12 @@ case $TERM in
         ;;
 esac
 
-export FZF_DEFAULT_OPTS='--layout=reverse'
-export FZF_DEFAULT_COMMAND='fd --type f'
-
+# FZF
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
+
+export FZF_DEFAULT_OPTS='--layout=reverse'
+export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :500 {}'"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 
