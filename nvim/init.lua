@@ -80,7 +80,11 @@ require('packer').startup(function()
   use 'mtikekar/nvim-send-to-term'
   use 'editorconfig/editorconfig-vim'
 
-  use 'tversteeg/registers.nvim'
+  -- use 'tversteeg/registers.nvim'
+
+  -- use 'gfanto/fzf-lsp.nvim'
+  use '$HOME/src/my/fzf-lsp.nvim'
+
 end)
 
 --Incremental live completion
@@ -310,6 +314,7 @@ local on_attach = function(_, bufnr)
   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', [[<cmd>lua require('telescope.builtin').lsp_implementations()<CR>]], opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', [[<cmd>lua require('fzf-lua').lsp_implementations()<CR>]], opts)
+  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', [[<cmd>Implementations<CR>]], opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'i', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
@@ -319,23 +324,29 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua require("telescope.builtin").lsp_references()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua require("fzf-lua").lsp_references()<CR>', opts)
+  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>References<CR>', opts)
   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>a', [[<cmd>lua require('telescope.builtin').lsp_code_actions({layout_config = {width = 0.3, height = 0.2}})<CR>]], opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>a', [[<cmd>lua require('fzf-lua').lsp_code_actions({layout_config = {width = 0.3, height = 0.2}})<CR>]], opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>a', [[<cmd>lua require('telescope.builtin').lsp_code_actions({layout_config = {width = 0.3, height = 0.2}})<CR>]], opts)
+  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>a', [[<cmd>lua require('fzf-lua').lsp_code_actions({layout_config = {width = 0.3, height = 0.2}})<CR>]], opts)
   -- vim.api.nvim_buf_set_keymap(bufnr, 'v', '<leader>ca', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', opts)
   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>E', [[<cmd>lua require('telescope.builtin').lsp_workspace_diagnostics({ line_width = 90 })<CR>]], opts)
   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>e', [[<cmd>lua require('telescope.builtin').lsp_workspace_diagnostics({ default_text = ':error:', line_width = 90, only_cwd = true })<CR>]], opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>e', [[<cmd>lua require('fzf-lua').lsp_workspace_diagnostics()<CR>]], opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>e', [[<cmd>lua require('fzf-lua').lsp_workspace_diagnostics({workspace_diag_only_cwd = true})<CR>]], opts)
+  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>e', [[<cmd>lua require'fzf_lsp'.diagnostic(0, { bufnr = "*", workspace_diag_only_cwd = true })<CR>]], opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '[g', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', ']g', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ql', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>o', [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]], opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>o', [[<cmd>lua require('fzf-lua').lsp_document_symbols()<CR>]], opts)
+  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>o', [[<cmd>lua require('fzf-lua').lsp_document_symbols()<CR>]], opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>o', [[<cmd>DocumentSymbols<CR>]], opts)
   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>s', [[<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<CR>]], opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>s', [[<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>]], opts)
+  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>s', [[<cmd>WorkspaceSymbols<CR>]], opts)
   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>s', [[<cmd>lua require('fzf-lua').lsp_workspace_symbols()<CR>]], opts)
   vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
+
+  -- require "lsp_signature".on_attach()  -- Note: add in lsp client on-attach
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -798,10 +809,10 @@ vim.api.nvim_set_keymap('x', ',', '<cmd>lua repeat_ft(true)<cr>',
 require'fzf-lua'.setup {
   winopts = {
     -- map C-c to Esc
-    window_on_create = function()
-      vim.cmd("set winhl=Normal:Normal")  -- popup bg to match normal windows
-      vim.api.nvim_buf_set_keymap(0, "t", "<Esc>", "<C-c>", { nowait = true, silent = true })
-    end
+    -- window_on_create = function()
+    --   vim.cmd("set winhl=Normal:Normal")  -- popup bg to match normal windows
+    --   vim.api.nvim_buf_set_keymap(0, "t", "<Esc>", "<C-c>", { nowait = true, silent = true })
+    -- end
   },
   fzf_layout = 'default',
   lsp = {
