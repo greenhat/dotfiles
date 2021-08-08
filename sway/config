@@ -5,7 +5,7 @@
 # Read `man 5 sway` for a complete reference.
 #
 
-for_window [title="__focused__"] title_format "%title (%app_id)"
+# for_window [title="__focused__"] title_format "%title (%app_id)"
 titlebar_padding 4 1
 
 # Autostart
@@ -118,15 +118,15 @@ exec swayidle -w \
 # Moving around:
 #
     # Move your focus around
-    bindsym $mod2+$left focus left
-    bindsym $mod2+$down focus down
-    bindsym $mod2+$up focus up
-    bindsym $mod2+$right focus right
+    bindsym $mod+$left focus left
+    bindsym $mod+$down focus down
+    bindsym $mod+$up focus up
+    bindsym $mod+$right focus right
     # Or use $mod+[up|down|left|right]
-    bindsym $mod2+Left focus left
-    bindsym $mod2+Down focus down
-    bindsym $mod2+Up focus up
-    bindsym $mod2+Right focus right
+    bindsym $mod+Left focus left
+    bindsym $mod+Down focus down
+    bindsym $mod+Up focus up
+    bindsym $mod+Right focus right
 
     # Move the focused window with the same, but add Shift
     bindsym $mod+Shift+$left move left
