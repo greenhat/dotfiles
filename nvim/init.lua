@@ -165,7 +165,7 @@ require('lualine').setup({
     options = { theme = 'gruvbox_light', icons_enabled = 1 },
     sections = {
         lualine_a = {'mode'},
-        lualine_b = {'branch'},
+        lualine_b = {'branch', 'b:gitsigns_status'},
         lualine_c = {{'filename', file_status = true, path = 1}},
         -- lualine_x = {'encoding', 'fileformat', 'filetype'},
         -- lualine_x = {{'filetype', colored = true}},
@@ -559,15 +559,18 @@ vim.cmd[[tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi']]
 -- vim.api.nvim_set_keymap('n', '<A-l>', '<C-w>l', { noremap = true, silent = true})
 
 -- autocmd FocusGained * silent execute "!sh -c 'sleep 0.01 && swaymsg unbindsym Mod1+h, unbindsym Mod1+j, unbindsym Mod1+k, unbindsym Mod1+l' &"
-vim.cmd[[
 
+vim.cmd[[
 augroup sway
 autocmd!
-autocmd FocusGained * silent execute '!swaymsg unbindsym Mod1+h, unbindsym Mod1+j, unbindsym Mod1+k, unbindsym Mod1+l'
+autocmd FocusGained * silent execute '!sleep 0.1 && swaymsg unbindsym Mod1+h, unbindsym Mod1+j, unbindsym Mod1+k, unbindsym Mod1+l'
 autocmd VimEnter * silent execute '!swaymsg unbindsym Mod1+h, unbindsym Mod1+j, unbindsym Mod1+k, unbindsym Mod1+l'
 autocmd FocusLost * silent execute '!swaymsg bindsym Mod1+h focus left , bindsym Mod1+j focus down, bindsym Mod1+k focus up, bindsym Mod1+l focus right'
 autocmd VimLeave * silent execute '!swaymsg bindsym Mod1+h focus left , bindsym Mod1+j focus down, bindsym Mod1+k focus up, bindsym Mod1+l focus right'
 augroup end
+]]
+
+vim.cmd[[
 
 function! SwayOrSplitSwitch(wincmd, direction)
   let previous_winnr = winnr()
