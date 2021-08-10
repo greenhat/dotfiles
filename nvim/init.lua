@@ -289,8 +289,8 @@ vim.api.nvim_set_keymap('v', '<leader>sv', [[<cmd>lua require('fzf-lua').grep_vi
 -- vim.api.nvim_set_keymap('n', '<leader>?', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>cc', [[<cmd>lua require('telescope.builtin').commands()<CR>]], { noremap = true, silent = true })
 
--- This will load fzy_native and have it override the default file sorter
--- require('telescope').load_extension('fzy_native')
+-- VCS
+vim.api.nvim_set_keymap('n', '<leader>vp', [[<cmd>G push<cr>]], {})
 
 -- Highlight on yank
 vim.api.nvim_exec(
