@@ -279,12 +279,12 @@ vim.api.nvim_set_keymap('n', '<leader>fA', [[<cmd>lua require('telescope.builtin
 -- vim.api.nvim_set_keymap('n', '<leader>st', [[<cmd>lua require('telescope.builtin').tags()<CR>]], { noremap = true, silent = true })
 -- vim.api.nvim_set_keymap('n', '<leader>sd', [[<cmd>lua require('telescope.builtin').grep_string()<CR>]], { noremap = true, silent = true })
 -- vim.api.nvim_set_keymap('n', '<leader>gp', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>gp', [[<cmd>lua require('fzf-lua').live_grep()<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>sp', [[<cmd>lua require('fzf-lua').live_grep()<CR>]], { noremap = true, silent = true })
 -- via https://github.com/nvim-telescope/telescope.nvim/issues/708
 -- vim.api.nvim_set_keymap('n', '<leader>gw', [[<cmd>lua require('telescope.builtin').grep_string({search = vim.fn.expand("<cword>")})<cr>]], {})
-vim.api.nvim_set_keymap('n', '<leader>gw', [[<cmd>lua require('fzf-lua').grep_cword()<cr>]], {})
-vim.api.nvim_set_keymap('n', '<leader>gW', [[<cmd>lua require('fzf-lua').grep_cWORD()<cr>]], {})
-vim.api.nvim_set_keymap('v', '<leader>gv', [[<cmd>lua require('fzf-lua').grep_visual()<cr>]], {})
+vim.api.nvim_set_keymap('n', '<leader>sw', [[<cmd>lua require('fzf-lua').grep_cword()<cr>]], {})
+vim.api.nvim_set_keymap('n', '<leader>sW', [[<cmd>lua require('fzf-lua').grep_cWORD()<cr>]], {})
+vim.api.nvim_set_keymap('v', '<leader>sv', [[<cmd>lua require('fzf-lua').grep_visual()<cr>]], {})
 -- vim.api.nvim_set_keymap('n', '<leader>so', [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<CR>]], { noremap = true, silent = true })
 -- vim.api.nvim_set_keymap('n', '<leader>?', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>cc', [[<cmd>lua require('telescope.builtin').commands()<CR>]], { noremap = true, silent = true })
@@ -345,9 +345,9 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>O', [[<cmd>lua require('fzf-lua').lsp_document_symbols()<CR>]], opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>o', [[<cmd>DocumentSymbols<CR>]], opts)
   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>s', [[<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<CR>]], opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>s', [[<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>]], opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>L', [[<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>]], opts)
   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>s', [[<cmd>WorkspaceSymbols<CR>]], opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>S', [[<cmd>lua require('fzf-lua').lsp_workspace_symbols()<CR>]], opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>l', [[<cmd>lua require('fzf-lua').lsp_workspace_symbols()<CR>]], opts)
   vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
 
   -- require "lsp_signature".on_attach()  -- Note: add in lsp client on-attach
@@ -823,7 +823,8 @@ require'fzf-lua'.setup {
     --   vim.api.nvim_buf_set_keymap(0, "t", "<Esc>", "<C-c>", { nowait = true, silent = true })
     -- end
   },
-  fzf_layout = 'reverse',
+  fzf_layout = 'default',
+  preview_layout = 'vertical',
   lsp = {
     workspace_diag_only_cwd = true,
   }
