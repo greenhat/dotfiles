@@ -54,9 +54,9 @@ remap('c', '<C-a>', '<home>', {})
 remap('c', '<C-e>', '<end>' , {})
 
 -- Terminal mappings
-remap('t', '<M-[>', [[<C-\><C-n>]],      { noremap = true })
+remap('t', '<ESC>', [[<C-\><C-n>]],      { noremap = true })
 remap('t', '<C-w>', [[<C-\><C-n><C-w>]], { noremap = true })
-remap('t', '<M-r>', [['<C-\><C-N>"'.nr2char(getchar()).'pi']],
+remap('t', '<C-r>', [['<C-\><C-N>"'.nr2char(getchar()).'pi']],
     { noremap = true, expr = true })
 
 -- tmux like directional window resizes
