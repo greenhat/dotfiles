@@ -60,11 +60,11 @@ remap('t', '<C-r>', [['<C-\><C-N>"'.nr2char(getchar()).'pi']],
     { noremap = true, expr = true })
 
 -- tmux like directional window resizes
-remap('n', '<leader><Up>',    "<cmd>lua require'utils'.resize(false, -5)<CR>", { noremap = true, silent = true })
+--[[ remap('n', '<leader><Up>',    "<cmd>lua require'utils'.resize(false, -5)<CR>", { noremap = true, silent = true })
 remap('n', '<leader><Down>',  "<cmd>lua require'utils'.resize(false,  5)<CR>", { noremap = true, silent = true })
 remap('n', '<leader><Left>',  "<cmd>lua require'utils'.resize(true,  -5)<CR>", { noremap = true, silent = true })
 remap('n', '<leader><Right>', "<cmd>lua require'utils'.resize(true,   5)<CR>", { noremap = true, silent = true })
-remap('n', '<leader>=',       '<C-w>=',               { noremap = true, silent = true })
+remap('n', '<leader>=',       '<C-w>=',               { noremap = true, silent = true }) ]]
 
 -- Tab navigation
 remap('n', '<Leader>tp', ':tabprevious<CR>', { noremap = true })
@@ -80,10 +80,10 @@ remap('n', '<Leader>tz',  "<cmd>lua require'utils'.tabedit()<CR>", { noremap = t
 remap('n', '<Leader>tZ',  "<cmd>lua require'utils'.tabclose()<CR>", { noremap = true })
 
 -- Navigate buffers
-remap('n', '[b', ':bprevious<CR>',      { noremap = true })
+--[[ remap('n', '[b', ':bprevious<CR>',      { noremap = true })
 remap('n', ']b', ':bnext<CR>',          { noremap = true })
 remap('n', '[B', ':bfirst<CR>',         { noremap = true })
-remap('n', ']B', ':blast<CR>',          { noremap = true })
+remap('n', ']B', ':blast<CR>',          { noremap = true }) ]]
 -- Quickfix list mappings
 remap('n', '<leader>q', "<cmd>lua require'utils'.toggle_qf('q')<CR>", { noremap = true })
 remap('n', '[q', ':cprevious<CR>',      { noremap = true })
@@ -97,38 +97,38 @@ remap('n', ']l', ':lnext<CR>',          { noremap = true })
 remap('n', '[L', ':lfirst<CR>',         { noremap = true })
 remap('n', ']L', ':llast<CR>',          { noremap = true })
 -- Tags / Preview tags
-remap('n', '[t', ':tprevious<CR>',      { noremap = true })
+--[[ remap('n', '[t', ':tprevious<CR>',      { noremap = true })
 remap('n', ']t', ':tNext<CR>',          { noremap = true })
 remap('n', '[T', ':tfirst<CR>',         { noremap = true })
 remap('n', ']T', ':tlast<CR>',          { noremap = true })
 remap('n', '[p', ':ptprevious<CR>',     { noremap = true })
-remap('n', ']p', ':ptnext<CR>',         { noremap = true })
+remap('n', ']p', ':ptnext<CR>',         { noremap = true }) ]]
 --remap('n', '<Leader>ts', ':<C-u>tselect <C-r><C-w><CR>', { noremap = true })
 
 -- <leader>v|<leader>s act as <cmd-v>|<cmd-s>
 -- <leader>p|P paste from yank register (0)
-remap('n', '<leader>v', '"+p',      { noremap = true })
+--[[ remap('n', '<leader>v', '"+p',      { noremap = true })
 remap('n', '<leader>V', '"+P',      { noremap = true })
 remap('v', '<leader>v', '"_d"+p',   { noremap = true })
 remap('v', '<leader>v', '"_d"+P',   { noremap = true })
 remap('n', '<leader>s', '"*p',      { noremap = true })
 remap('n', '<leader>S', '"*P',      { noremap = true })
 remap('v', '<leader>s', '"*p',      { noremap = true })
-remap('v', '<leader>S', '"*p',      { noremap = true })
+remap('v', '<leader>S', '"*p',      { noremap = true }) ]]
 
 -- Overloads for 'd|c' that don't pollute the unnamed registers
 -- In visual-select mode 'd=delete, x=cut (unchanged)'
-remap('n', '<leader>d',  '"_d',     { noremap = true })
+--[[ remap('n', '<leader>d',  '"_d',     { noremap = true })
 remap('n', '<leader>D',  '"_D',     { noremap = true })
 remap('n', '<leader>c',  '"_c',     { noremap = true })
 remap('n', '<leader>C',  '"_C',     { noremap = true })
 remap('v', '<leader>c',  '"_c',     { noremap = true })
-remap('v', 'd',          '"_d',     { noremap = true })
+remap('v', 'd',          '"_d',     { noremap = true }) ]]
 
 -- Map `Y` to copy to end of line
 -- conistent with the behaviour of `C` and `D`
-remap('n', 'Y', 'y$',               { noremap = true })
-remap('v', 'Y', '<Esc>y$gv',        { noremap = true })
+--[[ remap('n', 'Y', 'y$',               { noremap = true })
+remap('v', 'Y', '<Esc>y$gv',        { noremap = true }) ]]
 
 -- keep visual selection when (de)indenting
 remap('v', '<', '<gv', { noremap = true })
@@ -143,22 +143,22 @@ remap('n', 'g<C-v>', '`[v`]', { noremap = true })
 
 -- move along visual lines, not numbered ones
 -- without interferring with {count}<down|up>
-vim.api.nvim_set_keymap('n', '<up>', "v:count == 0 ? 'gk' : '<up>'",
+--[[ vim.api.nvim_set_keymap('n', '<up>', "v:count == 0 ? 'gk' : '<up>'",
     { noremap=true, expr = true, silent = true})
 vim.api.nvim_set_keymap('v', '<up>', "v:count == 0 ? 'gk' : '<up>'",
     { noremap=true, expr = true, silent = true})
 vim.api.nvim_set_keymap('n', '<down>', "v:count == 0 ? 'gj' : '<down>'",
     {noremap= true, expr = true, silent = true})
 vim.api.nvim_set_keymap('v', '<down>', "v:count == 0 ? 'gj' : '<down>'",
-    {noremap= true, expr = true, silent = true})
+    {noremap= true, expr = true, silent = true}) ]]
 
 -- Search and Replace
 -- 'c.' for word, '<leader>c.' for WORD
-remap('n', 'c.',         [[:%s/\<<C-r><C-w>\>//g<Left><Left>]], { noremap = true })
-remap('n', '<leader>c.', [[:%s/\<<C-r><C-a>\>//g<Left><Left>]], { noremap = true })
+-- remap('n', 'c.',         [[:%s/\<<C-r><C-w>\>//g<Left><Left>]], { noremap = true })
+-- remap('n', '<leader>c.', [[:%s/\<<C-r><C-a>\>//g<Left><Left>]], { noremap = true })
 
--- Turn off search matches with double-<Esc>
-remap('n', '<Esc><Esc>', '<Esc>:nohlsearch<CR>', { noremap = true, silent = true })
+-- Turn off search matches with single <Esc>
+remap('n', '<Esc>', '<Esc>:nohlsearch<CR>', { noremap = true, silent = true })
 
 -- Toggle display of `listchars`
 remap('n', '<leader>\'', '<Esc>:set list!<CR>',   { noremap = true, silent = true })
