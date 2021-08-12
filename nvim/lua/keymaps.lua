@@ -161,30 +161,30 @@ vim.api.nvim_set_keymap('v', '<down>', "v:count == 0 ? 'gj' : '<down>'",
 remap('n', '<Esc>', '<Esc>:nohlsearch<CR>', { noremap = true, silent = true })
 
 -- Toggle display of `listchars`
-remap('n', '<leader>\'', '<Esc>:set list!<CR>',   { noremap = true, silent = true })
+-- remap('n', '<leader>\'', '<Esc>:set list!<CR>',   { noremap = true, silent = true })
 
 -- Toggle colored column at 81
-remap('n', '<leader>|',
+--[[ remap('n', '<leader>|',
     ':execute "set colorcolumn=" . (&colorcolumn == "" ? "81" : "")<CR>', 
-    { noremap = true, silent = true })
+    { noremap = true, silent = true }) ]]
 
 -- Change current working dir (:pwd) to curent file's folder
-remap('n', '<leader>%', '<Esc>:cd %:h | pwd<CR>',   { noremap = true, silent = true })
+-- remap('n', '<leader>%', '<Esc>:cd %:h | pwd<CR>',   { noremap = true, silent = true })
 
 -- Map <leader>o & <leader>O to newline without insert mode
-remap('n', '<leader>o',
+--[[ remap('n', '<leader>o',
     ':<C-u>call append(line("."), repeat([""], v:count1))<CR>',
     { noremap = true, silent = true })
 remap('n', '<leader>O',
     ':<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>',
-    { noremap = true, silent = true })
+    { noremap = true, silent = true }) ]]
 
 -- Map `cp` to `xp` (transpose two adjacent chars)
 -- as a **repeatable action** with `.`
 -- (since the `@=` trick doesn't work
 -- nmap cp @='xp'<CR>
 -- http://vimcasts.org/transcripts/61/en/
-remap('n', '<Plug>TransposeCharacters',
-    [[xp:call repeat#set("\<Plug>TransposeCharacters")<CR>]],
-    { noremap = true, silent = true })
-remap('n', 'cp', '<Plug>TransposeCharacters', {})
+-- remap('n', '<Plug>TransposeCharacters',
+    -- [[xp:call repeat#set("\<Plug>TransposeCharacters")<CR>]],
+    -- { noremap = true, silent = true })
+-- remap('n', 'cp', '<Plug>TransposeCharacters', {})
