@@ -346,6 +346,7 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>o', [[<cmd>DocumentSymbols<CR>]], opts)
   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>s', [[<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<CR>]], opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>L', [[<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>]], opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>LL', [[<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<CR>]], opts)
   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>s', [[<cmd>WorkspaceSymbols<CR>]], opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>l', [[<cmd>lua require('fzf-lua').lsp_workspace_symbols()<CR>]], opts)
   vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
@@ -438,6 +439,7 @@ require('nvim-treesitter.configs').setup {
         ['ib'] = '@block.inner',
         ['ia'] = '@parameter.inner',
         ['as'] = '@statement.outer',
+        ['al'] = '@call.outer',
       },
     },
     move = {
@@ -458,6 +460,14 @@ require('nvim-treesitter.configs').setup {
       goto_previous_end = {
         ['[M'] = '@function.outer',
         ['[]'] = '@class.outer',
+      },
+    },
+    lsp_interop = {
+      enable = true,
+      border = 'none',
+      peek_definition_code = {
+        ["df"] = "@function.outer",
+        ["dF"] = "@class.outer",
       },
     },
   },
@@ -826,6 +836,6 @@ require'fzf-lua'.setup {
   fzf_layout = 'default',
   preview_layout = 'vertical',
   lsp = {
-    workspace_diag_only_cwd = true,
+    cwd_only = true,
   }
 }
