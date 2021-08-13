@@ -38,7 +38,7 @@ local autocmds = {
   --   {"WinLeave,BufLeave,InsertEnter", "*", [[if &cursorline && ! &pvw | setlocal nocursorline | endif]]};
   -- },
   lua_highlight = {
-    { "TextYankPost", "*", "silent! lua vim.highlight.on_yank{higroup='IncSearch', timeout=1000}" };
+    { "TextYankPost", "*", "silent! lua vim.highlight.on_yank{higroup='IncSearch', timeout=100}" };
   };
   packer_init = {
     { "VimEnter", "*", "lua require('plugins').sync_if_not_compiled()" };
