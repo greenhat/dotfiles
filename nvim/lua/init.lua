@@ -27,15 +27,15 @@ vim.o.cmdheight         = 2         -- cmdline height
 vim.o.laststatus        = 2         -- 2 = always show status line (filename, etc)
 vim.o.scrolloff         = 3         -- min number of lines to keep between cursor and screen edge
 vim.o.sidescrolloff     = 5         -- min number of cols to keep between cursor and screen edge
-vim.o.textwidth         = 78        -- max inserted text width for paste operations
+vim.o.textwidth         = 100        -- max inserted text width for paste operations
 vim.o.linespace         = 0         -- font spacing
 vim.o.ruler             = true      -- show line,col at the cursor pos
-vim.o.number            = true      -- show absolute line no. at the cursor pos
-vim.o.relativenumber    = true      -- otherwise, show relative numbers in the ruler
-vim.o.cursorline        = true      -- Show a line where the current cursor is
-vim.wo.signcolumn       = 'yes'     -- Show sign column as first column
-vim.g.colorcolumn       = 81        -- mark column 81
-vim.o.colorcolumn       = string.format(vim.g.colorcolumn)
+vim.o.number            = false      -- show absolute line no. at the cursor pos
+vim.o.relativenumber    = false      -- otherwise, show relative numbers in the ruler
+vim.o.cursorline        = false      -- Show a line where the current cursor is
+-- vim.wo.signcolumn       = 'yes'     -- Show sign column as first column
+-- vim.g.colorcolumn       = 81        -- mark column 81
+-- vim.o.colorcolumn       = string.format(vim.g.colorcolumn)
 vim.o.wrap              = true      -- wrap long lines
 vim.o.breakindent       = true      -- start wrapped lines indented
 vim.o.linebreak         = true      -- do not break words on line wrap
@@ -252,4 +252,48 @@ require 'keymaps'
 -- set colorscheme to modified embark
 -- https://github.com/embark-theme/vim
 vim.g.colorscheme_terminal_italics = true
-pcall(vim.cmd, [[colorscheme lua-embark]])
+-- pcall(vim.cmd, [[colorscheme lua-embark]])
+vim.o.background = "light"
+-- vim.g.onedark_terminal_italics = 2
+-- vim.cmd [[colorscheme onedark]]
+-- vim.cmd [[colorscheme solarized-high]]
+vim.cmd [[colorscheme gruvbox]]
+-- vim.cmd [[let g:gruvbox_contrast_light="soft"]]
+-- vim.cmd [[let g:gruvbox_contrast_light="medium"]]
+vim.cmd [[let g:gruvbox_contrast_light="hard"]]
+
+vim.cmd[[
+augroup sway
+autocmd!
+autocmd FocusGained * silent execute '!sleep 0.1 && swaymsg unbindsym Mod1+h, unbindsym Mod1+j, unbindsym Mod1+k, unbindsym Mod1+l'
+autocmd VimEnter * silent execute '!swaymsg unbindsym Mod1+h, unbindsym Mod1+j, unbindsym Mod1+k, unbindsym Mod1+l'
+autocmd FocusLost * silent execute '!swaymsg bindsym Mod1+h focus left , bindsym Mod1+j focus down, bindsym Mod1+k focus up, bindsym Mod1+l focus right'
+autocmd VimLeave * silent execute '!swaymsg bindsym Mod1+h focus left , bindsym Mod1+j focus down, bindsym Mod1+k focus up, bindsym Mod1+l focus right'
+augroup end
+]]
+
+vim.cmd[[
+
+function! SwayOrSplitSwitch(wincmd, direction)
+  let previous_winnr = winnr()
+  silent! execute "wincmd " . a:wincmd
+  if previous_winnr == winnr()
+    call system("swaymsg focus " . a:direction)
+  endif
+endfunction
+
+nnoremap <silent> <A-h> :call SwayOrSplitSwitch('h', 'left')<cr>
+nnoremap <silent> <A-j> :call SwayOrSplitSwitch('j', 'down')<cr>
+nnoremap <silent> <A-k> :call SwayOrSplitSwitch('k', 'up')<cr>
+nnoremap <silent> <A-l> :call SwayOrSplitSwitch('l', 'right')<cr>
+
+inoremap <silent> <A-h> <C-\><C-n>: call SwayOrSplitSwitch('h', 'left')<cr>
+inoremap <silent> <A-j> <C-\><C-n>: call SwayOrSplitSwitch('j', 'down')<cr>
+inoremap <silent> <A-k> <C-\><C-n>: call SwayOrSplitSwitch('k', 'up')<cr>
+inoremap <silent> <A-l> <C-\><C-n>: call SwayOrSplitSwitch('l', 'right')<cr>
+    
+tnoremap <silent> <A-h> <C-\><C-n>: call SwayOrSplitSwitch('h', 'left')<cr>
+tnoremap <silent> <A-j> <C-\><C-n>: call SwayOrSplitSwitch('j', 'down')<cr>
+tnoremap <silent> <A-k> <C-\><C-n>: call SwayOrSplitSwitch('k', 'up')<cr>
+tnoremap <silent> <A-l> <C-\><C-n>: call SwayOrSplitSwitch('l', 'right')<cr>
+]]

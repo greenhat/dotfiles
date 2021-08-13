@@ -71,14 +71,7 @@ local function init()
     -- tpope's plugins that should be part of vim
     use { 'tpope/vim-surround' }
     use { 'tpope/vim-repeat' }
-
-    -- "gc" to comment visual regions/lines
-    vim.g.kommentary_create_default_mappings = false
-    use { 'b3nj5m1n/kommentary',
-        -- uncomment for lazy loading
-        -- causes delay with visual mapping
-        -- keys = {'gcc', 'gc'}
-    }
+    use { 'tpope/vim-commentary' }
 
     -- needs no introduction
     use { 'tpope/vim-fugitive',
@@ -100,9 +93,9 @@ local function init()
         after = "plenary.nvim" }
 
     -- Add indentation guides even on blank lines
-    use { 'lukas-reineke/indent-blankline.nvim', --branch="lua",
+    --[[ use { 'lukas-reineke/indent-blankline.nvim', --branch="lua",
         config = "require('plugin.indent-blankline')",
-        opt = true, cmd = { 'IndentBlanklineToggle' } }
+        opt = true, cmd = { 'IndentBlanklineToggle' } } ]]
 
     -- 'famiu/nvim-reload' has been archived and no longer maintained
     use { vim.fn.stdpath("config") .. "/lua/plugin/nvim-reload",
@@ -115,24 +108,24 @@ local function init()
     }
 
     -- Neoterm (REPLs)
-    use { 'kassio/neoterm',
+    --[[ use { 'kassio/neoterm',
         config = "require('plugin.neoterm')",
         keys = {'gxx', 'gx'},
         cmd = { 'T' },
-    }
+    } ]]
 
     -- yank over ssh with ':OCSYank' or ':OSCYankReg +'
-    use { 'ojroques/vim-oscyank',
+    --[[ use { 'ojroques/vim-oscyank',
         config = function()
             vim.g.oscyank_term = 'tmux'
         end,
         cmd = { 'OSCYank', 'OSCYankReg' },
-    }
+    } ]]
 
     -- sudo when we need to
-    use { 'lambdalisue/suda.vim',
+    --[[ use { 'lambdalisue/suda.vim',
         config = "require('plugin.suda')" }
-
+ ]]
     -- Autocompletion
     use { 'hrsh7th/nvim-compe',
         event = "InsertEnter",
@@ -158,12 +151,12 @@ local function init()
     use { 'kyazdani42/nvim-web-devicons', event = 'VimEnter' }
 
     -- nvim-tree
-    use { 'kyazdani42/nvim-tree.lua',
+    --[[ use { 'kyazdani42/nvim-tree.lua',
         requires = { 'kyazdani42/nvim-web-devicons' },
         config = "require('plugin.nvim-tree')",
         cmd = { 'NvimTreeToggle', 'NvimTreeFindFile' },
         opt = true,
-    }
+    } ]]
 
     -- Telescope
     use { 'nvim-telescope/telescope.nvim',
@@ -197,16 +190,22 @@ local function init()
         ft = { 'qf' } }
 
     -- LSP
-    use { 'neovim/nvim-lspconfig',    event = 'BufRead' }
+    use { 'neovim/nvim-lspconfig',    event = 'BufRead',         
+    config = function()
+      require('lsp')
+      -- ':command LspStart'
+      require'lspconfig'._root.commands.LspStart[1]()
+    end,
+  }
     use { 'ray-x/lsp_signature.nvim', event = 'BufRead' }
-    use { 'kabouzeid/nvim-lspinstall',
+    --[[ use { 'kabouzeid/nvim-lspinstall',
         config = function()
           require('lsp')
           -- ':command LspStart'
           require'lspconfig'._root.commands.LspStart[1]()
         end,
         after  = { 'nvim-lspconfig', 'lsp_signature.nvim' },
-      }
+      } ]]
 
     --[[ use { 'glepnir/lspsaga.nvim',
         config = function()
@@ -216,16 +215,16 @@ local function init()
         end } ]]
 
     -- ethereum solidity '.sol'
-    use { 'tomlion/vim-solidity' }
+    -- use { 'tomlion/vim-solidity' }
 
     -- markdown preview using `glow`
     -- use { 'npxbr/glow.nvim', run = ':GlowInstall'}
-    use { 'previm/previm',
+    --[[ use { 'previm/previm',
         config = function()
             vim.g.previm_open_cmd = 'firefox'
             vim.g.previm_enable_realtime = 0
         end,
-        opt = true, cmd = { 'PrevimOpen' } }
+        opt = true, cmd = { 'PrevimOpen' } } ]]
 
     -- key bindings cheatsheet
     use { 'folke/which-key.nvim',
@@ -242,12 +241,17 @@ local function init()
         cmd = {'ColorizerAttachToBuffer', 'ColorizerDetachFromBuffer' },
         opt = true }
 
-    -- fancy statusline
-    use { 'ibhagwan/feline.nvim',
-        requires = { 'kyazdani42/nvim-web-devicons' },
-        config = "require'plugin.feline'",
-        event = 'VimEnter' }
+  use {"npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
 
+    -- fancy statusline
+    -- use { 'ibhagwan/feline.nvim',
+    --     requires = { 'kyazdani42/nvim-web-devicons' },
+    --     config = "require'plugin.feline'",
+    --     event = 'VimEnter' }
+
+    use { 'hoob3rt/lualine.nvim', 
+    requires = {'kyazdani42/nvim-web-devicons', opt = true},
+    config = "require'plugin.lualine'" }
 end
 
 -- called from 'lua/autocmd.lua' at `VimEnter`

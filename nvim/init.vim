@@ -8,7 +8,7 @@ if !has('nvim-0.5')
   set nolpl
   " use our embark color scheme
   set termguicolors
-  colorscheme embark
+  colorscheme gruvbox
   " no further configuration
   finish
 end

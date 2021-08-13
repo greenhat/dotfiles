@@ -26,19 +26,19 @@ local autocmds = {
   resize_windows_proportionally = {
     { "VimResized", "*", [[tabdo wincmd =]]};
   };
-  toggle_colorcolumn = {
-    { "VimResized,WinEnter,BufWinEnter", "*", [[lua require'utils'.toggle_colorcolumn()]]};
-  },
+  -- toggle_colorcolumn = {
+  --   { "VimResized,WinEnter,BufWinEnter", "*", [[lua require'utils'.toggle_colorcolumn()]]};
+  -- },
   toggle_search_highlighting = {
     { "InsertEnter", "*", ":nohl | redraw" };
   };
-  wins = {
-    -- Highlight current line only on focused window
-    {"WinEnter,BufEnter,InsertLeave", "*", [[if ! &cursorline && ! &pvw | setlocal cursorline | endif]]};
-    {"WinLeave,BufLeave,InsertEnter", "*", [[if &cursorline && ! &pvw | setlocal nocursorline | endif]]};
-  },
+  -- wins = {
+  --   -- Highlight current line only on focused window
+  --   {"WinEnter,BufEnter,InsertLeave", "*", [[if ! &cursorline && ! &pvw | setlocal cursorline | endif]]};
+  --   {"WinLeave,BufLeave,InsertEnter", "*", [[if &cursorline && ! &pvw | setlocal nocursorline | endif]]};
+  -- },
   lua_highlight = {
-    { "TextYankPost", "*", "silent! lua vim.highlight.on_yank{higroup='IncSearch', timeout=2000}" };
+    { "TextYankPost", "*", "silent! lua vim.highlight.on_yank{higroup='IncSearch', timeout=1000}" };
   };
   packer_init = {
     { "VimEnter", "*", "lua require('plugins').sync_if_not_compiled()" };

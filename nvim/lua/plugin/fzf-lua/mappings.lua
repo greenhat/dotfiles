@@ -26,18 +26,18 @@ end
 -- mappings
 map_fzf('n', '<F1>', "help_tags")
 map_fzf('n', '<c-P>', "files", {})
-map_fzf('n', '<leader>;', "buffers")
+map_fzf('n', '<leader>b', "buffers")
 map_fzf('n', '<leader>fr', "grep", {})
-map_fzf('n', '<leader>fl', "live_grep", {})
-map_fzf('n', '<leader>fR', "live_grep", {})
-map_fzf('n', '<leader>ff', "grep", { repeat_last_search = true} )
+map_fzf('n', '<leader>sp', "live_grep", {})
+-- map_fzf('n', '<leader>fR', "live_grep", {})
+map_fzf('n', '<leader>sP', "grep", { repeat_last_search = true} )
 map_fzf('n', '<leader>fw', "grep_cword")
 map_fzf('n', '<leader>fW', "grep_cWORD")
 map_fzf('n', '<leader>fv', "grep_visual")
 map_fzf('v', '<leader>fv', "grep_visual")
 map_fzf('n', '<leader>fb', "grep_curbuf", { prompt = 'Buffer❯ ' })
 map_fzf('n', '<leader>fp', "files", {})
-map_fzf('n', '<leader>fg', "git_files", {})
+map_fzf('n', '<leader>fa', "git_files", {})
 map_fzf('n', '<leader>fh', "oldfiles", { cwd = vim.loop.cwd() })
 -- map_fzf('n', '<leader>fh', "oldfiles", { cwd = vim.loop.cwd(), preview_window = 'hidden:down:40%' })
 map_fzf('n', '<leader>fq', "quickfix")
@@ -52,21 +52,21 @@ map_fzf('n', '<leader>ez', "edit_zsh")
 map_fzf('n', '<leader>ep', "installed_plugins")
 
 -- LSP
-map_fzf('n', '<leader>lr', "lsp_references")
-map_fzf('n', '<leader>ld', "lsp_definitions", { jump_to_single_result = false })
-map_fzf('n', '<leader>lD', "lsp_declarations")
-map_fzf('n', '<leader>ly', "lsp_typedefs")
-map_fzf('n', '<leader>lm', "lsp_implementations")
-map_fzf('n', '<leader>ls', "lsp_document_symbols")
-map_fzf('n', '<leader>lS', "lsp_workspace_symbols")
-map_fzf('n', '<leader>la', "lsp_code_actions", {
+map_fzf('n', 'gr', "lsp_references")
+map_fzf('n', 'gd', "lsp_definitions", { jump_to_single_result = false })
+-- map_fzf('n', '<leader>lD', "lsp_declarations")
+map_fzf('n', 'gy', "lsp_typedefs")
+map_fzf('n', 'gi', "lsp_implementations")
+map_fzf('n', '<leader>o', "lsp_document_symbols")
+map_fzf('n', '<leader>l', "lsp_workspace_symbols")
+map_fzf('n', '<leader>a', "lsp_code_actions", {
   winopts = {
     win_height       = 0.30,
     win_width        = 0.70,
     win_row          = 0.40,
   }})
-map_fzf('n', '<leader>lg', "lsp_document_diagnostics", { file_icons = false })
-map_fzf('n', '<leader>lG', "lsp_workspace_diagnostics", { file_icons = false })
+-- map_fzf('n', '<leader>lg', "lsp_document_diagnostics", { file_icons = false })
+map_fzf('n', '<leader>e', "lsp_workspace_diagnostics", { file_icons = false })
 
 -- Git
 map_fzf('n', '<leader>fB', "git_branches")

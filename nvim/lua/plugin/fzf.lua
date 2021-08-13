@@ -30,7 +30,7 @@ vim.g.fzf_buffers_jump = 1
 vim.g.fzf_preview_window = { 'down:50%:nowrap' }
 
 -- Preview window color scheme
-vim.env.BAT_THEME = '1337'
+-- vim.env.BAT_THEME = '1337'
 
 -- Overwrite the default command for :FzfFiles
 -- exclude nodejs modules and python cache files (__pycache__)
