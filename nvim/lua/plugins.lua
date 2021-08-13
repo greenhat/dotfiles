@@ -265,6 +265,9 @@ local function init()
 
     use { 'windwp/nvim-autopairs',
     config = "require('nvim-autopairs').setup()" }
+
+    use { 'ggandor/lightspeed.nvim',
+    config = "require'plugin.lightspeed'" }
 end
 
 -- called from 'lua/autocmd.lua' at `VimEnter`
