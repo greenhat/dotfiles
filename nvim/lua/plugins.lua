@@ -277,6 +277,11 @@ local function init()
     vim.cmd('augroup end ')
     ]] }
 
+    use { 'ruifm/gitlinker.nvim', requires = 'nvim-lua/plenary.nvim',
+    config = [[
+    require('gitlinker').setup({
+      mappings = "<leader>gh"
+    }) ]] }
 end
 
 -- called from 'lua/autocmd.lua' at `VimEnter`
