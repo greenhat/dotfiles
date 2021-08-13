@@ -185,9 +185,9 @@ local function init()
     }
 
    -- better quickfix
-   use { 'kevinhwang91/nvim-bqf',
-        config = "require'plugin.bqf'",
-        ft = { 'qf' } }
+   -- use { 'kevinhwang91/nvim-bqf',
+   --      config = "require'plugin.bqf'",
+   --      ft = { 'qf' } }
 
     -- LSP
     use { 'neovim/nvim-lspconfig',    event = 'BufRead',         
