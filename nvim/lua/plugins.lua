@@ -268,6 +268,15 @@ local function init()
 
     use { 'ggandor/lightspeed.nvim',
     config = "require'plugin.lightspeed'" }
+
+    use {'mhinz/vim-crates', 
+    config = [[
+    vim.cmd('augroup vimcrates')
+    vim.cmd('autocmd!')
+    vim.cmd'autocmd BufRead Cargo.toml call crates#toggle()'
+    vim.cmd('augroup end ')
+    ]] }
+
 end
 
 -- called from 'lua/autocmd.lua' at `VimEnter`
