@@ -16,8 +16,8 @@ vim.cmd("command! -nargs=+ -complete=file Grep " ..
 vim.cmd("command! -nargs=+ -complete=file LGrep " ..
     "lua vim.api.nvim_exec([[noautocmd lgrep! <args> | redraw! | lopen]], true)")
 
-remap('', '<leader>ei', '<Esc>:NvimEditInit<CR>',   { silent = true })
-remap('', '<leader>ek', '<Esc>:NvimEditKeymap<CR>', { silent = true })
+-- remap('', '<leader>ei', '<Esc>:NvimEditInit<CR>',   { silent = true })
+-- remap('', '<leader>ek', '<Esc>:NvimEditKeymap<CR>', { silent = true })
 remap('', '<leader>R',  "<Esc>:NvimReload<CR>",     { silent = true })
 
 -- Fix common typos
