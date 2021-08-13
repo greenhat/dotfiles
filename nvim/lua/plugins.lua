@@ -257,6 +257,11 @@ local function init()
     use { 'mtikekar/nvim-send-to-term',
     config = "require'plugin.nvim-send-to-term'" }
 
+    use { 'kevinhwang91/rnvimr',
+    config = [[
+    vim.g.rnvimr_vanilla = true
+    vim.api.nvim_set_keymap('n', '<leader>fr', ':RnvimrToggle<CR>', {noremap = true, silent = true})
+    ]] }
 end
 
 -- called from 'lua/autocmd.lua' at `VimEnter`
