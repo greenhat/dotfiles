@@ -262,6 +262,9 @@ local function init()
     vim.g.rnvimr_vanilla = true
     vim.api.nvim_set_keymap('n', '<leader>fr', ':RnvimrToggle<CR>', {noremap = true, silent = true})
     ]] }
+
+    use { 'windwp/nvim-autopairs',
+    config = "require('nvim-autopairs').setup()" }
 end
 
 -- called from 'lua/autocmd.lua' at `VimEnter`
