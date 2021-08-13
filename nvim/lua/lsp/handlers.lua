@@ -69,97 +69,97 @@ end
 
 -- Taken from and modified:
 -- https://github.com/neovim/neovim/issues/14825
-function M.virtual_text_none()
-  vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics, {
-      signs = false,
-      underline = false,
-      update_in_insert = false,
-      virtual_text = false
-    }
-  )
-end
+-- function M.virtual_text_none()
+--   vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
+--     vim.lsp.diagnostic.on_publish_diagnostics, {
+--       signs = false,
+--       underline = false,
+--       update_in_insert = false,
+--       virtual_text = false
+--     }
+--   )
+-- end
 
-function M.virtual_text_redraw()
-  -- NOTE: This function might become obsolete after the merge of
-  -- 'https://github.com/neovim/neovim/pull/13748', who knows !
-  for _,lsp_client_id in pairs(vim.tbl_keys(vim.lsp.buf_get_clients())) do
-    vim.lsp.handlers['textDocument/publishDiagnostics'](
-      nil,
-      'textDocument/publishDiagnostics', {
-          diagnostics = vim.lsp.diagnostic.get(0, lsp_client_id),
-          uri = vim.uri_from_bufnr(0)
-      },
-      lsp_client_id
-    )
-  end
-end
+-- function M.virtual_text_redraw()
+--   -- NOTE: This function might become obsolete after the merge of
+--   -- 'https://github.com/neovim/neovim/pull/13748', who knows !
+--   for _,lsp_client_id in pairs(vim.tbl_keys(vim.lsp.buf_get_clients())) do
+--     vim.lsp.handlers['textDocument/publishDiagnostics'](
+--       nil,
+--       'textDocument/publishDiagnostics', {
+--           diagnostics = vim.lsp.diagnostic.get(0, lsp_client_id),
+--           uri = vim.uri_from_bufnr(0)
+--       },
+--       lsp_client_id
+--     )
+--   end
+-- end
 
-function M.virtual_text_set()
-  vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics, {
-      severity_sort = true,
-      signs = function()
-        if vim.b.lsp_virtual_text_mode == 'Signs' or vim.b.lsp_virtual_text_mode == 'SignsVirtualText' then
-          return true
-        else
-          return false
-        end
-      end,
-      underline = false,
-      update_in_insert = false,
-      virtual_text = function()
-        if vim.b.lsp_virtual_text_mode == 'VirtualText' or vim.b.lsp_virtual_text_mode == 'SignsVirtualText' then
-          return "{ severity_limit = 'Hint', spacing = 10 }"
-        else
-          return false
-        end
-      end,
-    }
-  )
-end
+-- function M.virtual_text_set()
+--   vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
+--     vim.lsp.diagnostic.on_publish_diagnostics, {
+--       severity_sort = true,
+--       signs = function()
+--         if vim.b.lsp_virtual_text_mode == 'Signs' or vim.b.lsp_virtual_text_mode == 'SignsVirtualText' then
+--           return true
+--         else
+--           return false
+--         end
+--       end,
+--       underline = false,
+--       update_in_insert = false,
+--       virtual_text = function()
+--         if vim.b.lsp_virtual_text_mode == 'VirtualText' or vim.b.lsp_virtual_text_mode == 'SignsVirtualText' then
+--           return "{ severity_limit = 'Hint', spacing = 10 }"
+--         else
+--           return false
+--         end
+--       end,
+--     }
+--   )
+-- end
 
-function M.virtual_text_clear()
-  vim.lsp.diagnostic.clear(0)
-end
+-- function M.virtual_text_clear()
+--   vim.lsp.diagnostic.clear(0)
+-- end
 
-function M.virtual_text_disable()
-  vim.b.lsp_virtual_text_enabled = false
-  M.virtual_text_none()
-  M.virtual_text_clear()
-  return
-end
+-- function M.virtual_text_disable()
+--   vim.b.lsp_virtual_text_enabled = false
+--   M.virtual_text_none()
+--   M.virtual_text_clear()
+--   return
+-- end
 
-function M.virtual_text_enable()
-  vim.b.lsp_virtual_text_mode = 'SignsVirtualText'
-  vim.b.lsp_virtual_text_enabled = true
-  M.virtual_text_set()
-  M.virtual_text_redraw()
-  return
-end
+-- function M.virtual_text_enable()
+--   vim.b.lsp_virtual_text_mode = 'SignsVirtualText'
+--   vim.b.lsp_virtual_text_enabled = true
+--   M.virtual_text_set()
+--   M.virtual_text_redraw()
+--   return
+-- end
 
-function M.virtual_text_only_text()
-  vim.b.lsp_virtual_text_mode = 'VirtualText'
-  vim.b.lsp_virtual_text_enabled = true
-  M.virtual_text_set()
-  M.virtual_text_redraw()
-  return
-end
+-- function M.virtual_text_only_text()
+--   vim.b.lsp_virtual_text_mode = 'VirtualText'
+--   vim.b.lsp_virtual_text_enabled = true
+--   M.virtual_text_set()
+--   M.virtual_text_redraw()
+--   return
+-- end
 
-function M.virtual_text_only_signs()
-  vim.b.lsp_virtual_text_mode = 'Signs'
-  vim.b.lsp_virtual_text_enabled = true
-  M.virtual_text_set()
-  M.virtual_text_redraw()
-  return
-end
+-- function M.virtual_text_only_signs()
+--   vim.b.lsp_virtual_text_mode = 'Signs'
+--   vim.b.lsp_virtual_text_enabled = true
+--   M.virtual_text_set()
+--   M.virtual_text_redraw()
+--   return
+-- end
 
-function M.virtual_text_toggle()
-  if vim.b.lsp_virtual_text_enabled == true then
-    M.virtual_text_disable()
-  else
-    M.virtual_text_enable()
-  end
-end
+-- function M.virtual_text_toggle()
+--   if vim.b.lsp_virtual_text_enabled == true then
+--     M.virtual_text_disable()
+--   else
+--     M.virtual_text_enable()
+--   end
+-- end
 
 return M

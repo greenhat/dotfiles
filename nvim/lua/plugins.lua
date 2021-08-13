@@ -66,7 +66,7 @@ local function init()
     use { 'wbthomason/packer.nvim', opt = true }
 
     -- Analyze startuptime
-    use { 'tweekmonster/startuptime.vim', cmd = 'StartupTime' }
+    -- use { 'tweekmonster/startuptime.vim', cmd = 'StartupTime' }
 
     -- tpope's plugins that should be part of vim
     use { 'tpope/vim-surround' }
@@ -133,7 +133,7 @@ local function init()
 
     -- nvim-treesitter
     -- verify a compiler exists before installing
-    if require'utils'.have_compiler() then
+    -- if require'utils'.have_compiler() then
         use { 'nvim-treesitter/nvim-treesitter',
             config = "require('plugin.treesitter')",
             run = ':TSUpdate',
@@ -145,7 +145,7 @@ local function init()
             after = { 'nvim-treesitter' },
             cmd = { 'TSPlaygroundToggle' },
             opt = true }
-    end
+    -- end
 
     -- optional for fzf-lua, telescope, nvim-tree, feline
     use { 'kyazdani42/nvim-web-devicons', event = 'VimEnter' }
@@ -197,7 +197,8 @@ local function init()
       require'lspconfig'._root.commands.LspStart[1]()
     end,
   }
-    use { 'ray-x/lsp_signature.nvim', event = 'BufRead' }
+    -- use { 'ray-x/lsp_signature.nvim', event = 'BufRead' }
+
     --[[ use { 'kabouzeid/nvim-lspinstall',
         config = function()
           require('lsp')
@@ -227,19 +228,19 @@ local function init()
         opt = true, cmd = { 'PrevimOpen' } } ]]
 
     -- key bindings cheatsheet
-    use { 'folke/which-key.nvim',
-        config = "require('plugin.which_key')",
-        event = "VimEnter" }
+    -- use { 'folke/which-key.nvim',
+    --     config = "require('plugin.which_key')",
+    --     event = "VimEnter" }
 
-    -- Color scheme, requires nvim-treesitter
-    vim.g.nvcode_termcolors = 256
-    use {"christianchiarulli/nvcode-color-schemes.vim", opt = true}
+    -- -- Color scheme, requires nvim-treesitter
+    -- vim.g.nvcode_termcolors = 256
+    -- use {"christianchiarulli/nvcode-color-schemes.vim", opt = true}
 
-    -- Colorizer
-    use { 'norcalli/nvim-colorizer.lua',
-        config = function() require'colorizer'.setup() end,
-        cmd = {'ColorizerAttachToBuffer', 'ColorizerDetachFromBuffer' },
-        opt = true }
+    -- -- Colorizer
+    -- use { 'norcalli/nvim-colorizer.lua',
+    --     config = function() require'colorizer'.setup() end,
+    --     cmd = {'ColorizerAttachToBuffer', 'ColorizerDetachFromBuffer' },
+    --     opt = true }
 
   use {"npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
 

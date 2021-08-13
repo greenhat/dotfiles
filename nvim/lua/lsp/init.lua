@@ -6,19 +6,19 @@ end
 -- 'lspinstall' loads 'lspconfig'
 -- local nvim_lsp   = require('lspconfig')
 -- requires: 'https://github.com/ray-x/lsp_signature.nvim'
-local signature  = require('lsp_signature')
+-- local signature  = require('lsp_signature')
 
 local on_attach = function(client, bufnr)
-  if signature then
-    signature.on_attach({
-      bind         = true,
-      hint_enable  = true,
-      hint_prefix  = " ",
-      hint_scheme  = "String",
-      handler_opts = { border = "single" },
-      decorator    = {"`", "`"}
-    })
-  end
+  -- if signature then
+  --   signature.on_attach({
+  --     bind         = true,
+  --     hint_enable  = true,
+  --     hint_prefix  = " ",
+  --     hint_scheme  = "String",
+  --     handler_opts = { border = "single" },
+  --     decorator    = {"`", "`"}
+  --   })
+  -- end
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   if client.config.flags then
@@ -57,10 +57,10 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', ']g', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '[G', '<cmd>lua vim.lsp.diagnostic.goto_prev { wrap = false }<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', ']G', '<cmd>lua vim.lsp.diagnostic.goto_next { wrap = false }<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lc', '<cmd>lua vim.lsp.diagnostic.clear(0)<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lQ', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ll', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lt', "<cmd>lua require'lsp.handlers'.virtual_text_toggle()<CR>", opts)
+  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lc', '<cmd>lua vim.lsp.diagnostic.clear(0)<CR>', opts)
+  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lQ', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ll', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lt', "<cmd>lua require'lsp.handlers'.virtual_text_toggle()<CR>", opts)
 
   if client.resolved_capabilities.document_formatting then
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gq', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
@@ -75,16 +75,16 @@ local on_attach = function(client, bufnr)
   end
 
   -- Per buffer LSP indicators control
-  if vim.b.lsp_virtual_text_enabled == nil then
-    vim.b.lsp_virtual_text_enabled = true
-  end
+  -- if vim.b.lsp_virtual_text_enabled == nil then
+  --   vim.b.lsp_virtual_text_enabled = true
+  -- end
 
-  if vim.b.lsp_virtual_text_mode == nil then
-    vim.b.lsp_virtual_text_mode = 'SignsVirtualText'
-  end
+  -- if vim.b.lsp_virtual_text_mode == nil then
+  --   vim.b.lsp_virtual_text_mode = 'SignsVirtualText'
+  -- end
 
-  require('lsp.handlers').virtual_text_set()
-  require('lsp.handlers').virtual_text_redraw()
+  -- require('lsp.handlers').virtual_text_set()
+  -- require('lsp.handlers').virtual_text_redraw()
 
   --[[
   if client.name == 'tsserver' then
@@ -149,6 +149,7 @@ local lua_settings = {
     },
     workspace = {
       -- Make the server aware of Neovim runtime files
+        -- library = vim.api.nvim_get_runtime_file('', true),
       library = {
         [vim.fn.expand('$VIMRUNTIME/lua')] = true,
         [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
