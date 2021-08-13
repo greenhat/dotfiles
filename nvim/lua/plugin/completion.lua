@@ -49,47 +49,51 @@ end
 -- Use (s-)tab to:
 --- move to prev/next item in completion menuone
 --- <s-tab> to force open completion menu
-_G.tab_complete = function()
-  if vim.fn.pumvisible() == 1 then
-    return t "<C-n>"
-  elseif check_back_space() then
-    return t "<Tab>"
-  else
-    --return vim.fn['compe#complete']()
-    return t "<Tab>"
-  end
-end
-_G.s_tab_complete = function()
-  if vim.fn.pumvisible() == 1 then
-    return t "<C-p>"
-  else
-    -- If <S-Tab> is not working in your terminal, change it to <C-h>
-    --return t "<S-Tab>"
-    --return t "<C-n>"
-    return vim.fn['compe#complete']()
-  end
-end
+--_G.tab_complete = function()
+--  if vim.fn.pumvisible() == 1 then
+--    return t "<C-n>"
+--  elseif check_back_space() then
+--    return t "<Tab>"
+--  else
+--    --return vim.fn['compe#complete']()
+--    return t "<Tab>"
+--  end
+--end
+--_G.s_tab_complete = function()
+--  if vim.fn.pumvisible() == 1 then
+--    return t "<C-p>"
+--  else
+--    -- If <S-Tab> is not working in your terminal, change it to <C-h>
+--    --return t "<S-Tab>"
+--    --return t "<C-n>"
+--    return vim.fn['compe#complete']()
+--  end
+--end
 
-remap('i', '<Tab>', 'v:lua.tab_complete()', {expr = true})
-remap('s', '<Tab>', 'v:lua.tab_complete()', {expr = true})
-remap('i', '<S-Tab>', 'v:lua.s_tab_complete()', {expr = true})
-remap('s', '<S-Tab>', 'v:lua.s_tab_complete()', {expr = true})
+--remap('i', '<Tab>', 'v:lua.tab_complete()', {expr = true})
+--remap('s', '<Tab>', 'v:lua.tab_complete()', {expr = true})
+--remap('i', '<S-Tab>', 'v:lua.s_tab_complete()', {expr = true})
+--remap('s', '<S-Tab>', 'v:lua.s_tab_complete()', {expr = true})
 
 -- We use <s-tab> to reopen the completion popup instead of <c-space>
 --remap('i', '<C-Space>', 'compe#complete()',         { silent = true, expr = true })
-remap('i', '<CR>',      'compe#confirm(\'<CR>\')',  { silent = true, expr = true })
-remap('i', '<C-e>',     'compe#close(\'<C-e>\')',   { silent = true, expr = true })
-remap('i', '<C-f>',     "compe#scroll({ 'delta': +4 })", { silent = true, expr = true })
-remap('i', '<C-b>',     "compe#scroll({ 'delta': -4 })", { silent = true, expr = true })
+-- remap('i', '<CR>',      'compe#confirm(\'<CR>\')',  { silent = true, expr = true })
+-- remap('i', '<C-e>',     'compe#close(\'<C-e>\')',   { silent = true, expr = true })
+-- remap('i', '<C-f>',     "compe#scroll({ 'delta': +4 })", { silent = true, expr = true })
+-- remap('i', '<C-b>',     "compe#scroll({ 'delta': -4 })", { silent = true, expr = true })
 
 -- <cr>:     select item and close the popup menu
 -- <esc>:    revert selection (stay in insert mode)
 -- <ctrl-c>: revert selection (switch to normal mode)
 --remap('i', '<CR>',  '(pumvisible() ? "\\<c-y>" : "\\<CR>")',         { noremap = true, expr = true })
-remap('i', '<Esc>', '(pumvisible() ? "\\<c-e>" : "\\<Esc>")',        { noremap = false, expr = true })
-remap('i', '<c-c>', '(pumvisible() ? "\\<c-e>\\<c-c>" : "\\<c-c>")', { noremap = true,  expr = true })
+-- remap('i', '<Esc>', '(pumvisible() ? "\\<c-e>" : "\\<Esc>")',        { noremap = false, expr = true })
+-- remap('i', '<c-c>', '(pumvisible() ? "\\<c-e>\\<c-c>" : "\\<c-c>")', { noremap = true,  expr = true })
 
 -- Make up/down arrows behave in completion popups
 -- without this they move up/down but v:completed_item remains empty
-remap('i', '<down>', '(pumvisible() ? "\\<C-n>" : "\\<down>")', { noremap = true, expr = true })
-remap('i', '<up>',   '(pumvisible() ? "\\<C-p>" : "\\<up>")',   { noremap = true, expr = true })
+-- remap('i', '<down>', '(pumvisible() ? "\\<C-n>" : "\\<down>")', { noremap = true, expr = true })
+-- remap('i', '<up>',   '(pumvisible() ? "\\<C-p>" : "\\<up>")',   { noremap = true, expr = true })
+
+-- Map compe confirm and complete functions
+remap('i', "<CR>", "compe#confirm({ 'keys': '<CR>', 'select': v:true })", { expr = true })
+remap('i', '<c-space>', 'compe#complete()', { expr = true })
