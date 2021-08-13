@@ -245,6 +245,9 @@ vim.g.maplocalleader = ' '
 -- present at least on Arch/Manjaro/Void
 vim.api.nvim_command('set rtp-=/usr/share/vim/vimfiles')
 
+-- send-to-term 
+vim.g.send_disable_mapping = true
+
 require 'plugins'
 require 'autocmd'
 require 'keymaps'

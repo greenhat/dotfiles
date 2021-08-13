@@ -252,6 +252,10 @@ local function init()
     use { 'hoob3rt/lualine.nvim', 
     requires = {'kyazdani42/nvim-web-devicons', opt = true},
     config = "require'plugin.lualine'" }
+
+    use { 'mtikekar/nvim-send-to-term',
+    config = "require'plugin.nvim-send-to-term'" }
+
 end
 
 -- called from 'lua/autocmd.lua' at `VimEnter`
