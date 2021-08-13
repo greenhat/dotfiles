@@ -281,7 +281,14 @@ local function init()
     config = [[
     require('gitlinker').setup({
       mappings = "<leader>gh"
-    }) ]] }
+    }) ]] ,
+    after = 'plenary.nvim', opt = true, }
+
+    use { 'simrat39/rust-tools.nvim', 
+    requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' }, { 'nvim-telescope/telescope.nvim'} },
+    config = "require'plugin.rust-tools'",
+    after  = { 'nvim-lspconfig', 'plenary.nvim' }}
+
 end
 
 -- called from 'lua/autocmd.lua' at `VimEnter`

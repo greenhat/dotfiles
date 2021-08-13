@@ -8,7 +8,9 @@ end
 -- requires: 'https://github.com/ray-x/lsp_signature.nvim'
 -- local signature  = require('lsp_signature')
 
-local on_attach = function(client, bufnr)
+local M = {}
+
+M.on_attach = function(client, bufnr)
   -- if signature then
   --   signature.on_attach({
   --     bind         = true,
@@ -158,15 +160,16 @@ local lua_settings = {
   }
 }
 
+M.capabilities = vim.lsp.protocol.make_client_capabilities()
+M.capabilities.textDocument.completion.completionItem.snippetSupport = true
+
 -- config that activates keymaps and enables snippet support
 local function make_config()
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities.textDocument.completion.completionItem.snippetSupport = true
   return {
     -- enable snippet support
-    capabilities = capabilities,
+    capabilities = M.capabilities,
     -- map buffer local keybindings when the language server attaches
-    on_attach = on_attach,
+    on_attach = M.on_attach,
   }
 end
 
@@ -212,3 +215,5 @@ setup_servers()
 -- Setup icons & handler helper functions
 require('lsp.icons')
 require('lsp.handlers')
+
+return M
