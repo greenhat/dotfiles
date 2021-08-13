@@ -29,11 +29,11 @@ vim.o.scrolloff         = 3         -- min number of lines to keep between curso
 vim.o.sidescrolloff     = 5         -- min number of cols to keep between cursor and screen edge
 vim.o.textwidth         = 100        -- max inserted text width for paste operations
 vim.o.linespace         = 0         -- font spacing
-vim.o.ruler             = true      -- show line,col at the cursor pos
+ vim.o.ruler             = true      -- show line,col at the cursor pos
 vim.o.number            = false      -- show absolute line no. at the cursor pos
 vim.o.relativenumber    = false      -- otherwise, show relative numbers in the ruler
 vim.o.cursorline        = false      -- Show a line where the current cursor is
--- vim.wo.signcolumn       = 'yes'     -- Show sign column as first column
+vim.wo.signcolumn       = 'yes'     -- Show sign column as first column
 -- vim.g.colorcolumn       = 81        -- mark column 81
 -- vim.o.colorcolumn       = string.format(vim.g.colorcolumn)
 vim.o.wrap              = true      -- wrap long lines
@@ -161,25 +161,25 @@ vim.o.diffopt           = 'internal,filler,algorithm:histogram,indent-heuristic'
 ]]
 
 -- MacOS clipboard
-if require'utils'.is_darwin() then
-  vim.g.clipboard = {
-    name = "macOS-clipboard",
-    copy = {
-      ["+"] = "pbcopy",
-      ["*"] = "pbcopy",
-    },
-    paste = {
-      ["+"] = "pbpaste",
-      ["*"] = "pbpaste",
-    },
-  }
-end
+-- if require'utils'.is_darwin() then
+--   vim.g.clipboard = {
+--     name = "macOS-clipboard",
+--     copy = {
+--       ["+"] = "pbcopy",
+--       ["*"] = "pbcopy",
+--     },
+--     paste = {
+--       ["+"] = "pbpaste",
+--       ["*"] = "pbpaste",
+--     },
+--   }
+-- end
 
-if require'utils'.is_darwin() then
-    vim.g.python3_host_prog       = '/usr/local/bin/python3'
-else
-    vim.g.python3_host_prog       = '/usr/bin/python3'
-end
+-- if require'utils'.is_darwin() then
+--     vim.g.python3_host_prog       = '/usr/local/bin/python3'
+-- else
+--     vim.g.python3_host_prog       = '/usr/bin/python3'
+-- end
 
 -- use ':grep' to send resulsts to quickfix
 -- use ':lgrep' to send resulsts to loclist
@@ -249,19 +249,14 @@ require 'plugins'
 require 'autocmd'
 require 'keymaps'
 
--- set colorscheme to modified embark
--- https://github.com/embark-theme/vim
 vim.g.colorscheme_terminal_italics = true
--- pcall(vim.cmd, [[colorscheme lua-embark]])
 vim.o.background = "light"
--- vim.g.onedark_terminal_italics = 2
--- vim.cmd [[colorscheme onedark]]
--- vim.cmd [[colorscheme solarized-high]]
 vim.cmd [[colorscheme gruvbox]]
 -- vim.cmd [[let g:gruvbox_contrast_light="soft"]]
 -- vim.cmd [[let g:gruvbox_contrast_light="medium"]]
 vim.cmd [[let g:gruvbox_contrast_light="hard"]]
 
+-- Sway integrated split navigation
 vim.cmd[[
 augroup sway
 autocmd!
