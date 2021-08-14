@@ -4,6 +4,7 @@
 !/kitty/
 
 !/nvim/
+/nvim/plugin/*
 
 !/ranger/
 /ranger/*
