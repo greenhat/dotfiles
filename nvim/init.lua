@@ -40,8 +40,6 @@ for _, plugin in pairs(disabled_built_ins) do
   vim.g['loaded_' .. plugin] = 1
 end
 
--- run on this config loading to avoid highlight on reload
-vim.cmd[[:nohlsearch]]
 
 --Incremental live completion
 vim.o.inccommand = 'nosplit'
@@ -133,8 +131,8 @@ require('paq') {
   'nvim-treesitter/nvim-treesitter';
   'nvim-treesitter/nvim-treesitter-textobjects';
 
+  'L3MON4D3/LuaSnip'; -- needed for nvim-compe (cursor inside parens after selection)
   'hrsh7th/nvim-compe';
-  -- 'L3MON4D3/LuaSnip';
 
   'kevinhwang91/rnvimr';
 
@@ -180,6 +178,12 @@ vim.cmd [[let g:gruvbox_contrast_light="hard"]]
 vim.g.rnvimr_vanilla = true
 
 require('nvim-autopairs').setup()
+
+-- require("nvim-autopairs.completion.compe").setup({
+--   map_cr = true, --  map <CR> on insert mode
+--   map_complete = true, -- it will auto insert `(` after select function or method item
+--   auto_select = true,  -- auto select first item
+-- })
 
 require('lualine').setup({
     -- options = { theme = 'solarized' }
@@ -295,6 +299,13 @@ end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+  properties = {
+    'documentation',
+    'detail',
+    'additionalTextEdits',
+  }
+}
 
 -- Enable the following language servers
 local servers = { 'clangd', 'rust_analyzer', 'tsserver' }
@@ -409,15 +420,25 @@ vim.o.completeopt = 'menuone,noinsert'
 
 -- Compe setup
 require('compe').setup {
+  enabled = true,
   source = {
-    path = true,
-    nvim_lsp = true,
-    -- luasnip = true,
-    buffer = true,
-    calc = false,
-    nvim_lua = false,
-    vsnip = false,
-    ultisnips = false,
+    path          = true;
+    buffer = {
+      enable = true,
+      priority = 1,     -- last priority
+    },
+    nvim_lsp = {
+      enable = true,
+      priority = 10001, -- takes precedence over file completion
+    },
+    nvim_lua      = true;
+    calc          = true;
+    omni          = false;
+    spell         = false;
+    tags          = true;
+    treesitter    = true;
+    snippets_nvim = false;
+    vsnip         = false;
   },
 }
 
@@ -656,5 +677,8 @@ command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-hea
 
 -- for firenvim and GUI clients
 vim.cmd[[set guifont=Iosevka\ Fixed:h10:b]]
+
+-- run on this config loading to avoid highlight on reload
+vim.cmd[[:nohlsearch]]
 
 require'keymap'
