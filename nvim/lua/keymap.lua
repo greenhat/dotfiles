@@ -97,8 +97,8 @@ remap('n', '<C-S>', ':update<cr>', opts)
 
 -- Map compe confirm and complete functions
 -- remap('i', '<cr>', 'compe#confirm("<cr>")', { expr = true })
-remap('i', "<CR>", "compe#confirm({ 'keys': '<CR>', 'select': v:true })", { expr = true })
--- remap('i', "<CR>", [[compe#confirm(luaeval("require 'nvim-autopairs'.autopairs_cr()"))]], { expr = true })
+-- remap('i', "<CR>", "compe#confirm({ 'keys': '<CR>', 'select': v:true })", { expr = true })
+remap('i', "<CR>", [[compe#confirm(luaeval("require 'nvim-autopairs'.autopairs_cr()"))]], { expr = true })
 remap('i', '<c-space>', 'compe#complete()', { expr = true })
 
 -- Hitting escape twice should clear any search highlights.
