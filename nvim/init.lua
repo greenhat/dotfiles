@@ -1,3 +1,4 @@
+---@diagnostic disable: lowercase-global
 -- Paq bootstrap
 local install_path = vim.fn.stdpath('data') .. '/site/pack/paqs/start/paq-nvim'
 
@@ -6,6 +7,38 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 end
 
 require'utils'
+
+-- Disable providers we do not care a about
+-- vim.g.loaded_python_provider  = 0
+vim.g.loaded_ruby_provider    = 0
+vim.g.loaded_perl_provider    = 0
+vim.g.loaded_node_provider    = 0
+
+-- Disable some in built plugins completely
+local disabled_built_ins = {
+  'netrw',
+  'netrwPlugin',
+  'netrwSettings',
+  'netrwFileHandlers',
+  'gzip',
+  'zip',
+  'zipPlugin',
+  'tar',
+  'tarPlugin',
+  'getscript',
+  'getscriptPlugin',
+  'vimball',
+  'vimballPlugin',
+  '2html_plugin',
+  'logipat',
+  'rrhelper',
+  'spellfile_plugin',
+  'matchit',
+   --'matchparen',
+}
+for _, plugin in pairs(disabled_built_ins) do
+  vim.g['loaded_' .. plugin] = 1
+end
 
 --Incremental live completion
 vim.o.inccommand = 'nosplit'
@@ -67,7 +100,7 @@ vim.g.toggle_list_no_mappings = true
 -- nvim-send-to-term
 vim.g.send_disable_mapping = true
 
-require('paq') { 
+require('paq') {
   "savq/paq-nvim";                  -- Let Paq manage itself
   'wbthomason/packer.nvim';
   'nvim-lua/plenary.nvim';
@@ -152,11 +185,11 @@ vim.g.maplocalleader = ' '
 local remap = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
--- Vim 
+-- Vim
 remap('n', '<leader>zr', '<cmd>source $MYVIMRC<CR>', opts)
 remap('n', '<leader>c', [[<cmd>lua require('telescope.builtin').commands()<CR>]], opts)
 remap('n', '<leader>;', [[<cmd>lua require('telescope.builtin').command_history()<CR>]], opts)
- 
+
 remap('n', '<leader>tt', [[<cmd>lua require('telescope.builtin').builtin()<CR>]], opts)
 -- remap('n', '<leader>b',  [[<cmd>lua require('telescope.builtin').buffers({sort_lastused = true, ignore_current_buffer = true})<CR>]], opts)
 remap('n', '<leader>b',  [[<cmd>lua require('fzf-lua').buffers()<CR>]], opts)
