@@ -1,3 +1,4 @@
+---@diagnostic disable: lowercase-global
 -- keymappings, keybindings
 
 --Remap space as leader key
@@ -72,8 +73,8 @@ remap('n', ']g', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
 -- remap('n', '<leader>ql', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 remap( 'n', '<leader>O', [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]], opts)
 remap('n', '<leader>o', [[<cmd>lua require('fzf-lua').lsp_document_symbols()<CR>]], opts)
--- remap( 'n', '<leader>s', [[<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<CR>]], opts)
-remap('n', '<leader>L', [[<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>]], opts)
+remap('n', '<leader>L', [[<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<CR>]], opts)
+-- remap('n', '<leader>L', [[<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>]], opts)
 -- remap( 'n', '<leader>s', [[<cmd>WorkspaceSymbols<CR>]], opts)
 remap('n', '<leader>l', [[<cmd>lua require('fzf-lua').lsp_workspace_symbols()<CR>]], opts)
 
