@@ -202,14 +202,12 @@ remap('n', '<leader>fa', [[<cmd>lua require('fzf-lua').files()<CR>]], opts)
 -- remap('n', '<leader>fh', [[<cmd>lua require('fzf-lua').help_tags()<CR>]], opts)
 remap('n', '<leader>fh', [[<cmd>lua require('telescope.builtin').help_tags()<CR>]], opts)
 remap('n', '<leader>fA', [[<cmd>lua require('telescope.builtin').find_files()<CR>]], opts)
+
+-- Search
 remap('n', '<leader>sp', [[<cmd>lua require('fzf-lua').live_grep()<CR>]], opts)
--- via https://github.com/nvim-telescope/telescope.nvim/issues/708
--- remap('n', '<leader>gw', [[<cmd>lua require('telescope.builtin').grep_string({search = vim.fn.expand("<cword>")})<cr>]], {})
 remap('n', '<leader>sw', [[<cmd>lua require('fzf-lua').grep_cword()<cr>]], {})
 remap('n', '<leader>sW', [[<cmd>lua require('fzf-lua').grep_cWORD()<cr>]], {})
 remap('v', '<leader>sv', [[<cmd>lua require('fzf-lua').grep_visual()<cr>]], {})
--- remap('n', '<leader>so', [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<CR>]], opts)
--- remap('n', '<leader>?', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]], opts)
 
 -- VCS
 remap('n', '<leader>vp', [[<cmd>G push<cr>]], {})
