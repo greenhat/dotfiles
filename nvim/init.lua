@@ -153,6 +153,8 @@ require('paq') {
 
   'junegunn/fzf';
   'junegunn/fzf.vim';
+
+  'glacambre/firenvim';
 }
 
 -- load local plugins
@@ -696,7 +698,6 @@ vim.cmd[[autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync(nil, 100)]]
 vim.cmd[[autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)]]
 vim.cmd([[augroup end ]])
 
--- vim.cmd[[set guifont=Iosevka\ Fixed:h7:b]]
 
 -- Scala Metals
 
@@ -776,3 +777,6 @@ vim.cmd [[
 "   Example: :Rg myterm -g '*.md'
 command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case " .  <q-args>, 1, fzf#vim#with_preview(), <bang>0)
 ]]
+
+-- for firenvim and GUI clients
+vim.cmd[[set guifont=Iosevka\ Fixed:h10:b]]
