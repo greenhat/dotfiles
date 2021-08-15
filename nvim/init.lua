@@ -151,11 +151,12 @@ require('paq') {
 
   'editorconfig/editorconfig-vim';
 
-  -- {as = 'fzf-lsp', url = 'file://$HOME/src/my/fzf-lsp.nvim'};
+  'junegunn/fzf';
+  'junegunn/fzf.vim';
 }
 
 -- load local plugins
-vim.o.runtimepath = vim.o.runtimepath .. ",~/src/my/fzf-lsp.nvim"
+-- vim.o.runtimepath = vim.o.runtimepath .. ",~/src/my/fzf-lsp.nvim"
 
 require('gitlinker').setup({ mappings = "<leader>gh" })
 
@@ -187,21 +188,18 @@ local opts = { noremap = true, silent = true }
 
 -- Vim
 remap('n', '<leader>zr', '<cmd>source $MYVIMRC<CR>', opts)
-remap('n', '<leader>c', [[<cmd>lua require('telescope.builtin').commands()<CR>]], opts)
-remap('n', '<leader>;', [[<cmd>lua require('telescope.builtin').command_history()<CR>]], opts)
+-- remap('n', '<leader>c', [[<cmd>lua require('telescope.builtin').commands()<CR>]], opts)
+remap('n', '<leader>c', [[<cmd>:Commands<CR>]], opts)
+remap('n', '<leader>;', [[<cmd>:History:<CR>]], opts)
 
 remap('n', '<leader>tt', [[<cmd>lua require('telescope.builtin').builtin()<CR>]], opts)
 -- remap('n', '<leader>b',  [[<cmd>lua require('telescope.builtin').buffers({sort_lastused = true, ignore_current_buffer = true})<CR>]], opts)
 remap('n', '<leader>b',  [[<cmd>lua require('fzf-lua').buffers()<CR>]], opts)
 -- remap('n', '<leader>fa', [[<cmd>lua require('telescope.builtin').git_files()<CR>]], opts)
 remap('n', '<leader>fa', [[<cmd>lua require('fzf-lua').files()<CR>]], opts)
-remap('n', '<leader>fh', [[<cmd>lua require('fzf-lua').help_tags()<CR>]], opts)
+-- remap('n', '<leader>fh', [[<cmd>lua require('fzf-lua').help_tags()<CR>]], opts)
+remap('n', '<leader>fh', [[<cmd>lua require('telescope.builtin').help_tags()<CR>]], opts)
 remap('n', '<leader>fA', [[<cmd>lua require('telescope.builtin').find_files()<CR>]], opts)
--- remap('n', '<leader>sb', [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]], opts)
--- remap('n', '<leader>sh', [[<cmd>lua require('telescope.builtin').help_tags()<CR>]], opts)
--- remap('n', '<leader>st', [[<cmd>lua require('telescope.builtin').tags()<CR>]], opts)
--- remap('n', '<leader>sd', [[<cmd>lua require('telescope.builtin').grep_string()<CR>]], opts)
--- remap('n', '<leader>gp', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]], opts)
 remap('n', '<leader>sp', [[<cmd>lua require('fzf-lua').live_grep()<CR>]], opts)
 -- via https://github.com/nvim-telescope/telescope.nvim/issues/708
 -- remap('n', '<leader>gw', [[<cmd>lua require('telescope.builtin').grep_string({search = vim.fn.expand("<cword>")})<cr>]], {})
@@ -215,6 +213,12 @@ remap('v', '<leader>sv', [[<cmd>lua require('fzf-lua').grep_visual()<cr>]], {})
 remap('n', '<leader>vp', [[<cmd>G push<cr>]], {})
 -- remap('n', '<leader>vb', "<CMD>lua require'fzf-lua'.git_branches()<CR>", {})
 remap('n', '<leader>vb', "<CMD>lua require'telescope.builtin'.git_branches()<CR>", {})
+-- remap('n', '<leader>vc', "<CMD>lua require'telescope.builtin'.git_commits()<CR>", {})
+-- remap('n', '<leader>vC', "<CMD>lua require'telescope.builtin'.git_bcommits()<CR>", {})
+-- remap('n', '<leader>vc', "<CMD>lua require'fzf-lua'.git_commits()<CR>", {})
+-- remap('n', '<leader>vC', "<CMD>lua require'fzf-lua'.git_bcommits()<CR>", {})
+remap('n', '<leader>vc', "<CMD>Commits<CR>", {})
+remap('n', '<leader>vC', "<CMD>BCommits<CR>", {})
 
 -- LSP
 remap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
@@ -226,9 +230,9 @@ remap('n', 'gi', [[<cmd>lua require('fzf-lua').lsp_implementations()<CR>]], opts
 -- remap( 'n', 'gi', [[<cmd>Implementations<CR>]], opts)
 remap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
 remap('i', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-remap('n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-remap('n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-remap('n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+-- remap('n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+-- remap('n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+-- remap('n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
 remap('n', 'gy', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
 remap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
 -- remap( 'n', 'gr', '<cmd>lua require("telescope.builtin").lsp_references()<CR>', opts)
@@ -245,10 +249,9 @@ remap('n', '<leader>e', [[<cmd>lua require('fzf-lua').lsp_workspace_diagnostics(
 -- remap( 'n', '<leader>e', [[<cmd>lua require'fzf_lsp'.diagnostic(0, { bufnr = "*", workspace_diag_only_cwd = true })<CR>]], opts)
 remap('n', '[g', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
 remap('n', ']g', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-remap('n', '<leader>ql', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
--- remap( 'n', '<leader>o', [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]], opts)
-remap('n', '<leader>O', [[<cmd>lua require('fzf-lua').lsp_document_symbols()<CR>]], opts)
-remap('n', '<leader>o', [[<cmd>DocumentSymbols<CR>]], opts)
+-- remap('n', '<leader>ql', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+remap( 'n', '<leader>O', [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]], opts)
+remap('n', '<leader>o', [[<cmd>lua require('fzf-lua').lsp_document_symbols()<CR>]], opts)
 -- remap( 'n', '<leader>s', [[<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<CR>]], opts)
 remap('n', '<leader>L', [[<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>]], opts)
 -- remap( 'n', '<leader>s', [[<cmd>WorkspaceSymbols<CR>]], opts)
@@ -369,7 +372,7 @@ require('telescope').setup {
     --     ['<C-d>'] = false,
       },
     },
-    layout_strategy = 'vertical',
+    layout_strategy = 'horizontal',
     file_sorter =  require('telescope.sorters').get_fzy_sorter,
     file_ignore_patterns = {},
     generic_sorter =  require('telescope.sorters').get_fzy_sorter,
@@ -750,9 +753,26 @@ require'fzf-lua'.setup {
     -- end
   },
   fzf_layout = 'default',
-  preview_layout = 'vertical',
+    fzf_binds           = {               -- fzf '--bind=' options
+        -- 'f2:toggle-preview',
+        -- 'f3:toggle-preview-wrap',
+        'shift-down:preview-page-down',
+        'shift-up:preview-page-up',
+        'ctrl-d:half-page-down',
+        'ctrl-u:half-page-up',
+        'ctrl-f:page-down',
+        'ctrl-b:page-up',
+        'ctrl-a:toggle-all',
+        'ctrl-l:clear-query',
+    },
+  preview_layout = 'flex',
   lsp = {
     workspace_diag_only_cwd = true,
   }
 }
 
+vim.cmd [[
+" Allow passing optional flags into the Rg command.
+"   Example: :Rg myterm -g '*.md'
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case " .  <q-args>, 1, fzf#vim#with_preview(), <bang>0)
+]]
