@@ -1,18 +1,11 @@
--- Packer bootstrap
-local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
+-- Paq bootstrap
+local install_path = vim.fn.stdpath('data') .. '/site/pack/paqs/start/paq-nvim'
 
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
+  vim.fn.system({'git', 'clone', '--depth=1', 'https://github.com/savq/paq-nvim.git', install_path})
 end
 
 require'utils'
-
-vim.cmd [[
-  augroup Packer
-    autocmd!
-    autocmd BufWritePost init.lua PackerCompile
-  augroup end
-]]
 
 --Incremental live completion
 vim.o.inccommand = 'nosplit'
@@ -68,75 +61,70 @@ vim.o.autoread = true
 -- disable automatic newline at the end of file
 vim.o.fixendofline = false
 
-local use = require('packer').use
+-- vim-togglelist
+vim.g.toggle_list_no_mappings = true
 
-require('packer').startup(function()
-  use {'wbthomason/packer.nvim'}
-  use 'nvim-lua/plenary.nvim'
-  use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
-  use {"npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
-  ---
-  use 'tpope/vim-fugitive' -- Git commands in nvim
-  -- use 'tpope/vim-rhubarb' -- Fugitive-companion to interact with github
-  use 'tpope/vim-commentary'
-  use 'tpope/vim-repeat'
-  use 'tpope/vim-unimpaired'
+-- nvim-send-to-term
+vim.g.send_disable_mapping = true
 
-  use 'tpope/vim-surround'
-  -- use 'ludovicchabant/vim-gutentags' -- Automatic tags management
-  -- UI to select things (files, grep results, open buffers...)
-  use { 'nvim-telescope/telescope.nvim', requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } } }
-  -- use { '$HOME/src/work/telescope.nvim', requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } } }
+require('paq') { 
+  "savq/paq-nvim";                  -- Let Paq manage itself
+  'wbthomason/packer.nvim';
+  'nvim-lua/plenary.nvim';
+  'neovim/nvim-lspconfig';
 
-  use { 'ibhagwan/fzf-lua',
-  -- use { '$HOME/src/my/fzf-lua',
-    requires = {
-      'vijaymarupudi/nvim-fzf',
-      'kyazdani42/nvim-web-devicons' } -- optional for icons
-  }
+  'rktjmp/lush.nvim';
+  'npxbr/gruvbox.nvim';
 
-  use { 'hoob3rt/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons', opt = true} }
-  use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
-  use 'nvim-treesitter/nvim-treesitter'
-  use {'nvim-treesitter/nvim-treesitter-textobjects', after = 'nvim-treesitter'}
-  use 'hrsh7th/nvim-compe' -- Autocompletion plugin
-  use 'L3MON4D3/LuaSnip' -- Snippets plugin
-  use 'tpope/vim-dispatch'
-  use {'kevinhwang91/rnvimr', setup = 'vim.g.rnvimr_vanilla = true'}
-  use {'windwp/nvim-autopairs', config = [[require('nvim-autopairs').setup()]]}
-  use 'ggandor/lightspeed.nvim'
-  use {'milkypostman/vim-togglelist', setup = 'vim.g.toggle_list_no_mappings = true'}
+  'tpope/vim-fugitive';
+  'tpope/vim-commentary';
+  'tpope/vim-repeat';
+  'tpope/vim-unimpaired';
 
-  use {'mhinz/vim-crates', config = 'vim.cmd[[autocmd BufRead Cargo.toml call crates#toggle()]]'}
+  'tpope/vim-surround';
+  'nvim-lua/popup.nvim';
+  'nvim-lua/plenary.nvim';
+  'nvim-telescope/telescope.nvim';
 
-  use { 
-    'ruifm/gitlinker.nvim',
-    requires = 'nvim-lua/plenary.nvim',
-    config = [[require('gitlinker').setup({ mappings = "<leader>gh" })]] 
-  }
+  'vijaymarupudi/nvim-fzf';
+  'kyazdani42/nvim-web-devicons';
+  'ibhagwan/fzf-lua';
 
-  use { 
-    'simrat39/rust-tools.nvim',
-    requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' }, { 'nvim-telescope/telescope.nvim'} },
-  }
+  'hoob3rt/lualine.nvim';
 
-  use { 
-    'scalameta/nvim-metals',
-    opt = true,
-    ft = 'scala'
-  }
+  'lewis6991/gitsigns.nvim';
 
-  use {
-    'mtikekar/nvim-send-to-term',
-    setup = 'vim.g.send_disable_mapping = true'
-  }
+  'nvim-treesitter/nvim-treesitter';
+  'nvim-treesitter/nvim-treesitter-textobjects';
 
-  use 'editorconfig/editorconfig-vim'
+  'hrsh7th/nvim-compe';
+  -- 'L3MON4D3/LuaSnip';
 
-  use '$HOME/src/my/fzf-lsp.nvim'
+  'kevinhwang91/rnvimr';
 
-end)
+  'windwp/nvim-autopairs';
+  'ggandor/lightspeed.nvim';
+  'milkypostman/vim-togglelist';
 
+  'mhinz/vim-crates';
+
+  'ruifm/gitlinker.nvim';
+
+  'simrat39/rust-tools.nvim';
+
+  'scalameta/nvim-metals';
+
+  'mtikekar/nvim-send-to-term';
+
+  'editorconfig/editorconfig-vim';
+
+  -- {as = 'fzf-lsp', url = 'file://$HOME/src/my/fzf-lsp.nvim'};
+}
+
+-- load local plugins
+vim.o.runtimepath = vim.o.runtimepath .. ",~/src/my/fzf-lsp.nvim"
+
+require('gitlinker').setup({ mappings = "<leader>gh" })
 
 --Set colorscheme (order is important here)
 vim.o.termguicolors = true
@@ -149,7 +137,10 @@ vim.cmd [[colorscheme gruvbox]]
 -- vim.cmd [[let g:gruvbox_contrast_light="medium"]]
 vim.cmd [[let g:gruvbox_contrast_light="hard"]]
 
+-- ignore ranger rifle file
+vim.g.rnvimr_vanilla = true
 
+require('nvim-autopairs').setup()
 
 -- keymappings, keybindings
 
@@ -376,6 +367,13 @@ vim.api.nvim_exec(
   false
 )
 
+vim.cmd[[
+augroup vim_crates
+autocmd!
+autocmd BufRead Cargo.toml call crates#toggle()
+augroup end
+]]
+
 -- LSP settings
 local on_attach = function(_, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -436,6 +434,7 @@ require('lspconfig').sumneko_lua.setup {
 -- Treesitter configuration
 -- Parsers must be installed manually via :TSInstall
 require('nvim-treesitter.configs').setup {
+  ensure_installed = {"lua", "rust", "scala", "toml", "bash", "c", "cmake", "comment", "cpp", "css", "dockerfile", "html", "java", "javascript", "jsdoc", "json", "kotlin", "python", "regex", "swift", "typescript", "yaml" },
   highlight = {
     enable = true, -- false will disable the whole extension
   },
@@ -723,3 +722,4 @@ require'fzf-lua'.setup {
     workspace_diag_only_cwd = true,
   }
 }
+
