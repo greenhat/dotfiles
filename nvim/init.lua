@@ -245,7 +245,7 @@ remap('n', '<leader>a', [[<cmd>lua require('telescope.builtin').lsp_code_actions
 -- remap( 'n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
 remap('n', '<leader>E', [[<cmd>lua require('telescope.builtin').lsp_workspace_diagnostics({ line_width = 90 })<CR>]], opts)
 -- remap( 'n', '<leader>e', [[<cmd>lua require('telescope.builtin').lsp_workspace_diagnostics({ default_text = ':error:', line_width = 90, only_cwd = true })<CR>]], opts)
-remap('n', '<leader>e', [[<cmd>lua require('fzf-lua').lsp_workspace_diagnostics({workspace_diag_only_cwd = true})<CR>]], opts)
+remap('n', '<leader>e', [[<cmd>lua require('fzf-lua').lsp_workspace_diagnostics({cwd_only = true})<CR>]], opts)
 -- remap( 'n', '<leader>e', [[<cmd>lua require'fzf_lsp'.diagnostic(0, { bufnr = "*", workspace_diag_only_cwd = true })<CR>]], opts)
 remap('n', '[g', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
 remap('n', ']g', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
@@ -710,10 +710,11 @@ vim.cmd([[autocmd FileType scala setlocal omnifunc=v:lua.vim.lsp.omnifunc]])
 vim.cmd([[autocmd FileType scala,sbt lua require("metals").initialize_or_attach(metals_config())]])
 vim.cmd([[augroup end]])
 
--- Need for symbol highlights to work correctly
-vim.cmd([[hi! link LspReferenceText CursorColumn]])
-vim.cmd([[hi! link LspReferenceRead CursorColumn]])
-vim.cmd([[hi! link LspReferenceWrite CursorColumn]])
+-- moved to /after/plugin/gruvbox
+-- -- Need for symbol highlights to work correctly
+-- vim.cmd([[hi! link LspReferenceText CursorColumn]])
+-- vim.cmd([[hi! link LspReferenceRead CursorColumn]])
+-- vim.cmd([[hi! link LspReferenceWrite CursorColumn]])
 
 function metals_config()
   -- TODO: called on every file open
