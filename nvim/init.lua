@@ -473,10 +473,12 @@ _G.tab_complete = function()
         return t "<C-n>"
     elseif luasnip and luasnip.expand_or_jumpable() then
         return t "<Plug>luasnip-expand-or-jump"
-    elseif check_back_space() then
-        return t "<Tab>"
+    -- elseif check_back_space() then
+    --     return t "<Tab>"
+    -- else
+    --     return vim.fn['compe#complete']()
     else
-        return vim.fn['compe#complete']()
+        return t "<Tab>"
     end
 end
 _G.s_tab_complete = function()
