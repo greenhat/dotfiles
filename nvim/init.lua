@@ -616,29 +616,36 @@ require('rust-tools').setup({
 -- all the opts to send to nvim-lspconfig
 -- these override the defaults set by rust-tools.nvim
 -- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
-server = {
-  -- example at https://github.com/simrat39/rust-tools.nvim/issues/28
-  on_attach = on_attach,
-  capabilities = capabilities,
-  flags = {
-    allow_incremental_sync = true,
-    debounce_text_changes = 500,
-  },
-  settings = {
-    ["rust-analyzer"] = {
-      cargo = {
-        allFeatures = true,
-      },
-      checkOnSave = {
-        command = "clippy"
-      },
-      assist = {
-        importGranularity = "item",
-        importEnforceGranularity = true
-      }
+  server = {
+    -- example at https://github.com/simrat39/rust-tools.nvim/issues/28
+    on_attach = on_attach,
+    capabilities = capabilities,
+    flags = {
+      allow_incremental_sync = true,
+      debounce_text_changes = 500,
     },
-  },
-}
+    settings = {
+      ["rust-analyzer"] = {
+        cargo = {
+          allFeatures = true,
+        },
+        checkOnSave = {
+          command = "clippy"
+        },
+        assist = {
+          importGranularity = "item",
+          importEnforceGranularity = true
+        },
+        workspace = {
+          symbol = {
+            search = {
+              kind = "all_symbols"
+            }
+          }
+        }
+      },
+    },
+  }
 })
 
 -- format on save
