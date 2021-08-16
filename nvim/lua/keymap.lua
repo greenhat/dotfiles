@@ -44,6 +44,7 @@ remap('n', '<leader>vC', "<CMD>BCommits<CR>", {})
 -- LSP
 remap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
 remap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+remap('n', 'gp', '<Cmd>RustParentModule<CR>', opts)
 remap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
 -- remap( 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
 -- remap( 'n', 'gi', [[<cmd>lua require('telescope.builtin').lsp_implementations()<CR>]], opts)
@@ -75,10 +76,11 @@ remap('n', ']g', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
 -- remap('n', '<leader>ql', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 remap( 'n', '<leader>O', [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]], opts)
 remap('n', '<leader>o', [[<cmd>lua require('fzf-lua').lsp_document_symbols()<CR>]], opts)
-remap('n', '<leader>L', [[<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<CR>]], opts)
+remap('n', '<leader>J', [[<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<CR>]], opts)
 -- remap('n', '<leader>L', [[<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>]], opts)
 -- remap( 'n', '<leader>s', [[<cmd>WorkspaceSymbols<CR>]], opts)
-remap('n', '<leader>l', [[<cmd>lua require('fzf-lua').lsp_workspace_symbols()<CR>]], opts)
+remap('n', '<leader>j', [[<cmd>lua require('fzf-lua').lsp_workspace_symbols()<CR>]], opts)
+remap('n', '<leader>lr', '<cmd>RustRunnables<CR>', opts)
 
 -- lightspeed
 -- To keep using `;` and `,` in the native way
