@@ -125,3 +125,9 @@ nmap <leader>m <Plug>Send
 vmap <leader>m <Plug>Send
 ]]
 
+-- close current window
+vim.cmd[[
+nnoremap <C-l> <C-w>c
+inoremap <C-l> <Esc><C-w>c
+tnoremap <C-l> <C-\><C-N><C-w>c
+]]
