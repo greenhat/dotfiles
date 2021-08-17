@@ -70,7 +70,7 @@ export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 alias pi="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
 alias pd="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns"
 
-export RUST_BACKTRACE=1
+# export RUST_BACKTRACE=1
 
 export MANPAGER='nvim +Man!'
 export MANWIDTH=999
