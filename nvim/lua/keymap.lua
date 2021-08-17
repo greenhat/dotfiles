@@ -79,7 +79,8 @@ remap('n', '<leader>o', [[<cmd>lua require('fzf-lua').lsp_document_symbols()<CR>
 -- remap('n', '<leader>J', [[<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<CR>]], opts)
 remap('n', '<leader>J', [[<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>]], opts)
 -- remap( 'n', '<leader>s', [[<cmd>WorkspaceSymbols<CR>]], opts)
-remap('n', '<leader>j', [[<cmd>lua require('fzf-lua').lsp_workspace_symbols()<CR>]], opts)
+-- remap('n', '<leader>j', [[<cmd>lua require('fzf-lua').lsp_workspace_symbols()<CR>]], opts)
+remap('n', '<leader>j', [[<cmd>lua require('fzf-lua').lsp_live_workspace_symbols()<CR>]], opts)
 remap('n', '<leader>lr', '<cmd>RustRunnables<CR>', opts)
 
 -- lightspeed
@@ -133,3 +134,6 @@ nnoremap <C-l> <C-w>c
 inoremap <C-l> <Esc><C-w>c
 tnoremap <C-l> <C-\><C-N><C-w>c
 ]]
+
+remap('n', '<leader>gh', '<cmd>lua require"gitlinker".get_buf_range_url("n")<cr>', opts)
+remap('v', '<leader>gh', ':lua require"gitlinker".get_buf_range_url("v")<cr>', opts)

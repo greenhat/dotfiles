@@ -161,7 +161,7 @@ require('paq') {
 -- load local plugins
 -- vim.o.runtimepath = vim.o.runtimepath .. ",~/src/my/fzf-lsp.nvim"
 
-require('gitlinker').setup({ mappings = "<leader>gh" })
+require('gitlinker').setup()
 
 --Set colorscheme (order is important here)
 vim.o.termguicolors = true
