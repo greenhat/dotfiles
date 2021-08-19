@@ -137,3 +137,5 @@ tnoremap <C-l> <C-\><C-N><C-w>c
 
 remap('n', '<leader>gh', '<cmd>lua require"gitlinker".get_buf_range_url("n")<cr>', opts)
 remap('v', '<leader>gh', ':lua require"gitlinker".get_buf_range_url("v")<cr>', opts)
+
+vim.cmd[[imap jj <Esc>]]
