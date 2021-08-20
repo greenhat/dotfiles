@@ -177,7 +177,10 @@ vim.cmd [[let g:gruvbox_contrast_light="hard"]]
 -- ignore ranger rifle file
 vim.g.rnvimr_vanilla = true
 
-require('nvim-autopairs').setup()
+-- require('nvim-autopairs').setup()
+require('nvim-autopairs').setup({
+  enable_check_bracket_line = false
+})
 
 -- require("nvim-autopairs.completion.compe").setup({
 --   map_cr = true, --  map <CR> on insert mode
