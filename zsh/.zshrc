@@ -2,6 +2,8 @@
 HISTFILE=~/.zhistory
 HISTSIZE=1000
 SAVEHIST=10000
+setopt INC_APPEND_HISTORY_TIME  # append command to history file immediately after execution
+
 bindkey -e
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
