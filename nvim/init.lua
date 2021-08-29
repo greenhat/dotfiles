@@ -156,6 +156,8 @@ require('paq') {
   'junegunn/fzf.vim';
 
   'glacambre/firenvim';
+
+  'lambdalisue/suda.vim';
 }
 
 -- load local plugins
