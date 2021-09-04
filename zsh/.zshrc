@@ -76,3 +76,5 @@ alias pd="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo p
 
 export MANPAGER='nvim +Man!'
 export MANWIDTH=999
+
+alias rng='TERM=xterm-kitty ranger'
