@@ -32,8 +32,8 @@ remap('v', '<leader>sv', [[<cmd>lua require('fzf-lua').grep_visual()<cr>]], {})
 
 -- VCS
 remap('n', '<leader>vp', [[<cmd>G push<cr>]], {})
--- remap('n', '<leader>vb', "<CMD>lua require'fzf-lua'.git_branches()<CR>", {})
-remap('n', '<leader>vb', "<CMD>lua require'telescope.builtin'.git_branches()<CR>", {})
+remap('n', '<leader>vb', "<CMD>lua require'fzf-lua'.git_branches()<CR>", {})
+-- remap('n', '<leader>vb', "<CMD>lua require'telescope.builtin'.git_branches()<CR>", {})
 -- remap('n', '<leader>vc', "<CMD>lua require'telescope.builtin'.git_commits()<CR>", {})
 -- remap('n', '<leader>vC', "<CMD>lua require'telescope.builtin'.git_bcommits()<CR>", {})
 -- remap('n', '<leader>vc', "<CMD>lua require'fzf-lua'.git_commits()<CR>", {})
