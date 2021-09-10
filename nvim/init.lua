@@ -299,7 +299,7 @@ augroup end
 -- LSP settings
 local on_attach = function(_, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-  -- vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
+  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -656,9 +656,9 @@ require('rust-tools').setup({
 -- format on save
 vim.cmd([[augroup autoformat ]])
 vim.cmd([[autocmd!]])
-vim.cmd[[autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 100)]]
-vim.cmd[[autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync(nil, 100)]]
-vim.cmd[[autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)]]
+vim.cmd[[autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 500)]]
+vim.cmd[[autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync(nil, 500)]]
+vim.cmd[[autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 500)]]
 vim.cmd([[augroup end ]])
 
 
