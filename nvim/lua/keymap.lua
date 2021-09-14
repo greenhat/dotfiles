@@ -114,7 +114,7 @@ remap('t', '<ESC>', '<C-\\><C-n>', opts)
 vim.cmd[[tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi']]
 
 -- fix gx once and for all (via https://github.com/vim/vim/issues/4738)
-remap('n', 'gx', ':execute "silent! !xdg-open " . shellescape(expand("<cWORD>"), 1)<cr>', opts)
+remap('n', 'gx', ':execute "silent! !xdg-open " . shellescape(expand("<cWORD>"), 1) . " &"<cr>', opts)
 
 remap('n', '<leader>fr', ':RnvimrToggle<CR>', opts)
 
