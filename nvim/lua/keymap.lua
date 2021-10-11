@@ -83,18 +83,10 @@ remap('n', '<leader>j', [[<cmd>lua require('telescope.builtin').lsp_dynamic_work
 remap('n', '<leader>J', [[<cmd>lua require('fzf-lua').lsp_live_workspace_symbols()<CR>]], opts)
 remap('n', '<leader>lr', '<cmd>RustRunnables<CR>', opts)
 
--- lightspeed
--- To keep using `;` and `,` in the native way
-function repeat_ft(reverse)
-  local ls = require'lightspeed'
-  ls.ft['instant-repeat?'] = true
-  ls.ft:to(reverse, ls.ft['prev-t-like?'])
-end
-remap('n', ';', '<cmd>lua repeat_ft(false)<cr>', opts)
-remap('x', ';', '<cmd>lua repeat_ft(false)<cr>', opts)
-remap('n', ',', '<cmd>lua repeat_ft(true)<cr>', opts)
-remap('x', ',', '<cmd>lua repeat_ft(true)<cr>', opts)
-
+-- keep original ; for repeat
+vim.cmd[[
+nmap ; <Plug>Lightspeed_;_ft
+]]
 
 -- Ctrl-S to "save"
 remap('i', '<C-S>', '<Esc> :update<cr>gi', opts)
