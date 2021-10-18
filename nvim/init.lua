@@ -683,16 +683,16 @@ vim.cmd([[augroup end]])
 
 function metals_config()
   -- TODO: called on every file open
-  local metals_config = require("metals").bare_config
+  local mconf = require("metals").bare_config()
 
   -- Example of settings
-  metals_config.settings = {
+  mconf.settings = {
     showImplicitArguments = true,
     excludedPackages = { "akka.actor.typed.javadsl", "com.github.swagger.akka.javadsl" },
   }
 
   -- Example of how to ovewrite a handler
-  metals_config.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+  mconf.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
     virtual_text = { prefix = "" },
   })
 
@@ -702,9 +702,9 @@ function metals_config()
   -- docs about this
   -- metals_config.init_options.statusBarProvider = "on"
 
-  metals_config.capabilities = capabilities
-  metals_config.on_attach = on_attach
-  return metals_config
+  mconf.capabilities = capabilities
+  mconf.on_attach = on_attach
+  return mconf
 end
 
 
@@ -731,9 +731,9 @@ require'fzf-lua'.setup {
         'ctrl-l:clear-query',
     },
   preview_layout = 'flex',
-  lsp = {
-    workspace_diag_only_cwd = true,
-  }
+  -- lsp = {
+  --   workspace_diag_only_cwd = true,
+  -- }
 }
 
 vim.cmd [[
