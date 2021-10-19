@@ -718,7 +718,12 @@ require'fzf-lua'.setup {
     -- end
   },
   fzf_layout = 'default',
-    fzf_binds           = {               -- fzf '--bind=' options
+  preview_layout = 'flex',
+  -- lsp = {
+  --   workspace_diag_only_cwd = true,
+  -- }
+  keymap = {
+    fzf = {               -- fzf '--bind=' options
         -- 'f2:toggle-preview',
         -- 'f3:toggle-preview-wrap',
         'shift-down:preview-page-down',
@@ -730,10 +735,7 @@ require'fzf-lua'.setup {
         'ctrl-a:toggle-all',
         'ctrl-l:clear-query',
     },
-  preview_layout = 'flex',
-  -- lsp = {
-  --   workspace_diag_only_cwd = true,
-  -- }
+  }
 }
 
 vim.cmd [[
