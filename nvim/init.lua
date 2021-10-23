@@ -111,6 +111,7 @@ require('paq') {
   'npxbr/gruvbox.nvim';
 
   'tpope/vim-fugitive';
+  'tpope/vim-rhubarb';
   'tpope/vim-commentary';
   'tpope/vim-repeat';
   'tpope/vim-unimpaired';
@@ -142,7 +143,7 @@ require('paq') {
 
   'mhinz/vim-crates';
 
-  'ruifm/gitlinker.nvim';
+  -- 'ruifm/gitlinker.nvim';
 
   'simrat39/rust-tools.nvim';
 
@@ -163,7 +164,6 @@ require('paq') {
 -- load local plugins
 -- vim.o.runtimepath = vim.o.runtimepath .. ",~/src/my/fzf-lsp.nvim"
 
-require('gitlinker').setup()
 
 --Set colorscheme (order is important here)
 vim.o.termguicolors = true
@@ -747,5 +747,11 @@ vim.cmd[[set guifont=Iosevka\ Fixed:h10:b]]
 
 -- run on this config loading to avoid highlight on reload
 vim.cmd[[:nohlsearch]]
+
+-- require('gitlinker').setup({
+--   mappings = "<leader>gh"
+-- })
+
+-- require('gitlinker').setup()
 
 require'keymap'
