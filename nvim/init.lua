@@ -132,8 +132,15 @@ require('paq') {
   'nvim-treesitter/nvim-treesitter';
   'nvim-treesitter/nvim-treesitter-textobjects';
 
+  'hrsh7th/cmp-nvim-lsp';
+  'hrsh7th/cmp-buffer';
+  'hrsh7th/cmp-path';
+  'hrsh7th/cmp-cmdline';
+  'hrsh7th/nvim-cmp';
+
+  -- For luasnip users.
   'L3MON4D3/LuaSnip'; -- needed for nvim-compe (cursor inside parens after selection)
-  'hrsh7th/nvim-compe';
+  'saadparwaiz1/cmp_luasnip';
 
   'kevinhwang91/rnvimr';
 
@@ -179,16 +186,9 @@ vim.cmd [[let g:gruvbox_contrast_light="hard"]]
 -- ignore ranger rifle file
 vim.g.rnvimr_vanilla = true
 
--- require('nvim-autopairs').setup()
 require('nvim-autopairs').setup({
   enable_check_bracket_line = false
 })
-
--- require("nvim-autopairs.completion.compe").setup({
---   map_cr = true, --  map <CR> on insert mode
---   map_complete = true, -- it will auto insert `(` after select function or method item
---   auto_select = true,  -- auto select first item
--- })
 
 require('lualine').setup({
     -- options = { theme = 'solarized' }
@@ -279,6 +279,90 @@ require('telescope').setup {
   }
 }
 
+-- Setup nvim-cmp.
+local has_words_before = function()
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
+
+local luasnip = require("luasnip")
+local cmp = require'cmp'
+
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+      require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+      -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+      -- require'snippy'.expand_snippet(args.body) -- For `snippy` users.
+    end,
+  },
+  mapping = {
+    ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+    ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+    ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+    ['<C-y>'] = cmp.config.disable, -- If you want to remove the default `<C-y>` mapping, You can specify `cmp.config.disable` value.
+    ['<C-e>'] = cmp.mapping({
+      i = cmp.mapping.abort(),
+      c = cmp.mapping.close(),
+    }),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+
+
+["<Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      elseif has_words_before() then
+        cmp.complete()
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
+
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
+
+  },
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    -- { name = 'vsnip' }, -- For vsnip users.
+    { name = 'luasnip' }, -- For luasnip users.
+    -- { name = 'ultisnips' }, -- For ultisnips users.
+    -- { name = 'snippy' }, -- For snippy users.
+  }, {
+      { name = 'buffer' },
+    })
+})
+
+-- Use buffer source for `/`.
+cmp.setup.cmdline('/', {
+  sources = {
+    { name = 'buffer' }
+  }
+})
+
+-- Use cmdline & path source for ':'.
+cmp.setup.cmdline(':', {
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+      { name = 'cmdline' }
+    })
+})
+
+-- If you want insert `(` after select function or method item
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({ map_char = { tex = '' } }))
+
 vim.api.nvim_exec(
   [[
   augroup YankHighlight
@@ -302,7 +386,7 @@ local on_attach = function(_, bufnr)
   vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.completion.completionItem.resolveSupport = {
   properties = {
@@ -422,86 +506,6 @@ require('nvim-treesitter.configs').setup {
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noinsert'
-
--- Compe setup
-require('compe').setup {
-  enabled = true,
-  preselect = 'always',
-  source = {
-    path          = true;
-    buffer = {
-      enable = true,
-      priority = 1,     -- last priority
-    },
-    nvim_lsp = {
-      enable = true,
-      priority = 10001, -- takes precedence over file completion
-    },
-    nvim_lua      = true;
-    calc          = true;
-    omni          = false;
-    spell         = false;
-    tags          = true;
-    treesitter    = true;
-    snippets_nvim = false;
-    vsnip         = false;
-  },
-}
-
--- How to use tab to navigate completion menu?
--- Tab and S-Tab keys need to be mapped to <C-n> and <C-p> when completion menu is visible. Following example will use
--- Tab and S-Tab (shift+tab) to navigate completion menu and jump between vim-vsnip placeholders when possible:
--- from https://github.com/L3MON4D3/LuaSnip
-local function prequire(...)
-local status, lib = pcall(require, ...)
-if (status) then return lib end
-    return nil
-end
-
-local luasnip = prequire('luasnip')
-
-local t = function(str)
-    return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-
-local check_back_space = function()
-    local col = vim.fn.col('.') - 1
-    if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
-        return true
-    else
-        return false
-    end
-end
-
-_G.tab_complete = function()
-    if vim.fn.pumvisible() == 1 then
-        return t "<C-n>"
-    elseif luasnip and luasnip.expand_or_jumpable() then
-        return t "<Plug>luasnip-expand-or-jump"
-    -- elseif check_back_space() then
-    --     return t "<Tab>"
-    -- else
-    --     return vim.fn['compe#complete']()
-    else
-        return t "<Tab>"
-    end
-end
-_G.s_tab_complete = function()
-    if vim.fn.pumvisible() == 1 then
-        return t "<C-p>"
-    elseif luasnip and luasnip.jumpable(-1) then
-        return t "<Plug>luasnip-jump-prev"
-    else
-        return t "<S-Tab>"
-    end
-end
-
-vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("i", "<C-E>", "<Plug>luasnip-next-choice", {})
-vim.api.nvim_set_keymap("s", "<C-E>", "<Plug>luasnip-next-choice", {})
 
 -- Gpush for fugitive
 -- vim.cmd [[ command! -bang -bar -nargs=* Gpush execute 'Dispatch<bang> -dir=' .  fnameescape(FugitiveGitDir()) 'git push' <q-args> ]]
@@ -749,11 +753,5 @@ vim.cmd[[set guifont=Iosevka\ Fixed:h10:b]]
 
 -- run on this config loading to avoid highlight on reload
 vim.cmd[[:nohlsearch]]
-
--- require('gitlinker').setup({
---   mappings = "<leader>gh"
--- })
-
--- require('gitlinker').setup()
 
 require'keymap'

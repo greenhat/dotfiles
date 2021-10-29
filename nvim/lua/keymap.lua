@@ -92,12 +92,6 @@ nmap ; <Plug>Lightspeed_;_ft
 remap('i', '<C-S>', '<Esc> :update<cr>gi', opts)
 remap('n', '<C-S>', ':update<cr>', opts)
 
--- Map compe confirm and complete functions
--- remap('i', '<cr>', 'compe#confirm("<cr>")', { expr = true })
--- remap('i', "<CR>", "compe#confirm({ 'keys': '<CR>', 'select': v:true })", { expr = true })
-remap('i', "<CR>", [[compe#confirm(luaeval("require 'nvim-autopairs'.autopairs_cr()"))]], { expr = true })
-remap('i', '<c-space>', 'compe#complete()', { expr = true })
-
 -- Hitting escape twice should clear any search highlights.
 remap('n', '<ESC><ESC>', ':nohlsearch<CR>', opts)
 
@@ -126,9 +120,6 @@ nnoremap <C-l> <C-w>c
 inoremap <C-l> <Esc><C-w>c
 tnoremap <C-l> <C-\><C-N><C-w>c
 ]]
-
--- remap('n', '<leader>gh', '<cmd>lua require"gitlinker".get_buf_range_url("n")<cr>', opts)
--- remap('v', '<leader>gh', ':lua require"gitlinker".get_buf_range_url("v")<cr>', opts)
 
 remap('n', '<leader>gh', ':GBrowse!<cr>', opts)
 remap('v', '<leader>gh', ':GBrowse!<cr>', opts)
