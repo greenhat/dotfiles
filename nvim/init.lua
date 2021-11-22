@@ -166,6 +166,8 @@ require('paq') {
   'glacambre/firenvim';
 
   'lambdalisue/suda.vim';
+
+  'ledger/vim-ledger';
 }
 
 -- load local plugins
