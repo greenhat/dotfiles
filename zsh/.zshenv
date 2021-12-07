@@ -3,6 +3,7 @@ path=("$HOME/.local/bin" "$path[@]")
 path=("$HOME/bin" "$path[@]")
 path=("/usr/local/sbin" "$path[@]") # brew
 path=("$HOME/.cargo/bin" "$path[@]") # rust
+path=("$HOME/.local/share/coursier/bin" "$path[@]") # rust
 export PATH
 
 export EDITOR=nvim
