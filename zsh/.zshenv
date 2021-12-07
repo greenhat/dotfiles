@@ -9,9 +9,15 @@ export PATH
 export EDITOR=nvim
 export VISUAL=nvim
 export BROWSER=/usr/bin/brave
-export TERM=xterm
+export TERM=xterm-256color
 export XCOMPOSEFILE=/tmp/compose
 export SHELL=/bin/zsh
 # export GPG_TTY=$(tty)
 export CLICOLOR=1
-export BAT_THEME="gruvbox-light"
+export BAT_THEME="GitHub"
+. "$HOME/.cargo/env"
+
+# export LANGUAGE=en_US.UTF-8
+# export LC_ALL=en_US.UTF-8
+# export LANG=en_US.UTF-8
+# export LC_TYPE=en_US.UTF-8
