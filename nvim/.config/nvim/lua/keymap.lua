@@ -125,3 +125,10 @@ remap('n', '<leader>gh', ':GBrowse!<cr>', opts)
 remap('v', '<leader>gh', ':GBrowse!<cr>', opts)
 
 vim.cmd[[imap jj <Esc>]]
+
+vim.cmd[[
+nnoremap <silent> <A-h> <C-w>h
+nnoremap <silent> <A-j> <C-w>j
+nnoremap <silent> <A-k> <C-w>k
+nnoremap <silent> <A-l> <C-w>l
+]]
