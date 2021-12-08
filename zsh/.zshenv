@@ -15,7 +15,7 @@ export SHELL=/bin/zsh
 # export GPG_TTY=$(tty)
 export CLICOLOR=1
 export BAT_THEME="GitHub"
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"
 
 # export LANGUAGE=en_US.UTF-8
 # export LC_ALL=en_US.UTF-8

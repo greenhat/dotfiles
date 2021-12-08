@@ -13,12 +13,20 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-# Fish-like syntax highlighting and autosuggestions
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+host=$( hostname )
 
+# Fish-like syntax highlighting and autosuggestions
 # History search
-source /usr/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+if [[ $host != archlinux ]]; then
+    source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source /usr/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+else
+    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+fi
+
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
 bindkey -M emacs '^P' history-substring-search-up
@@ -64,10 +72,17 @@ esac
 
 # FZF
 # source /usr/share/fzf/key-bindings.zsh
-source /usr/share/doc/fzf/examples/key-bindings.zsh
+# source /usr/share/doc/fzf/examples/key-bindings.zsh
 # source /usr/share/fzf/completion.zsh
-source /usr/share/doc/fzf/examples/completion.zsh
-   
+# source /usr/share/doc/fzf/examples/completion.zsh
+if [[ $host != archlinux ]]; then
+    source /usr/share/doc/fzf/examples/key-bindings.zsh
+    source /usr/share/doc/fzf/examples/completion.zsh
+else
+    source /usr/share/fzf/key-bindings.zsh
+    source /usr/share/fzf/completion.zsh
+fi
+
 export FZF_DEFAULT_OPTS='--layout=reverse'
 export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :500 {}'"
