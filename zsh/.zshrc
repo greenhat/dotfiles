@@ -35,7 +35,7 @@ zstyle ':vcs_info:git:*' formats ':%F{green}%b%f'
 # Set up the prompt
 setopt PROMPT_SUBST
 # PROMPT='%1~ %F{green}${vcs_info_msg_0_}%f $ '
-PROMPT='%F{blue}%1~%f${vcs_info_msg_0_} $ '
+PROMPT='%F{blue}%m %~%f${vcs_info_msg_0_} $ '
 
 # delete key
 bindkey  "^[[3~"  delete-char
@@ -83,3 +83,15 @@ export MANWIDTH=999
 
 alias rng='TERM=xterm-kitty ranger'
 alias tmux='tmux -u'
+
+# Set cursor style for tmux
+# CSI Ps SP q
+#           Set cursor style (DECSCUSR, VT520).
+#             Ps = 0  -> blinking block.
+#             Ps = 1  -> blinking block (default).
+#             Ps = 2  -> steady block.
+#             Ps = 3  -> blinking underline.
+#             Ps = 4  -> steady underline.
+#             Ps = 5  -> blinking bar (xterm).
+#             Ps = 6  -> steady bar (xterm).
+printf '\033[6 q'
