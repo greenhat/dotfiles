@@ -27,6 +27,9 @@ else
     source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 fi
 
+# emacs key-bindings
+bindkey -e
+
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
 bindkey -M emacs '^P' history-substring-search-up
