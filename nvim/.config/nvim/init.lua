@@ -168,6 +168,8 @@ require('paq') {
   'lambdalisue/suda.vim';
 
   'ledger/vim-ledger';
+
+  'bfredl/nvim-miniyank';
 }
 
 -- load local plugins

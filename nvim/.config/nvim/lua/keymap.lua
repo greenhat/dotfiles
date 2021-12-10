@@ -132,3 +132,12 @@ nnoremap <silent> <A-j> <C-w>j
 nnoremap <silent> <A-k> <C-w>k
 nnoremap <silent> <A-l> <C-w>l
 ]]
+
+
+vim.cmd[[
+map p <Plug>(miniyank-autoput)
+map P <Plug>(miniyank-autoPut)
+
+map <leader>n <Plug>(miniyank-cycle)
+map <leader>N <Plug>(miniyank-cycleback)
+]]
