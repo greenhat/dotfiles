@@ -9,7 +9,7 @@ export PATH
 export EDITOR=nvim
 export VISUAL=nvim
 export BROWSER=/usr/bin/brave
-export TERM=screen-256color
+export TERM=tmux-256color
 export XCOMPOSEFILE=/tmp/compose
 export SHELL=/bin/zsh
 # export GPG_TTY=$(tty)
