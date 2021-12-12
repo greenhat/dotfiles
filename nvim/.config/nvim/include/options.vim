@@ -86,7 +86,7 @@ set foldmethod=syntax
 set nofoldenable
 
 " org
-let g:org_agenda_files = ['~/Documents/org/*.org']
+let g:org_agenda_files = ['~/Sync/org/*.org']
 let g:org_heading_shade_leading_stars = 0
 
 " Auto save buffers when focus is lost
