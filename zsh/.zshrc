@@ -56,7 +56,7 @@ bindkey  "^[[3~"  delete-char
 
 alias dc='docker-compose'
 alias pm='sudo pacman'
-alias vim='nvim'
+# alias vim='nvim'
 # image viewer
 alias icat="kitty +kitten icat"
 
