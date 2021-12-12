@@ -135,11 +135,11 @@ nnoremap <leader>di :<C-u>call CocActionAsync('diagnosticInfo')<CR>
 
 " Mappings for CoCList
 " Show all diagnostics.
-nnoremap <silent><nowait> <space>e  :<C-u>CocList diagnostics<cr>
+nnoremap <silent><nowait> <space>E  :<C-u>CocList diagnostics<cr>
 " Manage extensions.
 nnoremap <silent><nowait> <space>le  :<C-u>CocList extensions<cr>
 " Show commands.
-nnoremap <silent><nowait> <space>lc  :<C-u>CocList commands<cr>
+" nnoremap <silent><nowait> <space>lc  :<C-u>CocList commands<cr>
 " Find symbol of current document.
 nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
 " Search workspace symbols.
@@ -150,6 +150,15 @@ nnoremap <silent><nowait> <space>lj  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>lk  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>lp  :<C-u>CocListResume<CR>
+
+nnoremap <silent> <leader>e       :<C-u>CocFzfList diagnostics<CR>
+" " nnoremap <silent> <leader>b       :<C-u>CocFzfList diagnostics --current-buf<CR>
+nnoremap <silent> <leader>lc       :<C-u>CocFzfList commands<CR>
+" nnoremap <silent> <leader>le       :<C-u>CocFzfList extensions<CR>
+" " nnoremap <silent> <leader>l       :<C-u>CocFzfList location<CR>
+" nnoremap <silent> <leader>o       :<C-u>CocFzfList outline<CR>
+" nnoremap <silent> <leader>j       :<C-u>CocFzfList symbols<CR>
+" nnoremap <silent> <leader>lp       :<C-u>CocFzfListResume<CR>
 
 " " Toggle panel with Tree Views
 " nnoremap <silent> <leader>v :<C-u>CocCommand metals.tvp<CR>

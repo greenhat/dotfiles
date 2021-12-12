@@ -14,6 +14,5 @@
   "rust-analyzer.assist.importMergeBehavior": "none",
   "rust-analyzer.cargo.loadOutDirsFromCheck": true,
   "rust-analyzer.procMacro.enable": true,
-  "rust-analyzer.cargo.allFeatures": true,
-  "rust-analyzer.updates.channel": "nightly"
+  "rust-analyzer.cargo.allFeatures": true
 }
