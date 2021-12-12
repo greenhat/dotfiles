@@ -214,7 +214,8 @@ nnoremap <Leader>g :Grepper -tool git<CR>
 nnoremap <Leader>G :Grepper -tool rg<CR>
 
 " FZF
-nnoremap <silent> <leader>fa :GFiles<CR>
+" https://github.com/junegunn/fzf.vim/issues/233
+nnoremap <silent> <leader>fa :execute system('git rev-parse --is-inside-work-tree') =~ 'true' ? 'GFiles' : 'Files'<CR>
 nnoremap <silent> <leader>fA :Files<CR>
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>c :Commands<CR>
