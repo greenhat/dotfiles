@@ -3,6 +3,7 @@ let maplocalleader=" "
 
 " Hitting escape twice should clear any search highlights.
 nnoremap <silent> <ESC><ESC> :nohlsearch<CR>
+nnoremap <silent> <ESC> :nohlsearch<CR>
 
 " CoC -----------------------------------------------------------------------------
 " Use tab for trigger completion with characters ahead and navigate.

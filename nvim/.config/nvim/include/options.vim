@@ -1,7 +1,3 @@
-" Show line numbers.
-set nonumber
-set norelativenumber
-
 " Always expand tabs to spaces.
 set expandtab
 
@@ -53,12 +49,15 @@ set shortmess+=c
 " CoC
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
-if has("nvim-0.5.0") || has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
+" if has("nvim-0.5.0") || has("patch-8.1.1564")
+"   " Recently vim can merge signcolumn and number column into one
+"   set signcolumn=number
+" else
+"   set signcolumn=yes
+" endif
+set nonumber
+set norelativenumber
+set signcolumn=yes
 
 " When a file has been detected to have been changed outside of Vim and it has not 
 " been changed inside of Vim, automatically read it again. When the file has been deleted this is not done.
