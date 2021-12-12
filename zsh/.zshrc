@@ -86,18 +86,16 @@ bindkey "^[[B" history-substring-search-down
 bindkey -M emacs '^P' history-substring-search-up
 bindkey -M emacs '^N' history-substring-search-down
 
-# Load version control information
-autoload -Uz vcs_info
+# # Load version control information
+# autoload -Uz vcs_info
 
-# via https://stackoverflow.com/questions/59009508/how-to-only-show-current-folder-and-git-branch-and-for-home-in-zsh
-# format vcs_info variable
-zstyle ':vcs_info:git:*' formats ':%F{green}%b%f'
-# zstyle ':vcs_info:git:*' formats '%b'
+# # via https://stackoverflow.com/questions/59009508/how-to-only-show-current-folder-and-git-branch-and-for-home-in-zsh
+# # format vcs_info variable
+# zstyle ':vcs_info:git:*' formats ':%F{green}%b%f'
 
 # Set up the prompt
 setopt PROMPT_SUBST
-# PROMPT='%1~ %F{green}${vcs_info_msg_0_}%f $ '
-PROMPT='%F{blue}%m %~%f${vcs_info_msg_0_} $ '
+PROMPT='%F{blue}%m %~%f $ '
 
 # delete key
 bindkey  "^[[3~"  delete-char
@@ -115,7 +113,7 @@ alias icat="kitty +kitten icat"
 case $TERM in
     *xterm*|rxvt|(dt|k|E)term)
         precmd () {
-            vcs_info
+            # vcs_info
             print -Pn "\033]0;%~\007"
         }
         # preexec () {
@@ -160,3 +158,5 @@ alias tmux='tmux -u'
 #             Ps = 5  -> blinking bar (xterm).
 #             Ps = 6  -> steady bar (xterm).
 printf '\033[6 q'
+
+eval "$(starship init zsh)"
