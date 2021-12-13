@@ -165,4 +165,5 @@ let g:firenvim_config = {
 "   Example: :Rg myterm -g '*.md'
 command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case " .  <q-args>, 1, fzf#vim#with_preview(), <bang>0)
 
-set jumpoptions = "stack"
+set jumpoptions+="stack"
+set previewheight=24
