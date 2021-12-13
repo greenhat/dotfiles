@@ -50,7 +50,7 @@ Plug 'tpope/vim-repeat'
 
 " Plug 'jqno/jqno-extractvariable.vim'
 
-" Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
 " Plug 'subnut/nvim-ghost.nvim', {'do': ':call nvim_ghost#installer#install()'}
 
