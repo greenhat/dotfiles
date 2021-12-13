@@ -59,6 +59,9 @@ set nonumber
 set norelativenumber
 set signcolumn=yes
 
+" CoC
+set tagfunc=CocTagFunc
+
 " When a file has been detected to have been changed outside of Vim and it has not 
 " been changed inside of Vim, automatically read it again. When the file has been deleted this is not done.
 set autoread
@@ -161,3 +164,5 @@ let g:firenvim_config = {
 " Allow passing optional flags into the Rg command.
 "   Example: :Rg myterm -g '*.md'
 command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case " .  <q-args>, 1, fzf#vim#with_preview(), <bang>0)
+
+set jumpoptions = "stack"
