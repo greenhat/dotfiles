@@ -42,6 +42,8 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nmap <silent> go :<C-u>call CocAction('showOutgoingCalls')<CR>
+nmap <silent> gn :<C-u>call CocAction('showIncomingCalls')<CR>
 
 " Used to expand decorations in worksheets
 nmap <Leader>ws <Plug>(coc-metals-expand-decoration)
@@ -171,8 +173,9 @@ nnoremap <silent> <leader>lc       :<C-u>CocFzfList commands<CR>
 
 " Terminal
 " ------------------------------------------------------------------------
-" map <Esc> to exit terminal-mode
-tnoremap <Esc> <C-\><C-n>
+" map <Esc> to exit terminal-mode excluding fzf dialogs
+" tnoremap <Esc> <C-\><C-n>
+tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
 
 " To simulate |i_CTRL-R| in terminal-mode:
 tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
