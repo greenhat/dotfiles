@@ -239,6 +239,7 @@ function! RipgrepFzf(query, fullscreen)
 endfunction
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 nnoremap <silent> <leader>sp :RG<CR>
+nnoremap <silent> <leader>sw :Rg <C-R>=expand("<cword>")<CR><CR>
 
 " FZF MRU
 nnoremap <silent> <Leader>ff :FZFMru<cr>
