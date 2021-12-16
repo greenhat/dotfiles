@@ -80,7 +80,7 @@ Plug 'cespare/vim-toml'
 
 Plug 'bfredl/nvim-miniyank'
 
-Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
+" Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 
 " This must be called before importing any Lua modules added above.
 call plug#end()
