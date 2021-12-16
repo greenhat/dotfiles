@@ -15,7 +15,7 @@ export XCOMPOSEFILE=/tmp/compose
 # export SHELL=/bin/zsh
 # export GPG_TTY=$(tty)
 export CLICOLOR=1
-export BAT_THEME="GitHub"
+export BAT_THEME="gruvbox-light"
 # . "$HOME/.cargo/env"
 
 # export LANGUAGE=en_US.UTF-8
