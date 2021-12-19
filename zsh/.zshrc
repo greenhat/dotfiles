@@ -63,8 +63,8 @@ unset repo
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.zhistory
-HISTSIZE=1000
-SAVEHIST=10000
+HISTSIZE=100000
+SAVEHIST=100000
 setopt INC_APPEND_HISTORY_TIME  # append command to history file immediately after execution
 
 bindkey -e
