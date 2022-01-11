@@ -35,6 +35,12 @@ let g:sneak#label=1
 " FZF in floating window 
 " let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.5 } }
 
+" function! SetLinesForFirefox(timer)
+"     set lines=48 columns=110 laststatus=0
+" endfunction
+
+
 if exists('g:started_by_firenvim')
-        set guifont=Iosevka\ Fixed:h28
+        set guifont=Iosevka\ Fixed:h20
+        " call timer_start(1000, function("SetLinesForFirefox"))
 endif
