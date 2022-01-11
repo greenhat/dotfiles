@@ -123,12 +123,15 @@ case $TERM in
 esac
 
 # FZF
-if [[ $host != archlinux ]]; then
-    source /usr/share/doc/fzf/examples/key-bindings.zsh
-    source /usr/share/doc/fzf/examples/completion.zsh
-else
+if [[ $host == archlinux ]]; then
     source /usr/share/fzf/key-bindings.zsh
     source /usr/share/fzf/completion.zsh
+elif [[ $host == x1 ]]; then
+    source /usr/share/fzf/shell/key-bindings.zsh
+else 
+    # debian
+    source /usr/share/doc/fzf/examples/key-bindings.zsh
+    source /usr/share/doc/fzf/examples/completion.zsh
 fi
 
 export FZF_DEFAULT_OPTS='--layout=reverse'
