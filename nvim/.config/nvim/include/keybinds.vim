@@ -39,7 +39,9 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
 " nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gd <C-]>
+" nmap <silent> gd <C-]>
+nmap <silent> gd :call CocAction('jumpDefinition', 'drop')<CR>
+nmap <silent> <leader>d :call CocAction('jumpDefinition', 'vsplit')<CR>
 nmap <silent> gp :pclose<CR><C-W>}
 " nmap <silent> gp <C-W>}
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -136,11 +138,11 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " Make sure `"codeLens.enable": true` is set in your coc config
 nnoremap <leader>la :<C-u>call CocActionAsync('codeLensAction')<CR>
 
-nnoremap <leader>di :<C-u>call CocActionAsync('diagnosticInfo')<CR>
+" nnoremap <leader>di :<C-u>call CocActionAsync('diagnosticInfo')<CR>
 
 " Mappings for CoCList
 " Show all diagnostics.
-nnoremap <silent><nowait> <space>E  :<C-u>CocList diagnostics<cr>
+nnoremap <silent><nowait> <space>e  :<C-u>CocList diagnostics<cr>
 " Manage extensions.
 nnoremap <silent><nowait> <space>le  :<C-u>CocList extensions<cr>
 " Show commands.
@@ -156,9 +158,9 @@ nnoremap <silent><nowait> <space>lk  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>lp  :<C-u>CocListResume<CR>
 
-nnoremap <silent> <leader>e       :<C-u>CocFzfList diagnostics<CR>
+" nnoremap <silent> <leader>e       :<C-u>CocFzfList diagnostics<CR>
 " " nnoremap <silent> <leader>b       :<C-u>CocFzfList diagnostics --current-buf<CR>
-nnoremap <silent> <leader>lc       :<C-u>CocFzfList commands<CR>
+" nnoremap <silent> <leader>lc       :<C-u>CocFzfList commands<CR>
 " nnoremap <silent> <leader>le       :<C-u>CocFzfList extensions<CR>
 " " nnoremap <silent> <leader>l       :<C-u>CocFzfList location<CR>
 " nnoremap <silent> <leader>o       :<C-u>CocFzfList outline<CR>
