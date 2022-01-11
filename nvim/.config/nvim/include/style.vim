@@ -35,4 +35,6 @@ let g:sneak#label=1
 " FZF in floating window 
 " let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.5 } }
 
-
+if exists('g:started_by_firenvim')
+        set guifont=Iosevka\ Fixed:h28
+endif
