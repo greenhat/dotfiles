@@ -85,3 +85,4 @@ Plug 'bfredl/nvim-miniyank'
 " This must be called before importing any Lua modules added above.
 call plug#end()
 
+packadd cfilter
