@@ -6,7 +6,8 @@ Plug 'vim-airline/vim-airline-themes'
 " Plug 'iCyMind/NeoSolarized'
 " Plug 'altercation/vim-colors-solarized'
 " Plug 'lifepillar/vim-solarized8'
-Plug 'morhetz/gruvbox'
+" Plug 'morhetz/gruvbox'
+Plug 'ellisonleao/gruvbox.nvim'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -81,6 +82,9 @@ Plug 'cespare/vim-toml'
 Plug 'bfredl/nvim-miniyank'
 
 " Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
+
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
 " This must be called before importing any Lua modules added above.
 call plug#end()

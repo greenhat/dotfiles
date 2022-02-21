@@ -9,17 +9,26 @@ let g:gruvbox_italic=1
 let g:gruvbox_italicize_comments=1
 autocmd vimenter * colorscheme gruvbox
 
-hi CocCodeLens guifg=LightGray
-autocmd vimenter * hi CocCodeLens guifg=LightGray
+" hi CocCodeLens guifg=LightGray
+" autocmd vimenter * hi CocCodeLens guifg=LightGray
+"
 " type hints
-hi CocHintSign guifg= LightGray
-autocmd vimenter * hi CocHintSign guifg= LightGray
+" hi CocHintSign ctermfg=Gray
+" autocmd vimenter * hi CocHintSign guifg=Gray guibg=LightGray
+"
+hi CocHintSign guifg=LightGray guibg=GruvboxBg0
+autocmd vimenter * hi CocHintSign guifg=LightGray guibg=GruvboxBg0
+" autocmd vimenter * hi CocHintSign ctermfg=Gray
+"
 " Doc comments in Rust ///
 hi SpecialComment guifg=Grey
 autocmd vimenter * hi SpecialComment guifg=Grey
 
 " let g:airline_theme='solarized'
-autocmd vimenter * let g:airline_theme='gruvbox'
+" autocmd vimenter * let g:airline_theme='gruvbox'
+" autocmd vimenter * let g:airline_theme='solarized'
+let g:airline_theme='base16_gruvbox_light_soft'
+autocmd vimenter * let g:airline_theme='base16_gruvbox_light_soft'
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#coc#enabled = 1
 let g:airline#extensions#fugitiveline#enabled = 1
@@ -44,3 +53,69 @@ if exists('g:started_by_firenvim')
         set guifont=Iosevka\ Fixed:h20
         " call timer_start(1000, function("SetLinesForFirefox"))
 endif
+
+lua << EOF
+-- Treesitter configuration
+-- Parsers must be installed manually via :TSInstall
+require('nvim-treesitter.configs').setup {
+  ensure_installed = {"lua", "rust", "scala", "toml", "bash", "c", "cmake", "comment", "cpp", "css", "dockerfile", "html", "java", "javascript", "jsdoc", "json", "kotlin", "python", "regex", "typescript", "yaml" },
+  highlight = {
+    enable = true, -- false will disable the whole extension
+  },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = 'gnn',
+      node_incremental = 'grn',
+      scope_incremental = 'grc',
+      node_decremental = 'grm',
+    },
+  },
+  indent = {
+    enable = true,
+  },
+  textobjects = {
+    select = {
+      enable = true,
+      lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
+      keymaps = {
+        -- You can use the capture groups defined in textobjects.scm
+        ['af'] = '@function.outer',
+        ['if'] = '@function.inner',
+        ['ac'] = '@class.outer',
+        ['ic'] = '@class.inner',
+        ['aA'] = '@call.outer',
+        ['iA'] = '@call.inner',
+        ['aC'] = '@conditional.outer',
+        ['iC'] = '@conditional.inner',
+        ['ab'] = '@block.outer',
+        ['ib'] = '@block.inner',
+        ['ia'] = '@parameter.inner',
+        ['aa'] = '@parameter.outer',
+        ['as'] = '@statement.outer',
+        ['aS'] = '@scopename.inner',
+      },
+    },
+    move = {
+      enable = true,
+      set_jumps = true, -- whether to set jumps in the jumplist
+      goto_next_start = {
+        [']m'] = '@function.outer',
+        [']]'] = '@class.outer',
+      },
+      goto_next_end = {
+        [']M'] = '@function.outer',
+        [']['] = '@class.outer',
+      },
+      goto_previous_start = {
+        ['[m'] = '@function.outer',
+        ['[['] = '@class.outer',
+      },
+      goto_previous_end = {
+        ['[M'] = '@function.outer',
+        ['[]'] = '@class.outer',
+      },
+    },
+  },
+}
+EOF
