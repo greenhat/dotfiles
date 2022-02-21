@@ -1,6 +1,6 @@
 {
   "coc.preferences.formatOnType": true,
-  "coc.preferences.formatOnSaveFiletypes": ["scala", "rust"],
+  "coc.preferences.formatOnSaveFiletypes": ["rust"],
   "coc.preferences.jumpCommand": "drop",
   "coc.source.buffer.disableSyntaxes": ["comment", "string"],
   "codeLens.enable": true,
@@ -22,5 +22,6 @@
                   "filetypes": ["sh"],
                   "ignoredRootPaths": ["~"]
           }
-  }
+  },
+  "Lua.telemetry.enable": false
 }
