@@ -86,6 +86,8 @@ Plug 'bfredl/nvim-miniyank'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
+Plug 'github/copilot.vim'
+
 " This must be called before importing any Lua modules added above.
 call plug#end()
 
