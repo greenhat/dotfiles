@@ -128,6 +128,7 @@ if [[ $host == archlinux ]]; then
     source /usr/share/fzf/completion.zsh
 elif [[ $host == x1 ]]; then
     source /usr/share/fzf/shell/key-bindings.zsh
+    source /usr/share/fzf/shell/completion.zsh
 else 
     # debian
     source /usr/share/doc/fzf/examples/key-bindings.zsh
