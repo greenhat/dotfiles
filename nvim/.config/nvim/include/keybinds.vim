@@ -273,8 +273,8 @@ vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 nmap <leader>re <Plug>(extractVariableNormal)
 vmap <leader>re <Plug>(extractVariableVisual)
 
-inoremap <C-S> <Esc>:update<cr>gi
-nnoremap <C-S> :update<cr>
+inoremap <C-S> <Esc>:w<cr>gi
+nnoremap <C-S> :w<cr>
 
 " Copy link to a clipboard instead of opening a browser:
 let g:gh_open_command = 'fn() { echo "$@" | wl-copy; }; fn '
