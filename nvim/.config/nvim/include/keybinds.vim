@@ -284,7 +284,7 @@ let g:gh_open_command = 'fn() { echo "$@" | wl-copy; }; fn '
 nnoremap <silent> gx :execute 'silent! !xdg-open ' . shellescape(expand('<cWORD>'), 1)<cr>
 
 nnoremap <silent> <leader>zr :source $MYVIMRC<cr>
-imap jj <Esc>
+" imap jj <Esc>
 
 map p <Plug>(miniyank-autoput)
 map P <Plug>(miniyank-autoPut)
@@ -292,3 +292,9 @@ map <leader>n <Plug>(miniyank-cycle)
 map <leader>N <Plug>(miniyank-cycleback)
 
 nnoremap <leader>vp :G push<cr>
+
+" scroll up and down
+nnoremap <C-k> <C-u>
+nnoremap <C-j> <C-d>
+" remap ex-scroll Ctrl-D to Delete
+inoremap <C-d> <Del>
