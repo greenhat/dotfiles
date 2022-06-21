@@ -293,8 +293,5 @@ map <leader>N <Plug>(miniyank-cycleback)
 
 nnoremap <leader>vp :G push<cr>
 
-" scroll up and down
-nnoremap <C-k> <C-u>
-nnoremap <C-j> <C-d>
 " remap ex-scroll Ctrl-D to Delete
 inoremap <C-d> <Del>
