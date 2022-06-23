@@ -67,7 +67,6 @@ HISTSIZE=100000
 SAVEHIST=100000
 setopt INC_APPEND_HISTORY_TIME  # append command to history file immediately after execution
 
-bindkey -e
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/green/.zshrc'
