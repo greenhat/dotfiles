@@ -65,7 +65,12 @@ unset repo
 HISTFILE=~/.zhistory
 HISTSIZE=100000
 SAVEHIST=100000
-setopt INC_APPEND_HISTORY_TIME  # append command to history file immediately after execution
+# setopt INC_APPEND_HISTORY_TIME  # append command to history file immediately after execution
+
+# as each line is added, the history file is checked to see if anything was written out by another shell, 
+# and if so it is included in the history of the current shell too. This means that zsh's 
+# running in different windows but on the same host (or more generally with the same home directory) share the same history.
+setopt SHARE_HISTORY  # End of lines configured by zsh-newuser-install
 
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
@@ -102,8 +107,8 @@ bindkey  "^[[3~"  delete-char
 # Z 
 # [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
 
-alias dc='docker-compose'
-alias pm='sudo pacman'
+# alias dc='docker-compose'
+# alias pm='sudo pacman'
 # alias vim='nvim'
 # image viewer
 alias icat="kitty +kitten icat"
@@ -144,7 +149,7 @@ alias pd="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo p
 
 # export RUST_BACKTRACE=1
 
-export MANPAGER='nvim +Man!'
+# export MANPAGER='nvim +Man!'
 export MANWIDTH=999
 
 alias rng='TERM=xterm-kitty ranger'
