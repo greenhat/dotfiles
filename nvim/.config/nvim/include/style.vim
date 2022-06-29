@@ -4,9 +4,26 @@ set background=light
 
 " colorscheme solarized
 
-let g:gruvbox_contrast_light='hard'
-let g:gruvbox_italic=1
-let g:gruvbox_italicize_comments=1
+" let g:gruvbox_contrast_light='hard'
+" let g:gruvbox_italic=1
+" let g:gruvbox_italicize_comments=1
+
+lua << EOF
+require("gruvbox").setup{
+        undercurl = true,
+        underline = true,
+        bold = true,
+        italic = true, -- will make italic comments and special strings
+        inverse = true, -- invert background for search, diffs, statuslines and errors
+        invert_selection = false,
+        invert_signs = false,
+        invert_tabline = false,
+        invert_intend_guides = false,
+        contrast = "hard", -- can be "hard" or "soft"
+        overrides = {},
+}
+EOF
+
 autocmd vimenter * colorscheme gruvbox
 
 " hi CocCodeLens guifg=LightGray
