@@ -38,10 +38,10 @@ nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
-" nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gd <Plug>(coc-definition)
 " nmap <silent> gd <C-]>
-nmap <silent> gd :call CocAction('jumpDefinition', 'drop')<CR>
-nmap <silent> <leader>d :call CocAction('jumpDefinition', 'vsplit')<CR>
+" nmap <silent> gd :call CocAction('jumpDefinition', 'drop')<CR>
+nmap <silent> gvd :call CocAction('jumpDefinition', 'vsplit')<CR>
 nmap <silent> gp :pclose<CR><C-W>}
 " nmap <silent> gp <C-W>}
 nmap <silent> gy <Plug>(coc-type-definition)

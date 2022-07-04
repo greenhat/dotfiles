@@ -1,7 +1,6 @@
 {
   "coc.preferences.formatOnType": true,
   "coc.preferences.formatOnSaveFiletypes": ["rust"],
-  "coc.preferences.jumpCommand": "drop",
   "coc.source.buffer.disableSyntaxes": ["comment", "string"],
   "codeLens.enable": true,
   "metals.statusBarEnabled": true,
