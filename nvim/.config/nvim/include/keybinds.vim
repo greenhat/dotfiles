@@ -86,13 +86,12 @@ augroup end
 
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
+xmap <leader>la  <Plug>(coc-codeaction-selected)
+nmap <leader>la  <Plug>(coc-codeaction-selected)
 
-" Remap keys for applying codeAction to the current buffer.
-nmap <leader>aa  <Plug>(coc-codeaction-cursor)
+nmap <leader>a  <Plug>(coc-codeaction-cursor)
 " Apply AutoFix to problem on the current line.
-nmap <leader>af  <Plug>(coc-fix-current)
+nmap <leader>lf  <Plug>(coc-fix-current)
 
 " Map function and class text objects
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
@@ -136,7 +135,7 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Trigger for code actions
 " Make sure `"codeLens.enable": true` is set in your coc config
-nnoremap <leader>la :<C-u>call CocActionAsync('codeLensAction')<CR>
+nnoremap <leader>ll :<C-u>call CocActionAsync('codeLensAction')<CR>
 
 " nnoremap <leader>di :<C-u>call CocActionAsync('diagnosticInfo')<CR>
 
@@ -223,12 +222,12 @@ nnoremap <Leader>G :Grepper -tool rg<CR>
 
 " FZF
 " https://github.com/junegunn/fzf.vim/issues/233
-nnoremap <silent> <leader>fa :execute system('git rev-parse --is-inside-work-tree') =~ 'true' ? 'GFiles' : 'Files'<CR>
-nnoremap <silent> <leader>fA :Files<CR>
+nnoremap <silent> <leader>f :execute system('git rev-parse --is-inside-work-tree') =~ 'true' ? 'GFiles' : 'Files'<CR>
+nnoremap <silent> <leader>F :Files<CR>
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>c :Commands<CR>
 nnoremap <silent> <leader>; :History<CR>
-nnoremap <silent> <leader>fh :Helptags<CR>
+nnoremap <silent> <leader>h :Helptags<CR>
 nnoremap <silent> <leader>vb :Helptags<CR>
 
 " Live rigpreg via https://github.com/junegunn/fzf.vim#example-advanced-ripgrep-integration
@@ -244,12 +243,12 @@ nnoremap <silent> <leader>sp :RG<CR>
 nnoremap <silent> <leader>sw :Rg <C-R>=expand("<cword>")<CR><CR>
 
 " FZF MRU
-nnoremap <silent> <Leader>ff :FZFMru<cr>
+" nnoremap <silent> <Leader>ff :FZFMru<cr>
 
 " close current window
-nnoremap <C-l> <C-w>c
-inoremap <C-l> <Esc><C-w>c
-tnoremap <C-l> <C-\><C-N><C-w>c
+" nnoremap <C-l> <C-w>c
+" inoremap <C-l> <Esc><C-w>c
+" tnoremap <C-l> <C-\><C-N><C-w>c
 
 " vim-test
 nmap <silent> <leader>tn :TestNearest<CR>
@@ -263,8 +262,8 @@ nmap <silent> <leader>qc :cclose<CR>
 
 " ranger
 let g:ranger_map_keys = 0
-map <silent> <leader>fr :sp <bar> Ranger<CR>
-map <silent> <leader>fR :sp <bar> RangerWorkingDirectory<CR>
+map <silent> <leader>qr :sp <bar> Ranger<CR>
+map <silent> <leader>qR :sp <bar> RangerWorkingDirectory<CR>
 
 " search for visually selected text with //
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
