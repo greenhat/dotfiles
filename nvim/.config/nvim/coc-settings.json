@@ -22,5 +22,13 @@
                   "ignoredRootPaths": ["~"]
           }
   },
-  "Lua.telemetry.enable": false
+  "Lua.telemetry.enable": false,
+        "list.insertMappings": {
+                "<C-n>": "normal:j",
+                "<C-p>": "normal:k",
+                "<C-v>": "action:vsplit"
+        },
+        "list.normalMappings": {
+                "<C-v>": "action:vsplit"
+        }
 }
