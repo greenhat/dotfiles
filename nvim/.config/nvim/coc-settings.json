@@ -26,9 +26,11 @@
         "list.insertMappings": {
                 "<C-n>": "normal:j",
                 "<C-p>": "normal:k",
-                "<C-v>": "action:vsplit"
+                "<C-v>": "action:vsplit",
+                "<A-a>": "do:selectall"
         },
         "list.normalMappings": {
-                "<C-v>": "action:vsplit"
+                "<C-v>": "action:vsplit",
+                "<A-a>": "do:selectall"
         }
 }
