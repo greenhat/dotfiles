@@ -167,3 +167,5 @@ command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-hea
 
 set jumpoptions+="stack"
 set previewheight=24
+
+let $FZF_DEFAULT_OPTS = '--bind alt-q:accept'

@@ -27,10 +27,12 @@
                 "<C-n>": "normal:j",
                 "<C-p>": "normal:k",
                 "<C-v>": "action:vsplit",
-                "<A-a>": "do:selectall"
+                "<A-a>": "do:selectall",
+                "<A-q>": "action:quickfix"
         },
         "list.normalMappings": {
                 "<C-v>": "action:vsplit",
-                "<A-a>": "do:selectall"
+                "<A-a>": "do:selectall",
+                "<A-q>": "action:quickfix"
         }
 }
