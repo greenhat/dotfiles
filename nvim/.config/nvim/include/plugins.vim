@@ -79,7 +79,7 @@ Plug 'ruanyl/vim-gh-line'
 
 Plug 'cespare/vim-toml'
 
-Plug 'bfredl/nvim-miniyank'
+" Plug 'bfredl/nvim-miniyank'
 
 " Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 
@@ -88,7 +88,7 @@ Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
 Plug 'github/copilot.vim'
 
-Plug 'svermeulen/vim-cutlass'
+" Plug 'svermeulen/vim-cutlass'
 " This must be called before importing any Lua modules added above.
 call plug#end()
 
