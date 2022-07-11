@@ -85,7 +85,8 @@ runtime plugin/grepper.vim
 " case-insensitive
 let g:grepper.git.grepprg .= 'i'
 
-set foldmethod=syntax
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 set nofoldenable
 
 " org
