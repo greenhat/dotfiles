@@ -294,3 +294,10 @@ nnoremap <leader>vp :G push<cr>
 
 " remap ex-scroll Ctrl-D to Delete
 inoremap <C-d> <Del>
+
+" cutlass cut with m instead of d
+nnoremap m d
+xnoremap m d
+
+nnoremap mm dd
+nnoremap M D
