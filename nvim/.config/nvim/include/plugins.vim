@@ -44,8 +44,6 @@ Plug 'tpope/vim-dispatch'
 
 Plug 'francoiscabrol/ranger.vim'
 
-Plug 'jceb/vim-orgmode'
-
 Plug 'tpope/vim-speeddating'
 
 Plug 'tpope/vim-repeat'
@@ -91,6 +89,8 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
 Plug 'github/copilot.vim'
+
+" Plug 'nvim-orgmode/orgmode'
 
 " Plug 'svermeulen/vim-cutlass'
 " This must be called before importing any Lua modules added above.
