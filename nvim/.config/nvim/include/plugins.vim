@@ -93,6 +93,9 @@ Plug 'github/copilot.vim'
 " Plug 'nvim-orgmode/orgmode'
 
 " Plug 'svermeulen/vim-cutlass'
+
+Plug 'stsewd/fzf-checkout.vim'
+
 " This must be called before importing any Lua modules added above.
 call plug#end()
 
