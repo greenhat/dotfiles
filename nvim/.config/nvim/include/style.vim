@@ -41,6 +41,9 @@ autocmd vimenter * hi CocHintSign guifg=LightGray guibg=GruvboxBg0
 hi SpecialComment guifg=Grey
 autocmd vimenter * hi SpecialComment guifg=Grey
 
+" temp workaround for https://github.com/neoclide/coc.nvim/issues/3980
+hi default CocMenuSel       ctermbg=gray guibg=gray
+
 " let g:airline_theme='solarized'
 " autocmd vimenter * let g:airline_theme='gruvbox'
 " autocmd vimenter * let g:airline_theme='solarized'
