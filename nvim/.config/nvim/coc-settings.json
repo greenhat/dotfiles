@@ -1,6 +1,8 @@
 {
   "coc.preferences.formatOnType": true,
   "coc.preferences.formatOnSaveFiletypes": ["rust"],
+  "list.height": 20,
+  "list.maxPreviewHeight": 26,
   "codeLens.enable": true,
   "metals.statusBarEnabled": true,
   "diagnostic.checkCurrentLine": true,
