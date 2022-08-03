@@ -60,6 +60,7 @@ let g:sneak#label=1
 
 " FZF in floating window 
 " let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.5 } }
+let g:fzf_layout = { 'down': '30%' }
 
 " function! SetLinesForFirefox(timer)
 "     set lines=48 columns=110 laststatus=0
