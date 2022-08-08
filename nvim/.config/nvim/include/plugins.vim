@@ -1,4 +1,6 @@
 call plug#begin(stdpath('data') . '/plugged')
+Plug 'ellisonleao/gruvbox.nvim'
+
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 "
@@ -7,7 +9,6 @@ Plug 'vim-airline/vim-airline-themes'
 " Plug 'altercation/vim-colors-solarized'
 " Plug 'lifepillar/vim-solarized8'
 " Plug 'morhetz/gruvbox'
-Plug 'ellisonleao/gruvbox.nvim'
 
 " Use release branch (recommend)
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
