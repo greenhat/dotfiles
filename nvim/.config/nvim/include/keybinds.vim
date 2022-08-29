@@ -243,7 +243,8 @@ nnoremap <silent> <leader>f :execute system('git rev-parse --is-inside-work-tree
 nnoremap <silent> <leader>F :Files<CR>
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>c :Commands<CR>
-nnoremap <silent> <leader>; :History<CR>
+" command history
+nnoremap <silent> <leader>; :History:<CR>
 nnoremap <silent> <leader>h :Helptags<CR>
 nnoremap <silent> <leader>vb :Helptags<CR>
 

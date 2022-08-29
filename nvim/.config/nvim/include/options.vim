@@ -176,3 +176,6 @@ let $FZF_DEFAULT_OPTS = '--bind alt-q:accept'
 " - When set, CTRL-N and CTRL-P will be bound to 'next-history' and
 "   'previous-history' instead of 'down' and 'up'.
 " let g:fzf_history_dir = '~/.local/share/fzf-history'
+
+" Increase command history size
+set history=1000
