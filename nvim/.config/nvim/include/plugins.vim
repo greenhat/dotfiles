@@ -11,10 +11,10 @@ Plug 'vim-airline/vim-airline-themes'
 " Plug 'morhetz/gruvbox'
 
 " Use release branch (recommend)
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Or build from source code by using yarn: https://yarnpkg.com
-Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 
 Plug 'tpope/vim-commentary'
 Plug 'justinmk/vim-sneak'
