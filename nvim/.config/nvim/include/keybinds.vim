@@ -75,6 +75,8 @@ nmap <Leader>ws <Plug>(coc-metals-expand-decoration)
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call ShowDocumentation()<CR>
 
+nmap <silent> gk <C-r>=CocActionAsync('showSignatureHelp')<CR>
+
 function! ShowDocumentation()
   if CocAction('hasProvider', 'hover')
     call CocActionAsync('doHover')
@@ -260,6 +262,26 @@ command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 nnoremap <silent> <leader>sp :RG<CR>
 nnoremap <silent> <leader>sw :Rg <C-R>=expand("<cword>")<CR><CR>
 
+" from https://github.com/junegunn/fzf.vim/issues/837
+" 
+" :Rg2 apple ./folder_test
+" :Rg2 "apple teste" ./folder_test
+" :Rg2 --type=js "apple" 
+" :Rg2 --fixed-strings "apple"
+" :Rg2 -e -foo          
+" :Rg2 apple
+" :Rg2 '^port'                                       # Search for lines beginning with 'port'
+" :Rg2 '^\s*port'                                   # Search for lines beginning with 'port', possibly after initial whitespace
+" :Rg2 Apple --case-sensitive
+" :Rg2 Apple --sortr=created             #   (none, created, path, modified, accessed)   descending order
+" :Rg2 Apple --sort=created               #  (none, created, path, modified, accessed)   ascending order
+" :Rg2 --passthru 'blue' -r 'red' test.txt  > tmp.txt && mv tmp.txt test.txt                       #Replace example
+" :Rg2 --passthru 'blue' -r 'red' test.txt  | sponge test.txt                       # Replace example If you have moreutils installed
+" :Rg2 'port|http'                                     # Search for string 'port' OR string 'http':
+"
+command! -bang -nargs=* Gr
+  \ call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".<q-args>, 1, {'dir': system('git -C '.expand('%:p:h').' rev-parse --show-toplevel 2> /dev/null')[:-2]}, <bang>0)
+
 " FZF MRU
 " nnoremap <silent> <Leader>ff :FZFMru<cr>
 
@@ -277,6 +299,7 @@ nmap <silent> <leader>tv :TestVisit<CR>
 
 " Quickfix
 nmap <silent> <leader>qc :cclose<CR>
+nmap <silent> <leader>qo :copen<CR>
 
 " ranger
 let g:ranger_map_keys = 0
@@ -312,4 +335,7 @@ nnoremap <leader>vp :G push<cr>
 
 " remap ex-scroll Ctrl-D to Delete
 inoremap <C-d> <Del>
+
+" show signature help
+inoremap <silent> <C-k> <C-r>=CocActionAsync('showSignatureHelp')<CR>
 
