@@ -36,7 +36,10 @@ autocmd vimenter * colorscheme gruvbox
 hi CocInlayHint guifg=LightGray guibg=GruvboxBg0
 autocmd vimenter * hi CocInlayHint guifg=LightGray guibg=GruvboxBg0
 " autocmd vimenter * hi CocHintSign ctermfg=Gray
-"
+
+hi CocHintVirtualText guifg=LightGray guibg=GruvboxBg0
+autocmd vimenter * hi CocHintVirtualText guifg=LightGray guibg=GruvboxBg0
+
 " Doc comments in Rust ///
 hi SpecialComment guifg=Grey
 autocmd vimenter * hi SpecialComment guifg=Grey
