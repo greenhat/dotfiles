@@ -1,6 +1,6 @@
 {
   "coc.preferences.formatOnType": true,
-  "coc.preferences.formatOnSaveFiletypes": ["rust"],
+  "coc.preferences.formatOnSaveFiletypes": ["rust", "cpp"],
   "list.height": 20,
   "list.maxPreviewHeight": 26,
   "list.previewToplineOffset": 13,
