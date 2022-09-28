@@ -64,6 +64,7 @@ nmap <silent> gvd :call CocAction('jumpDefinition', 'vsplit')<CR>
 nmap <silent> gp :pclose<CR><C-W>}
 " nmap <silent> gp <C-W>}
 nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gvy :call CocAction('jumpTypeDefinition', 'vsplit')<CR>
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> go :<C-u>call CocAction('showOutgoingCalls')<CR>
