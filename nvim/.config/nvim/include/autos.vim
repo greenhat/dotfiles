@@ -23,3 +23,6 @@ augroup YankHighlight
         autocmd!
         autocmd TextYankPost * silent! lua vim.highlight.on_yank()
 augroup end
+
+" from https://github.com/tpope/vim-commentary/issues/142
+autocmd FileType cpp,hpp,ts,js,java,cs,groovy setlocal commentstring=//\ %s
