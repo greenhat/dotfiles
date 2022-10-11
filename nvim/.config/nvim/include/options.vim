@@ -5,6 +5,22 @@ set expandtab
 " instead of needing to use the '+' or '*' registers explicitly.
 set clipboard+=unnamedplus
 
+" This brakes copying from the browser to neovim in sway
+" copy to system clipboard using tmux with neovim 
+" https://gist.github.com/smhc/7b873a553d75af7142f38b7993f5f0ec
+" let g:clipboard = {
+"       \   'name': 'tmux-osc52',
+"       \   'copy': {
+"       \      '+': ['tmux', 'load-buffer', '-w', '-'],
+"       \      '*': ['tmux', 'load-buffer', '-w', '-'],
+"       \    },
+"       \   'paste': {
+"       \      '+': ['tmux', 'save-buffer', '-'],
+"       \      '*': ['tmux', 'save-buffer', '-'],
+"       \   },
+"       \   'cache_enabled': 1,
+"       \ }
+
 " There's no need to do syntax highlighting past this many columns. The default
 " of 3000 is a bit and degrades performance.
 set synmaxcol=200
@@ -179,3 +195,31 @@ let $FZF_DEFAULT_OPTS = '--bind alt-q:accept'
 
 " Increase command history size
 set history=1000
+
+
+" FROM LLVM
+
+" A tab produces a 2-space indentation
+set softtabstop=2
+set shiftwidth=2
+set expandtab
+
+" Add and delete spaces in increments of `shiftwidth' for tabs
+set smarttab
+" Highlight syntax in programming languages
+syntax on
+
+" Enable filetype detection
+filetype on
+
+" Optional
+" C/C++ programming helpers
+augroup csrc
+  au!
+  autocmd FileType *      set nocindent smartindent
+  autocmd FileType c,cpp  set cindent
+augroup END
+" Set a few indentation parameters. See the VIM help for cinoptions-values for
+" details.  These aren't absolute rules; they're just an approximation of
+" common style in LLVM source.
+set cinoptions=:0,g0,(0,Ws,l1

@@ -25,4 +25,13 @@ augroup YankHighlight
 augroup end
 
 " from https://github.com/tpope/vim-commentary/issues/142
-autocmd FileType cpp,hpp,ts,js,java,cs,groovy setlocal commentstring=//\ %s
+autocmd FileType cpp,hpp,ts,js,java,cs,groovy,tablegen setlocal commentstring=//\ %s
+
+" LLVM Makefiles can have names such as Makefile.rules or TEST.nightly.Makefile,
+" so it's important to categorize them as such.
+augroup filetype
+  au! BufRead,BufNewFile *Makefile* set filetype=make
+augroup END
+
+" In Makefiles, don't expand tabs to spaces, since we need the actual tabs
+autocmd FileType make set noexpandtab
