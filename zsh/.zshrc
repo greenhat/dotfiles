@@ -167,4 +167,10 @@ alias tmux='tmux -u'
 #             Ps = 6  -> steady bar (xterm).
 printf '\033[6 q'
 
+# edit command line in your editor
+# https://unix.stackexchange.com/questions/6620/how-to-edit-command-line-in-full-screen-editor-in-zsh
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey "^X^E" edit-command-line
+
 eval "$(starship init zsh)"
