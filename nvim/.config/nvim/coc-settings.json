@@ -4,7 +4,7 @@
   "list.height": 20,
   "list.maxPreviewHeight": 26,
   "list.previewToplineOffset": 13,
-  "codeLens.enable": true,
+  "codeLens.enable": false,
   "metals.statusBarEnabled": true,
   "diagnostic.checkCurrentLine": true,
   "coc.preferences.useQuickfixForLocations": false,
