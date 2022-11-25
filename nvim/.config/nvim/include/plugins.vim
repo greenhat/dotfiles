@@ -29,7 +29,7 @@ Plug 'tpope/vim-surround'
 
 Plug 'tpope/vim-unimpaired'
 
-Plug 'mhinz/vim-grepper'
+" Plug 'mhinz/vim-grepper'
 
 " Plug 'janko/vim-test'
 
@@ -39,9 +39,9 @@ Plug 'mhinz/vim-grepper'
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'pbogut/fzf-mru.vim'
+" Plug 'pbogut/fzf-mru.vim'
 
-Plug 'tpope/vim-dispatch'
+" Plug 'tpope/vim-dispatch'
 
 Plug 'francoiscabrol/ranger.vim'
 

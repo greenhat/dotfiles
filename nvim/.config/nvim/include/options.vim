@@ -96,10 +96,10 @@ let g:fzf_mru_no_sort = 1
 
 " Grepper
 " init default values
-runtime plugin/grepper.vim
+" runtime plugin/grepper.vim
 " set default options for tools
 " case-insensitive
-let g:grepper.git.grepprg .= 'i'
+" let g:grepper.git.grepprg .= 'i'
 
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
