@@ -21,7 +21,8 @@ Plug 'justinmk/vim-sneak'
 
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
-Plug 'mhinz/vim-signify'
+" Plug 'mhinz/vim-signify'
+Plug 'lewis6991/gitsigns.nvim'
 
 Plug 'tpope/vim-surround'
 
