@@ -56,8 +56,9 @@ autocmd vimenter * let g:airline_theme='base16_gruvbox_light_soft'
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#coc#enabled = 1
 let g:airline#extensions#fugitiveline#enabled = 1
-let g:airline#extensions#grepper#enabled = 1
-let g:airline#extensions#hunks#enabled = 1
+" let g:airline#extensions#grepper#enabled = 1
+" let g:airline#extensions#hunks#enabled = 1
+let g:airline#extensions#fzf#enabled = 1
 
 
 " Label-mode minimizes the steps to jump to a location, using a clever interface

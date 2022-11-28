@@ -382,3 +382,4 @@ require('gitsigns').setup{
   end
 }
 EOF
+set statusline+=%{get(b:,'gitsigns_status','')}
