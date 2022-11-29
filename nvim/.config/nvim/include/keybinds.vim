@@ -337,6 +337,7 @@ nnoremap <silent> <leader>zr :source $MYVIMRC<cr>
 " map <leader>N <Plug>(miniyank-cycleback)
 
 nnoremap <leader>vp :G push<cr>
+nnoremap <leader>vu :G pull<cr>
 
 " remap ex-scroll Ctrl-D to Delete
 inoremap <C-d> <Del>
