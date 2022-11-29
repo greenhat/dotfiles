@@ -91,10 +91,14 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
+" Remap keys for apply refactor code actions.
+nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)
+xmap <silent> <leader>rs <Plug>(coc-codeaction-refactor-selected)
+nmap <silent> <leader>rs <Plug>(coc-codeaction-refactor-selected)
 
 " Remap for format selected region
-" xmap <leader>f  <Plug>(coc-format-selected)
-" nmap <leader>f  <Plug>(coc-format-selected)
+xmap <leader>lo  <Plug>(coc-format-selected)
+nmap <leader>lo  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!

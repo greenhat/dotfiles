@@ -8,33 +8,31 @@
   "metals.statusBarEnabled": true,
   "diagnostic.checkCurrentLine": true,
   "coc.preferences.useQuickfixForLocations": false,
-  "suggest.fixInsertedWord": false,
   "rust-analyzer.checkOnSave.command": "clippy",
-        "rust-analyzer.checkOnSave.enable": true,
-        "rust-analyzer.checkOnSave.allTargets": true,
+  "rust-analyzer.checkOnSave.enable": true,
+  "rust-analyzer.checkOnSave.allTargets": true,
   "rust-analyzer.completion.autoimport.enable": true,
   "rust-analyzer.imports.granularity.group": "item",
   "rust-analyzer.procMacro.enable": true,
   "rust-analyzer.cargo.features": "all",
   "languageserver": {
-          "bash": {
-                  "command": "bash-language-server",
-                  "args": ["start"],
-                  "filetypes": ["sh"],
-                  "ignoredRootPaths": ["~"]
-          }
+    "bash": {
+      "command": "bash-language-server",
+      "args": ["start"],
+      "filetypes": ["sh"],
+      "ignoredRootPaths": ["~"]
+    }
   },
-  "Lua.telemetry.enable": false,
-        "list.insertMappings": {
-                "<C-n>": "normal:j",
-                "<C-p>": "normal:k",
-                "<C-v>": "action:vsplit",
-                "<A-a>": "do:selectall",
-                "<A-q>": "action:quickfix"
-        },
-        "list.normalMappings": {
-                "<C-v>": "action:vsplit",
-                "<A-a>": "do:selectall",
-                "<A-q>": "action:quickfix"
-        }
+  "list.insertMappings": {
+    "<C-n>": "normal:j",
+    "<C-p>": "normal:k",
+    "<C-v>": "action:vsplit",
+    "<A-a>": "do:selectall",
+    "<A-q>": "action:quickfix"
+  },
+  "list.normalMappings": {
+    "<C-v>": "action:vsplit",
+    "<A-a>": "do:selectall",
+    "<A-q>": "action:quickfix"
+  }
 }
