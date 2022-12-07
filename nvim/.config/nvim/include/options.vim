@@ -3,7 +3,7 @@ set expandtab
 
 " This causes neovim to use the system clipboard for all yanking operations,
 " instead of needing to use the '+' or '*' registers explicitly.
-set clipboard+=unnamedplus
+" set clipboard+=unnamedplus
 
 " This brakes copying from the browser to neovim in sway
 " copy to system clipboard using tmux with neovim 
