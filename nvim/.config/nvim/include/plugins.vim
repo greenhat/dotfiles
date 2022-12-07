@@ -98,6 +98,8 @@ Plug 'github/copilot.vim'
 
 Plug 'stsewd/fzf-checkout.vim'
 
+Plug 'ibhagwan/smartyank.nvim'
+
 " This must be called before importing any Lua modules added above.
 call plug#end()
 

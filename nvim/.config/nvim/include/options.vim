@@ -223,3 +223,9 @@ augroup END
 " details.  These aren't absolute rules; they're just an approximation of
 " common style in LLVM source.
 set cinoptions=:0,g0,(0,Ws,l1
+
+" smartyank
+lua << EOF
+require('smartyank').setup{ }
+EOF
+
