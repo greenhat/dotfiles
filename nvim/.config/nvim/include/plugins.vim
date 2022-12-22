@@ -100,6 +100,8 @@ Plug 'stsewd/fzf-checkout.vim'
 
 Plug 'ibhagwan/smartyank.nvim'
 
+Plug 'linty-org/readline.nvim'
+
 " This must be called before importing any Lua modules added above.
 call plug#end()
 
