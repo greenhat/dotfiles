@@ -110,8 +110,8 @@ require('nvim-treesitter.configs').setup {
         ['if'] = '@function.inner',
         ['ac'] = '@class.outer',
         ['ic'] = '@class.inner',
-        ['aA'] = '@call.outer',
-        ['iA'] = '@call.inner',
+        ['al'] = '@call.outer',
+        ['il'] = '@call.inner',
         ['aC'] = '@conditional.outer',
         ['iC'] = '@conditional.inner',
         ['ab'] = '@block.outer',
@@ -119,7 +119,6 @@ require('nvim-treesitter.configs').setup {
         ['ia'] = '@parameter.inner',
         ['aa'] = '@parameter.outer',
         ['as'] = '@statement.outer',
-        ['aS'] = '@scopename.inner',
       },
     },
     move = {
@@ -140,6 +139,15 @@ require('nvim-treesitter.configs').setup {
       goto_previous_end = {
         ['[M'] = '@function.outer',
         ['[]'] = '@class.outer',
+      },
+    },
+    lsp_interop = {
+      enable = false,
+      border = 'none',
+      floating_preview_opts = {},
+      peek_definition_code = {
+        ['<leader>pdf'] = '@function.outer',
+        ['<leader>pdF'] = '@class.outer',
       },
     },
   },
