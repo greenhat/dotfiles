@@ -322,7 +322,7 @@ inoremap <C-S> <Esc>:w<cr>gi
 nnoremap <C-S> :w<cr>
 
 " Copy link to a clipboard instead of opening a browser:
-let g:gh_open_command = 'fn() { echo "$@" | wl-copy; }; fn '
+let g:gh_open_command = 'fn() { echo "$@" | tee >(wl-copy) >(tmux loadb -); }; fn '
 
 " fix gx once and for all 
 " via https://github.com/vim/vim/issues/4738
