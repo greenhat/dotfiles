@@ -402,3 +402,7 @@ vim.keymap.set('!', '<C-e>', readline.end_of_line)
 vim.keymap.set('!', '<M-d>', readline.kill_word)
 vim.keymap.set('!', '<M-BS>', readline.backward_kill_word)
 EOF
+
+" copilot
+inoremap <M-c> <Plug>(copilot-next)
+
