@@ -403,4 +403,8 @@ vim.keymap.set('!', '<M-d>', readline.kill_word)
 vim.keymap.set('!', '<M-BS>', readline.backward_kill_word)
 EOF
 
+" ChatGPT.nvim prompt
 vnoremap <silent> <leader>g :Chat
+
+" copilot
+inoremap <M-c> <Plug>(copilot-next)
