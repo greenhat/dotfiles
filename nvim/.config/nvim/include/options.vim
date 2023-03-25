@@ -229,3 +229,12 @@ lua << EOF
 require('smartyank').setup{ }
 EOF
 
+" lua << EOF
+" require("codegpt.config")
+" vim.g["codegpt_commands_defaults"] = {
+"   ["code_edit"] = {
+"       model = "gpt-4",
+"       max_tokens = 32000,
+"   }
+" }
+" EOF

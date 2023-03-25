@@ -241,8 +241,8 @@ nmap gs <plug>(GrepperOperator)
 xmap gs <plug>(GrepperOperator)
 
 " Open Grepper-prompt for a particular grep-alike tool
-nnoremap <Leader>g :Grepper -tool git<CR>
-nnoremap <Leader>G :Grepper -tool rg<CR>
+" nnoremap <Leader>g :Grepper -tool git<CR>
+" nnoremap <Leader>G :Grepper -tool rg<CR>
 
 " FZF
 " https://github.com/junegunn/fzf.vim/issues/233
@@ -402,3 +402,5 @@ vim.keymap.set('!', '<C-e>', readline.end_of_line)
 vim.keymap.set('!', '<M-d>', readline.kill_word)
 vim.keymap.set('!', '<M-BS>', readline.backward_kill_word)
 EOF
+
+vnoremap <silent> <leader>g :Chat

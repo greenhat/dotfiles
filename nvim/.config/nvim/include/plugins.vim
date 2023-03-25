@@ -102,6 +102,11 @@ Plug 'ibhagwan/smartyank.nvim'
 
 Plug 'linty-org/readline.nvim'
 
+
+Plug 'nvim-lua/plenary.nvim'
+Plug 'MunifTanjim/nui.nvim'
+Plug 'dpayne/CodeGPT.nvim'
+
 " This must be called before importing any Lua modules added above.
 call plug#end()
 
