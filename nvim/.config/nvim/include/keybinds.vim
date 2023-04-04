@@ -67,7 +67,7 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gvy :call CocAction('jumpTypeDefinition', 'vsplit')<CR>
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-nmap <silent> go :<C-u>call CocAction('showOutgoingCalls')<CR>
+" nmap <silent> go :<C-u>call CocAction('showOutgoingCalls')<CR>
 nmap <silent> gn :<C-u>call CocAction('showIncomingCalls')<CR>
 
 " Used to expand decorations in worksheets
@@ -246,8 +246,8 @@ xmap gs <plug>(GrepperOperator)
 
 " FZF
 " https://github.com/junegunn/fzf.vim/issues/233
-nnoremap <silent> <leader>f :execute system('git rev-parse --is-inside-work-tree') =~ 'true' ? 'GFiles' : 'Files'<CR>
-nnoremap <silent> <leader>F :Files<CR>
+" nnoremap <silent> <leader>f :execute system('git rev-parse --is-inside-work-tree') =~ 'true' ? 'GFiles' : 'Files'<CR>
+nnoremap <silent> <leader>f :Files<CR>
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>c :Commands<CR>
 " command history
@@ -338,6 +338,7 @@ nnoremap <silent> <leader>zr :source $MYVIMRC<cr>
 
 nnoremap <leader>vp :G push<cr>
 nnoremap <leader>vu :G pull<cr>
+nnoremap <leader>vs :vertical G<cr>
 
 " remap ex-scroll Ctrl-D to Delete
 inoremap <C-d> <Del>
@@ -403,8 +404,14 @@ vim.keymap.set('!', '<M-d>', readline.kill_word)
 vim.keymap.set('!', '<M-BS>', readline.backward_kill_word)
 EOF
 
-" ChatGPT.nvim prompt
-vnoremap <silent> <leader>g :Chat
+" CodeGPT.nvim prompt
+" 
+vnoremap <silent> <leader>go :Chat
 
 " copilot
+"
 inoremap <M-c> <Plug>(copilot-next)
+
+" ChatGPT.nvim prompt
+"
+vmap <silent> <leader>ge :<C-U>:ChatGPTEditWithInstructions<CR>

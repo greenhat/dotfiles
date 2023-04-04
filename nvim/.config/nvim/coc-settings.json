@@ -46,5 +46,6 @@
     "$HOME/.cargo/**", // Foreign crates from crates.io
     "$HOME/.rustup/**", // Rustup toolchains.
     "/nix/store/**" // Nix managed Rust toolchains for me.
-  ]
+  ],
+  "Lua.telemetry.enable": false
 }

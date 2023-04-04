@@ -224,11 +224,6 @@ augroup END
 " common style in LLVM source.
 set cinoptions=:0,g0,(0,Ws,l1
 
-" smartyank
-lua << EOF
-require('smartyank').setup{ }
-EOF
-
 " lua << EOF
 " require("codegpt.config")
 " vim.g["codegpt_commands_defaults"] = {
@@ -238,3 +233,12 @@ EOF
 "   }
 " }
 " EOF
+
+
+lua << EOF
+require("chatgpt").setup{
+  keymaps = {
+    submit = "<CR>",
+  },
+}
+EOF

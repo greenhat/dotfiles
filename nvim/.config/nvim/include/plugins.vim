@@ -99,6 +99,8 @@ Plug 'github/copilot.vim'
 Plug 'stsewd/fzf-checkout.vim'
 
 Plug 'ibhagwan/smartyank.nvim'
+" Plug 'ibhagwan/smartyank.nvim' , { 'commit': 'e84b1a84b7212996e3caaf7446a4cb22b27cc2a3' }
+" Plug 'roxma/vim-tmux-clipboard'
 
 Plug 'linty-org/readline.nvim'
 
@@ -106,6 +108,10 @@ Plug 'linty-org/readline.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'MunifTanjim/nui.nvim'
 Plug 'dpayne/CodeGPT.nvim'
+
+" nui and plenary are also required for this plugin but are installed above
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'jackMort/ChatGPT.nvim'
 
 " This must be called before importing any Lua modules added above.
 call plug#end()
