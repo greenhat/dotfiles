@@ -179,6 +179,18 @@ font:
     style: Bold Italic
   size: 10.0
 
+# font:
+#   normal:
+#     family: Fira Code
+#     # style: Semibold
+#     style: Medium
+#   bold:
+#     style: Bold
+#   italic:
+#     style: Italic
+#   bold_italic:
+#     style: Bold Italic
+#   size: 10.0
 
 
   # Offset is the extra space around each character. `offset.y` can be thought
