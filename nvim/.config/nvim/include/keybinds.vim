@@ -406,7 +406,7 @@ EOF
 
 " CodeGPT.nvim prompt
 " 
-vnoremap <silent> <leader>go :Chat
+vnoremap <silent> <leader>gc :Chat
 
 " copilot
 "
