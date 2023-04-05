@@ -175,4 +175,8 @@ bindkey "^X^E" edit-command-line
 
 source $HOME/.secrets
 
+fixssh() {
+  eval $(tmux show-environment -s | grep '^SSH_AUTH_SOCK')
+}
+
 eval "$(starship init zsh)"
