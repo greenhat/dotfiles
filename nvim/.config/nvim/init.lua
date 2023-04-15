@@ -68,7 +68,8 @@ require('lazy').setup("plugins")
 vim.o.hlsearch = false
 
 -- Make line numbers default
-vim.wo.number = true
+vim.wo.number = false
+vim.wo.relativenumber = false
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
@@ -103,6 +104,7 @@ vim.o.completeopt = 'menuone,noselect'
 vim.o.termguicolors = true
 
 vim.o.incsearch = true
+vim.o.scrolloff = 3
 
 -- [[ Basic Keymaps ]]
 
