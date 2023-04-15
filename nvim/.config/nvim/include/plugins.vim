@@ -118,4 +118,4 @@ call plug#end()
 
 packadd cfilter
 
-let g:coc_global_extensions = ['coc-json', 'coc-tsserver', 'coc-metals', 'coc-rust-analyzer', 'coc-sh', 'coc-snippets', 'coc-markdownlint', 'coc-java', 'coc-sumneko-lua', 'coc-vimlsp', 'coc-yaml']
+let g:coc_global_extensions = ['coc-json', 'coc-tsserver', 'coc-metals', 'coc-rust-analyzer', 'coc-sh', 'coc-snippets', 'coc-markdownlint', 'coc-java', 'coc-sumneko-lua', 'coc-vimlsp', 'coc-yaml', 'coc-pyright']
