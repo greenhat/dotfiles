@@ -1,3 +1,246 @@
+call plug#begin('~/.vim/plugged')
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+"
+" theme
+" Plug 'iCyMind/NeoSolarized'
+" Plug 'altercation/vim-colors-solarized'
+" Plug 'lifepillar/vim-solarized8'
+Plug 'morhetz/gruvbox'
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+Plug 'tpope/vim-commentary'
+Plug 'justinmk/vim-sneak'
+
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'mhinz/vim-signify'
+
+Plug 'tpope/vim-surround'
+
+" Plug 'sheerun/vim-polyglot'
+
+Plug 'tpope/vim-unimpaired'
+
+Plug 'mhinz/vim-grepper'
+
+" Plug 'janko/vim-test'
+
+" " Build the extra binary if cargo exists on your system.
+" Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
+" let g:clap_theme = 'solarized_light'
+
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'pbogut/fzf-mru.vim'
+
+Plug 'tpope/vim-dispatch'
+
+Plug 'francoiscabrol/ranger.vim'
+
+Plug 'jceb/vim-orgmode'
+
+Plug 'tpope/vim-speeddating'
+
+Plug 'tpope/vim-repeat'
+
+" for org-mode
+" Plug 'mattn/calendar-vim'
+
+" Plug 'jqno/jqno-extractvariable.vim'
+
+" Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+
+" Plug 'subnut/nvim-ghost.nvim', {'do': ':call nvim_ghost#installer#install()'}
+
+Plug 'editorconfig/editorconfig-vim'
+" Plug 'sgur/vim-editorconfig'
+
+" Plug 'dense-analysis/ale'
+
+Plug 'tpope/vim-abolish'
+
+Plug 'ledger/vim-ledger'
+
+Plug 'mhinz/vim-crates'
+
+" Plug 'chaoren/vim-wordmotion'
+
+Plug 'jiangmiao/auto-pairs'
+
+Plug 'ruanyl/vim-gh-line'
+
+" breaks vim-sneak 's' 
+" Plug 'maxbrunsfeld/vim-yankstack'
+
+" Plug 'junegunn/vim-peekaboo'
+
+Plug 'cespare/vim-toml'
+
+" This must be called before importing any Lua modules added above.
+call plug#end()
+
+
+
+" Show line numbers.
+set nonumber
+set norelativenumber
+
+" Always expand tabs to spaces.
+set expandtab
+
+" Keep a buffer around even when abandoned.
+" Without this, jump-to-definition in LSP clients seems to complain if the
+" file hasn't been saved. In other words, let us go to other buffers even if
+" the current one isn't saved.
+set hidden
+
+" This causes neovim to use the system clipboard for all yanking operations,
+" instead of needing to use the '+' or '*' registers explicitly.
+set clipboard+=unnamedplus
+" set clipboard+=unnamed  " use the clipboards of vim and win
+" set paste               " Paste from a windows or from vim
+" set go+=a               " Visual selection automatically copied to the clipboard
+
+" There's no need to do syntax highlighting past this many columns. The default
+" of 3000 is a bit and degrades performance.
+set synmaxcol=200
+
+" While typing a search, start highlighting results.
+set incsearch
+
+" When scrolling, always keep the cursor N lines from the edges.
+set scrolloff=3
+
+" turn on syntax highlighting
+syntax enable
+
+set ignorecase	" ignore case when using a search pattern
+set smartcase	" override 'ignorecase' when pattern has upper case characters
+set showcmd	" show (partial) command keys in the status line
+
+" search down into subfolders
+" provides tab completion for file related tasks
+" set path+=**
+
+" CoC. Some LSP servers have issues with backup files
+set nobackup
+set nowritebackup
+
+" CoC. You will have a bad experience with diagnostic messages with the default 4000.
+set updatetime=300
+
+" CoC. Don't give |ins-completion-menu| messages.
+set shortmess+=c
+
+" CoC. Always show signcolumns
+set signcolumn=yes
+
+" When a file has been detected to have been changed outside of Vim and it has not 
+" been changed inside of Vim, automatically read it again. When the file has been deleted this is not done.
+set autoread
+
+" vim-test use runner
+" see strategies - https://github.com/vim-test/vim-test
+let test#strategy = "neovim"
+let test#scala#runner = 'blooptest'
+" let test#scala#runner = 'sbttest'
+
+" FZF MRU plugin
+" list files within current directory
+let g:fzf_mru_relative = 1
+" prevent fzf from sorting list while typing, it will keep list sorted by recency
+let g:fzf_mru_no_sort = 1
+
+" Grepper
+" init default values
+runtime plugin/grepper.vim
+" set default options for tools
+" case-insensitive
+let g:grepper.git.grepprg .= 'i'
+
+set shell=zsh
+
+set foldmethod=syntax
+set nofoldenable
+
+" org
+let g:org_agenda_files = ['~/Documents/org/*.org']
+let g:org_heading_shade_leading_stars = 0
+
+" Auto save buffers when focus is lost
+" This variant will silently ignore errors from the :wa command, but it does 
+" mean any of your untitled buffers, buffers for read-only files, etc. will not be 
+" saved just from losing focus, and you will not be notified of this.
+:au FocusLost * silent! wa
+
+" editorconfig plugin
+let g:EditorConfig_exclude_patterns = ['fugitive://.*']
+
+" editorconfig plugin
+" Exclude regexp patterns for filetypes or filepaths
+" let g:editorconfig_blacklist = {
+"     \ 'filetype': ['git.*', 'fugitive'],
+"     \ 'pattern': ['\.un~$']}
+
+" disable automatic newline at the end of file
+:set nofixendofline
+
+" ALE
+let g:ale_enabled = 0
+let g:ale_set_loclist = 1
+let g:ale_set_quickfix = 0
+let g:ale_disable_lsp = 1
+" open a window if list non-empty
+let g:ale_open_list = 0 
+let g:ale_lint_on_text_changed = 'never'
+
+" don't steal focus to status line when stepping on the line with error
+let g:ale_echo_cursor = 1
+" show (one line) of the error as virtual text
+let g:ale_virtualtext_cursor = 0
+" show message in a preview window
+let g:ale_cursor_detail = 0
+" Use cargo check instead of build
+" let g:ale_rust_cargo_use_check = 1
+" Use cargo clippy instead of check
+let g:ale_rust_cargo_use_clippy = 1
+let g:airline#extensions#ale#enabled = 1
+
+" always change to current file directory
+" set autochdir
+
+" CoC. Give more space for displaying messages.
+set cmdheight=1
+
+" Details:bp("buffer previous") moves us to a different buffer in the current
+" window (bn would work, too), then bd # ("buffer delete" "alternate file")
+" deletes the buffer we just moved away
+command! Bd bp\|bd \#
+
+command! -bang -bar -nargs=* Gpush execute 'Dispatch<bang> -dir=' .
+      \ fnameescape(FugitiveGitDir()) 'git push' <q-args>
+
+" Firenvim
+let g:firenvim_config = { 
+    \ 'globalSettings': {
+        \ 'alt': 'all',
+    \  },
+    \ 'localSettings': {
+        \ '.*': {
+            \ 'cmdline': 'neovim',
+            \ 'content': 'text',
+            \ 'priority': 0,
+            \ 'selector': 'textarea',
+            \ 'takeover': 'never',
+        \ },
+    \ }
+\ }
+
+
+
+
 let mapleader=" "       " leader is space
 let maplocalleader=" "
 
@@ -251,3 +494,72 @@ let g:gh_open_command = 'fn() { echo "$@" | wl-copy; }; fn '
 " fix gx once and for all 
 " via https://github.com/vim/vim/issues/4738
 nnoremap <silent> gx :execute 'silent! !xdg-open ' . shellescape(expand('<cWORD>'), 1)<cr>
+
+
+
+
+set termguicolors
+
+set background=light
+
+" colorscheme solarized
+
+let g:gruvbox_contrast_light='hard'
+let g:gruvbox_italic=1
+let g:gruvbox_italicize_comments=1
+autocmd vimenter * colorscheme gruvbox
+
+hi CocCodeLens guifg=LightGray
+autocmd vimenter * hi CocCodeLens guifg=LightGray
+" type hints
+hi CocHintSign guifg= LightGray
+autocmd vimenter * hi CocHintSign guifg= LightGray
+" Doc comments in Rust ///
+hi SpecialComment guifg=Grey
+autocmd vimenter * hi SpecialComment guifg=Grey
+
+" let g:airline_theme='solarized'
+autocmd vimenter * let g:airline_theme='gruvbox'
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#coc#enabled = 1
+let g:airline#extensions#fugitiveline#enabled = 1
+let g:airline#extensions#grepper#enabled = 1
+let g:airline#extensions#hunks#enabled = 1
+
+
+" Label-mode minimizes the steps to jump to a location, using a clever interface
+" similar to EasyMotion. If enabled, Sneak overlays text with "labels" which can
+" be jumped-to by typing the label character
+let g:sneak#label=1
+
+" FZF in floating window 
+" let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.5 } }
+
+
+" Configuration for vim-scala
+au BufRead,BufNewFile *.sbt set filetype=scala
+
+" to get comment highlighting in jsonc
+autocmd FileType json syntax match Comment +\/\/.\+$+
+
+" disable completion in markdown
+autocmd FileType markdown let b:coc_suggest_disable = 1 
+
+" Trigger auto loading changes from files on disk into buffers (if they are not edited)
+" By default, CursorHold is triggered after the cursor remains still for 4 seconds, and is configurable via updatetime.
+" au CursorHold,CursorHoldI * checktime
+
+" vim-crates
+if has('nvim')
+  autocmd BufRead Cargo.toml call crates#toggle()
+endif
+
+if exists('$TMUX')
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\e[5 q\<Esc>\\"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\e[2 q\<Esc>\\"
+else
+    let &t_SI = "\e[5 q"
+    let &t_EI = "\e[2 q"
+endif
+
+imap jj <Esc>

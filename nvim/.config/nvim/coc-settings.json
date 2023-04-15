@@ -1,0 +1,51 @@
+{
+  "coc.preferences.formatOnType": true,
+  "[rust][cpp]": {
+    "coc.preferences.formatOnSave": true,
+  },
+  "coc.preferences.extensionUpdateCheck": "daily",
+  "list.height": 20,
+  "list.maxPreviewHeight": 26,
+  "list.previewToplineOffset": 13,
+  "codeLens.enable": false,
+  "metals.statusBarEnabled": true,
+  "diagnostic.checkCurrentLine": true,
+  "coc.preferences.useQuickfixForLocations": false,
+//  "rust-analyzer.server.path": "/home/green/.local/bin/rust-analyzer",
+  "rust-analyzer.checkOnSave": true,
+  "rust-analyzer.check.command": "clippy",
+  "rust-analyzer.check.allTargets": true,
+  "rust-analyzer.completion.autoimport.enable": true,
+  "rust-analyzer.imports.granularity.group": "item",
+  "rust-analyzer.procMacro.enable": true,
+  "rust-analyzer.cargo.features": "all",
+  "languageserver": {
+    "bash": {
+      "command": "bash-language-server",
+      "args": ["start"],
+      "filetypes": ["sh"],
+      "ignoredRootPaths": ["~"]
+    }
+  },
+  "list.insertMappings": {
+    "<C-n>": "normal:j",
+    "<C-p>": "normal:k",
+    "<C-v>": "action:vsplit",
+    "<A-a>": "do:selectall",
+    "<A-q>": "action:quickfix"
+  },
+  "list.normalMappings": {
+    "<C-v>": "action:vsplit",
+    "<A-a>": "do:selectall",
+    "<A-q>": "action:quickfix"
+  },
+  "markdownlint.config": {
+    "MD013": false,
+  },
+  "workspace.ignoredFolders": [
+    "$HOME/.cargo/**", // Foreign crates from crates.io
+    "$HOME/.rustup/**", // Rustup toolchains.
+    "/nix/store/**" // Nix managed Rust toolchains for me.
+  ],
+  "Lua.telemetry.enable": false
+}

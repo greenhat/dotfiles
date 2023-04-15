@@ -1,19 +1,25 @@
-" Show line numbers.
-set nonumber
-set norelativenumber
-
 " Always expand tabs to spaces.
 set expandtab
-
-" Keep a buffer around even when abandoned.
-" Without this, jump-to-definition in LSP clients seems to complain if the
-" file hasn't been saved. In other words, let us go to other buffers even if
-" the current one isn't saved.
-set hidden
 
 " This causes neovim to use the system clipboard for all yanking operations,
 " instead of needing to use the '+' or '*' registers explicitly.
 set clipboard+=unnamedplus
+
+" This brakes copying from the browser to neovim in sway
+" copy to system clipboard using tmux with neovim 
+" https://gist.github.com/smhc/7b873a553d75af7142f38b7993f5f0ec
+" let g:clipboard = {
+"       \   'name': 'tmux-osc52',
+"       \   'copy': {
+"       \      '+': ['tmux', 'load-buffer', '-w', '-'],
+"       \      '*': ['tmux', 'load-buffer', '-w', '-'],
+"       \    },
+"       \   'paste': {
+"       \      '+': ['tmux', 'save-buffer', '-'],
+"       \      '*': ['tmux', 'save-buffer', '-'],
+"       \   },
+"       \   'cache_enabled': 1,
+"       \ }
 
 " There's no need to do syntax highlighting past this many columns. The default
 " of 3000 is a bit and degrades performance.
@@ -36,18 +42,41 @@ set showcmd	" show (partial) command keys in the status line
 " provides tab completion for file related tasks
 " set path+=**
 
+" CoC
+" Set internal encoding of vim, not needed on neovim, since coc.nvim using some
+" unicode characters in the file autoload/float.vim
+set encoding=utf-8
+
+" TextEdit might fail if hidden is not set.
+set hidden
+
 " CoC. Some LSP servers have issues with backup files
 set nobackup
 set nowritebackup
 
-" CoC. You will have a bad experience with diagnostic messages with the default 4000.
+" CoC
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
 set updatetime=300
 
 " CoC. Don't give |ins-completion-menu| messages.
 set shortmess+=c
 
-" CoC. Always show signcolumns
+" CoC
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+" if has("nvim-0.5.0") || has("patch-8.1.1564")
+"   " Recently vim can merge signcolumn and number column into one
+"   set signcolumn=number
+" else
+"   set signcolumn=yes
+" endif
+set nonumber
+set norelativenumber
 set signcolumn=yes
+
+" CoC
+set tagfunc=CocTagFunc
 
 " When a file has been detected to have been changed outside of Vim and it has not 
 " been changed inside of Vim, automatically read it again. When the file has been deleted this is not done.
@@ -67,18 +96,17 @@ let g:fzf_mru_no_sort = 1
 
 " Grepper
 " init default values
-runtime plugin/grepper.vim
+" runtime plugin/grepper.vim
 " set default options for tools
 " case-insensitive
-let g:grepper.git.grepprg .= 'i'
+" let g:grepper.git.grepprg .= 'i'
 
-set shell=zsh
-
-set foldmethod=syntax
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 set nofoldenable
 
 " org
-let g:org_agenda_files = ['~/Documents/org/*.org']
+let g:org_agenda_files = ['~/Sync/org/*.org']
 let g:org_heading_shade_leading_stars = 0
 
 " Auto save buffers when focus is lost
@@ -135,18 +163,82 @@ command! -bang -bar -nargs=* Gpush execute 'Dispatch<bang> -dir=' .
       \ fnameescape(FugitiveGitDir()) 'git push' <q-args>
 
 " Firenvim
-let g:firenvim_config = { 
-    \ 'globalSettings': {
-        \ 'alt': 'all',
-    \  },
-    \ 'localSettings': {
-        \ '.*': {
-            \ 'cmdline': 'neovim',
-            \ 'content': 'text',
-            \ 'priority': 0,
-            \ 'selector': 'textarea',
-            \ 'takeover': 'never',
-        \ },
-    \ }
-\ }
+" let g:firenvim_config = { 
+"     \ 'globalSettings': {
+"         \ 'alt': 'all',
+"     \  },
+"     \ 'localSettings': {
+"         \ '.*': {
+"             \ 'cmdline': 'neovim',
+"             \ 'content': 'text',
+"             \ 'priority': 0,
+"             \ 'selector': 'textarea',
+"             \ 'takeover': 'never',
+"         \ },
+"     \ }
+" \ }
 
+" Allow passing optional flags into the Rg command.
+"   Example: :Rg myterm -g '*.md'
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case " .  <q-args>, 1, fzf#vim#with_preview(), <bang>0)
+
+set jumpoptions+="stack"
+set previewheight=24
+
+let $FZF_DEFAULT_OPTS = '--bind alt-q:accept'
+
+" Enable per-command history
+" - History files will be stored in the specified directory
+" - When set, CTRL-N and CTRL-P will be bound to 'next-history' and
+"   'previous-history' instead of 'down' and 'up'.
+" let g:fzf_history_dir = '~/.local/share/fzf-history'
+
+" Increase command history size
+set history=1000
+
+
+" FROM LLVM
+
+" A tab produces a 2-space indentation
+set softtabstop=2
+set shiftwidth=2
+set expandtab
+
+" Add and delete spaces in increments of `shiftwidth' for tabs
+set smarttab
+" Highlight syntax in programming languages
+syntax on
+
+" Enable filetype detection
+filetype on
+
+" Optional
+" C/C++ programming helpers
+augroup csrc
+  au!
+  autocmd FileType *      set nocindent smartindent
+  autocmd FileType c,cpp  set cindent
+augroup END
+" Set a few indentation parameters. See the VIM help for cinoptions-values for
+" details.  These aren't absolute rules; they're just an approximation of
+" common style in LLVM source.
+set cinoptions=:0,g0,(0,Ws,l1
+
+" lua << EOF
+" require("codegpt.config")
+" vim.g["codegpt_commands_defaults"] = {
+"   ["code_edit"] = {
+"       model = "gpt-4",
+"       max_tokens = 32000,
+"   }
+" }
+" EOF
+
+
+lua << EOF
+require("chatgpt").setup{
+  keymaps = {
+    submit = "<CR>",
+  },
+}
+EOF
