@@ -55,13 +55,18 @@ return {
           end
         end, { 'i', 's' }),
       },
-      sources = cmp.config.sources(
+      sources = {
+        { name = 'nvim_lsp' },
+        { name = 'luasnip' },
         {
-          { name = 'nvim_lsp' },
-          { name = 'luasnip' }
-        }, {
-          { name = 'buffer' },
-        })
+          name = 'buffer',
+          -- option = {
+          --   get_bufnrs = function()
+          --     return vim.api.nvim_list_bufs()
+          --   end
+          -- }
+        },
+      }
     }
 
     -- Set configuration for specific filetype.
@@ -69,7 +74,14 @@ return {
       sources = cmp.config.sources({
         { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
       }, {
-        { name = 'buffer' },
+        {
+          name = 'buffer',
+          option = {
+            get_bufnrs = function()
+              return vim.api.nvim_list_bufs()
+            end
+          }
+        },
       })
     })
 
