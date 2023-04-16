@@ -90,5 +90,14 @@ return {
         { name = 'cmdline' }
       })
     })
+
+    -- -- crates.nvim source
+    -- cmp.setup.filetype('Cargo.toml', {
+    --   sources = cmp.config.sources({
+    --     { name = 'crates' }, -- You can specify the `cmp_git` source if you were installed it.
+    --   }, {
+    --     { name = 'buffer' },
+    --   })
+    -- })
   end
 }

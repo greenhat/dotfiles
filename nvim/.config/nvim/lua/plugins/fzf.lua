@@ -18,7 +18,7 @@ return {
     vim.keymap.set('n', '<leader>sp', require('fzf-lua').live_grep_glob, { desc = 'Live grep with glob' })
     vim.keymap.set('n', '<leader>sh', require('fzf-lua').help_tags, { desc = 'Help tags' })
     vim.keymap.set('n', '<leader>sk', require('fzf-lua').keymaps, { desc = 'Keymaps' })
-    vim.keymap.set('n', '<leader>c', require('fzf-lua').commands, { desc = 'Commands' })
+    -- vim.keymap.set('n', '<leader>c', require('fzf-lua').commands, { desc = 'Commands' })
     vim.keymap.set('n', '<leader>;', require('fzf-lua').command_history, { desc = 'Commands history' })
   end
 }
