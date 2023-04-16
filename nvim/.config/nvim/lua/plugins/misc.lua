@@ -14,6 +14,8 @@ return {
 
   'ibhagwan/smartyank.nvim',
 
+  'RRethy/vim-illuminate',
+
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim',  opts = {} },
 
