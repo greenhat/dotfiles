@@ -185,6 +185,14 @@ local on_attach = function(_, bufnr)
     vim.keymap.set('i', keys, func, { buffer = bufnr, desc = desc })
   end
 
+  local vmap = function(keys, func, desc)
+    if desc then
+      desc = 'LSP: ' .. desc
+    end
+
+    vim.keymap.set('v', keys, func, { buffer = bufnr, desc = desc })
+  end
+
   nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
   -- nmap('<leader>a', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
@@ -198,6 +206,7 @@ local on_attach = function(_, bufnr)
   nmap('<leader>J', require('fzf-lua').lsp_finder, 'LSP finder')
   nmap('<leader>o', require('fzf-lua').lsp_document_symbols, 'Document Symbols')
   nmap('<leader>a', require('fzf-lua').lsp_code_actions, 'Code Actions')
+  vmap('<leader>a', require('fzf-lua').lsp_code_actions, 'Code Actions')
   -- nmap('gd', require('fzf-lua').lsp_definitions, 'Goto Definition')
   nmap('gD', require('fzf-lua').lsp_declarations, 'Goto Declaration')
   -- nmap('gy', require('fzf-lua').lsp_typedefs, 'Type Actions')
