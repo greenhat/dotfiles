@@ -100,5 +100,4 @@ return {
   -- require 'kickstart.plugins.debug',
 
 
-  'github/copilot.vim',
 }

@@ -1,17 +1,13 @@
 return {
   -- Autocompletion
   'hrsh7th/nvim-cmp',
-  dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
+  dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip', 'github/copilot.vim' },
   config = function()
     -- nvim-cmp setup
     local cmp = require 'cmp'
     local luasnip = require 'luasnip'
 
     luasnip.config.setup {}
-
-    vim.g.copilot_no_tab_map = true
-    vim.g.copilot_assume_mapped = true
-    vim.g.copilot_tab_fallback = ""
 
     cmp.setup {
       snippet = {
