@@ -128,10 +128,33 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
+vim.keymap.set('n', '[d',
+  function()
+    vim.diagnostic.goto_prev(
+      {
+        severity =
+        {
+          min = vim.diagnostic.severity.WARN,
+          max = vim.diagnostic.severity.ERROR
+        }
+      })
+  end,
+  { desc = "Go to previous diagnostic message" })
+
+vim.keymap.set('n', ']d',
+  function()
+    vim.diagnostic.goto_next(
+      {
+        severity =
+        {
+          min = vim.diagnostic.severity.WARN,
+          max = vim.diagnostic.severity.ERROR
+        }
+      })
+  end,
+  { desc = "Go to next diagnostic message" })
+-- vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
+-- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
@@ -159,14 +182,24 @@ local on_attach = function(_, bufnr)
   end
 
   nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-  nmap('<leader>a', vim.lsp.buf.code_action, '[C]ode [A]ction')
+  -- nmap('<leader>a', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
   nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-  nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-  nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
-  nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
-  nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-  nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+  nmap('gy', vim.lsp.buf.type_definition, 'Goto Type [D]efinition')
+  -- nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+  -- nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
+  -- nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+  -- nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+  nmap('<leader>j', require('fzf-lua').lsp_live_workspace_symbols, 'Workspace Symbols')
+  nmap('<leader>J', require('fzf-lua').lsp_finder, 'LSP finder')
+  nmap('<leader>o', require('fzf-lua').lsp_document_symbols, 'Document Symbols')
+  nmap('<leader>a', require('fzf-lua').lsp_code_actions, 'Code Actions')
+  -- nmap('gd', require('fzf-lua').lsp_definitions, 'Goto Definition')
+  nmap('gD', require('fzf-lua').lsp_declarations, 'Goto Declaration')
+  -- nmap('gy', require('fzf-lua').lsp_typedefs, 'Type Actions')
+  nmap('gi', require('fzf-lua').lsp_implementations, 'Goto Implementation')
+  nmap('gr', require('fzf-lua').lsp_references, 'Goto References')
+  nmap('<leader>e', require('fzf-lua').lsp_workspace_diagnostics, 'Workspace Diagnostics')
 
   -- See `:help K` for why this keymap
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
@@ -174,7 +207,7 @@ local on_attach = function(_, bufnr)
   imap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
   -- Lesser used LSP functionality
-  nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+  -- nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
   nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
   nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
   nmap('<leader>wl', function()
@@ -218,12 +251,26 @@ mason_lspconfig.setup {
   ensure_installed = vim.tbl_keys(servers),
 }
 
+local lspconfig = require('lspconfig')
+
+-- to prevent rust-analyzer from indexing external crates
+local function custom_root_dir_matcher(fname)
+  local root_dir = lspconfig.util.root_pattern('.git')(fname)
+
+  if root_dir and vim.fn.getcwd() == root_dir then
+    return root_dir
+  else
+    return nil
+  end
+end
+
 mason_lspconfig.setup_handlers {
   function(server_name)
-    require('lspconfig')[server_name].setup {
+    lspconfig[server_name].setup {
       capabilities = capabilities,
       on_attach = on_attach,
       settings = servers[server_name],
+      root_dir = custom_root_dir_matcher,
     }
   end,
 }

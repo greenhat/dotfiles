@@ -9,6 +9,10 @@ return {
 
     luasnip.config.setup {}
 
+    vim.g.copilot_no_tab_map = true
+    vim.g.copilot_assume_mapped = true
+    vim.g.copilot_tab_fallback = ""
+
     cmp.setup {
       snippet = {
         expand = function(args)
@@ -24,7 +28,11 @@ return {
           select = true,
         },
         ['<Tab>'] = cmp.mapping(function(fallback)
-          if cmp.visible() then
+          local copilot_keys = vim.fn['copilot#Accept']()
+          if copilot_keys ~= '' and type(copilot_keys) == 'string' then
+            vim.api.nvim_feedkeys(copilot_keys, 'i', true)
+          elseif cmp.visible() then
+            -- if cmp.visible() then
             cmp.select_next_item()
           elseif luasnip.expand_or_jumpable() then
             luasnip.expand_or_jump()
