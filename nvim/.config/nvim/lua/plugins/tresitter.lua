@@ -12,19 +12,15 @@ return {
       -- Add languages to be installed here that you want installed for treesitter
       ensure_installed = { "lua", "rust", "scala", "toml", "bash", "c", "cmake", "comment", "cpp", "css", "dockerfile",
         "html", "java", "javascript", "jsdoc", "json", "kotlin", "python", "regex", "typescript", "yaml" },
-
-      -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
-      auto_install = false,
-
       highlight = { enable = true },
       indent = { enable = true, disable = { 'python' } },
       incremental_selection = {
         enable = true,
         keymaps = {
-          init_selection = '<c-space>',
-          node_incremental = '<c-space>',
-          scope_incremental = '<c-s>',
-          node_decremental = '<M-space>',
+          init_selection = '<CR>',
+          node_incremental = '<CR>',
+          scope_incremental = '<TAB>',
+          node_decremental = '<S-TAB>',
         },
       },
       textobjects = {
@@ -33,12 +29,19 @@ return {
           lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
           keymaps = {
             -- You can use the capture groups defined in textobjects.scm
-            ['aa'] = '@parameter.outer',
-            ['ia'] = '@parameter.inner',
             ['af'] = '@function.outer',
             ['if'] = '@function.inner',
             ['ac'] = '@class.outer',
             ['ic'] = '@class.inner',
+            ['al'] = '@call.outer',
+            ['il'] = '@call.inner',
+            ['aC'] = '@conditional.outer',
+            ['iC'] = '@conditional.inner',
+            ['ab'] = '@block.outer',
+            ['ib'] = '@block.inner',
+            ['ia'] = '@parameter.inner',
+            ['aa'] = '@parameter.outer',
+            ['as'] = '@statement.outer',
           },
         },
         move = {
@@ -59,6 +62,15 @@ return {
           goto_previous_end = {
             ['[M'] = '@function.outer',
             ['[]'] = '@class.outer',
+          },
+        },
+        lsp_interop = {
+          enable = false,
+          border = 'none',
+          floating_preview_opts = {},
+          peek_definition_code = {
+            ['<leader>pdf'] = '@function.outer',
+            ['<leader>pdF'] = '@class.outer',
           },
         },
         -- swap = {
