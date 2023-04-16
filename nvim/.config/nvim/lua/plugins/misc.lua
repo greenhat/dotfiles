@@ -10,6 +10,8 @@ return {
 
   'tpope/vim-repeat',
 
+  'tpope/vim-unimpaired',
+
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim',  opts = {} },
 
