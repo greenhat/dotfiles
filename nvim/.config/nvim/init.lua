@@ -106,6 +106,10 @@ vim.o.termguicolors = true
 vim.o.incsearch = true
 vim.o.scrolloff = 3
 
+vim.o.foldmethod = 'expr'
+vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.o.foldenable = false
+
 -- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience
