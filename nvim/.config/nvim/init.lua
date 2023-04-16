@@ -304,3 +304,7 @@ vim.keymap.set('n', '<A-l>', '<C-w>l', { silent = true })
 
 vim.keymap.set('n', '<Esc>', ':nohlsearch<CR>', { silent = true })
 vim.keymap.set('n', '<Esc><Esc>', ':nohlsearch<CR>', { silent = true })
+
+vim.keymap.set('n', '<leader>vp', ':G push<CR>', { silent = true, desc = 'Push to git' })
+vim.keymap.set('n', '<leader>vu', ':G pull<CR>', { silent = true, desc = 'Pull from git' })
+vim.keymap.set('n', '<leader>vs', ':vertical G<CR>', { silent = true, desc = 'Git status' })
