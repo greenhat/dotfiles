@@ -22,5 +22,6 @@ return {
     vim.keymap.set('n', '<leader>sk', require('fzf-lua').keymaps, { desc = 'Keymaps' })
     -- vim.keymap.set('n', '<leader>c', require('fzf-lua').commands, { desc = 'Commands' })
     vim.keymap.set('n', '<leader>;', require('fzf-lua').command_history, { desc = 'Commands history' })
+    vim.keymap.set('n', '<leader>vb', require('fzf-lua').git_branches, { desc = 'Git branches' })
   end
 }
