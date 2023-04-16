@@ -65,7 +65,7 @@ require('lazy').setup("plugins")
 -- See `:help vim.o`
 
 -- Set highlight on search
-vim.o.hlsearch = false
+vim.o.hlsearch = true
 
 -- Make line numbers default
 vim.wo.number = false
@@ -292,3 +292,6 @@ vim.keymap.set('n', '<A-j>', '<C-w>j', { silent = true })
 vim.keymap.set('n', '<A-h>', '<C-w>h', { silent = true })
 vim.keymap.set('n', '<A-k>', '<C-w>k', { silent = true })
 vim.keymap.set('n', '<A-l>', '<C-w>l', { silent = true })
+
+vim.keymap.set('n', '<Esc>', ':nohlsearch<CR>', { silent = true })
+vim.keymap.set('n', '<Esc><Esc>', ':nohlsearch<CR>', { silent = true })
