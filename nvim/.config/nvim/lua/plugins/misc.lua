@@ -12,6 +12,8 @@ return {
 
   'tpope/vim-unimpaired',
 
+  'ibhagwan/smartyank.nvim',
+
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim',  opts = {} },
 
