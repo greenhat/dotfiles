@@ -164,7 +164,11 @@ local on_attach = function(_, bufnr)
   -- nmap('gy', require('fzf-lua').lsp_typedefs, 'Type Actions')
   nmap('gi', require('fzf-lua').lsp_implementations, 'Goto Implementation')
   nmap('gr', require('fzf-lua').lsp_references, 'Goto References')
-  nmap('<leader>e', require('fzf-lua').lsp_workspace_diagnostics, 'Workspace Diagnostics')
+  nmap('<leader>e',
+    function()
+      require('fzf-lua').lsp_workspace_diagnostics({ winopts = { preview = { layout = 'vertical' } } })
+    end,
+    'Workspace Diagnostics')
   nmap('<leader>li', require('fzf-lua').lsp_incoming_calls, 'Incoming Calls')
   nmap('<leader>lo', require('fzf-lua').lsp_outgoing_calls, 'Outgoing Calls')
 
