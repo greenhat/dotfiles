@@ -14,7 +14,7 @@ return {
           prompt = [[
                 Please rewrite the text to make it more readable, clear,
                 concise, and fix any grammatical, punctuation, or spelling
-                errors
+                errors. Preserve any formatting (like the start of the comment token) and code blocks. Just output the raw suggested text.
             ]],
           modes = { "v" },
           strip_function = nil,
@@ -27,7 +27,7 @@ return {
           prompt = function()
             return [[
                     Using the following git diff generate a consise and
-                    clear git commit message, with a short title summary
+                    clear git commit message (just output raw text), with a short title summary
                     that is 75 characters or less:
                 ]] .. vim.fn.system("git diff --cached")
           end,
