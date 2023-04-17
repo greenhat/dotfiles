@@ -196,7 +196,31 @@ local servers = {
   -- clangd = {},
   -- gopls = {},
   pyright = {},
-  rust_analyzer = {},
+  rust_analyzer = {
+    ['rust-analyzer'] = {
+      checkOnSave = true,
+      check = {
+        command = "clippy",
+        allTargets = true,
+      },
+      completion = {
+        autoimport = {
+          enable = true,
+        },
+      },
+      imports = {
+        granularity = {
+          group = "item",
+        },
+      },
+      procMacro = {
+        enable = true,
+      },
+      cargo = {
+        features = "all",
+      },
+    },
+  },
   tsserver = {},
   lua_ls = {
     Lua = {
