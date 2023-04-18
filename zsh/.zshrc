@@ -60,6 +60,7 @@ for repo in $plugins; do
 done
 unset repo
 
+# eval "$(github-copilot-cli alias -- "$0")"
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.zhistory
