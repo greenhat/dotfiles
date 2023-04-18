@@ -14,6 +14,12 @@ return {
         -- Setup neovim lua configuration
         require('neodev').setup()
       end
+    },
+    {
+      'lvimuser/lsp-inlayhints.nvim',
+      config = function ()
+        require('lsp-inlayhints').setup()
+      end
     }
   },
   config = function()
