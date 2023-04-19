@@ -17,9 +17,15 @@ return {
     },
     {
       'lvimuser/lsp-inlayhints.nvim',
-      config = function ()
+      config = function()
         require('lsp-inlayhints').setup()
       end
+    },
+    {
+      'scalameta/nvim-metals',
+      dependencies = {
+        'nvim-lua/plenary.nvim',
+      }
     }
   },
   config = function()
