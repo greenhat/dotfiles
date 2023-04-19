@@ -8,6 +8,9 @@ return {
     --   virtual_text = false,
     -- })
 
+    -- toggle off by default
+    require("lsp_lines").toggle()
+
     vim.keymap.set("", "<Leader>ll", require("lsp_lines").toggle, { desc = "Toggle lsp_lines" }
     )
   end,
