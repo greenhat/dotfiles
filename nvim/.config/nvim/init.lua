@@ -209,6 +209,7 @@ local on_attach = function(client, bufnr)
   end, { desc = 'Format current buffer with LSP' })
 
   require('lsp-inlayhints').on_attach(client, bufnr, false)
+  require('lsp_signature').on_attach({}, bufnr)
 end
 
 -- Enable the following language servers
