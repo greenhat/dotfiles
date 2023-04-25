@@ -5,6 +5,7 @@ path=("/usr/local/sbin" "$path[@]") # brew
 path=("$HOME/.cargo/bin" "$path[@]") # rust
 path=("$HOME/.local/share/coursier/bin" "$path[@]") # rust
 export PATH
+export PATH="$PATH:$(go env GOBIN):$(go env GOPATH)/bin"
 
 export EDITOR=nvim
 export VISUAL=nvim
