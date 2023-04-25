@@ -173,13 +173,17 @@ local on_attach = function(client, bufnr)
   nmap('<leader>a', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
   nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+  vim.keymap.set('n', 'gp', ':<C-u>pedit %<Bar>wincmd P<Bar>:lua vim.lsp.buf.definition()<CR>',
+    { silent = true, desc = 'Goto definition in a preview' })
+  vim.keymap.set('n', 'gD', ':only<bar>vsplit<CR>:lua vim.lsp.buf.definition()<CR>',
+    { silent = true, desc = 'Goto definition in a vertical split' })
   nmap('gy', vim.lsp.buf.type_definition, 'Goto Type [D]efinition')
   nmap('<leader>j', require('fzf-lua').lsp_live_workspace_symbols, 'Live Workspace Symbols')
   nmap('<leader>J', require('fzf-lua').lsp_workspace_symbols, 'Workspace Symbols')
   nmap('<leader>o', require('fzf-lua').lsp_document_symbols, 'Document Symbols')
   nmap('<leader>a', require('fzf-lua').lsp_code_actions, 'Code Actions')
   vmap('<leader>a', require('fzf-lua').lsp_code_actions, 'Code Actions')
-  nmap('gD', require('fzf-lua').lsp_declarations, 'Goto Declaration')
+  -- nmap('gD', require('fzf-lua').lsp_declarations, 'Goto Declaration')
   -- nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
   nmap('gi', require('fzf-lua').lsp_implementations, 'Goto Implementation')
   nmap('gr', require('fzf-lua').lsp_references, 'Goto References')
@@ -361,3 +365,89 @@ vim.keymap.set('n', '<Esc><Esc>', ':nohlsearch<CR>', { silent = true })
 vim.keymap.set('n', '<leader>vp', ':G push<CR>', { silent = true, desc = 'Push to git' })
 vim.keymap.set('n', '<leader>vu', ':G pull<CR>', { silent = true, desc = 'Pull from git' })
 vim.keymap.set('n', '<leader>vs', ':vertical G<CR>', { silent = true, desc = 'Git status' })
+
+-- unmap while getting use to new keyboard layout
+vim.keymap.set('n', 'H', '<Nop>', { silent = true })
+vim.keymap.set('n', 'L', '<Nop>', { silent = true })
+
+
+-------------------------------------------------------------------------------
+-- Cody via llmsp
+-------------------------------------------------------------------------------
+local configs = require "lspconfig.configs"
+if not configs.llmsp then
+  configs.llmsp = {
+    default_config = {
+      cmd = { "llmsp" },
+      filetypes = { "go", "rust" },
+      root_dir = function(fname)
+        return lspconfig.util.find_git_ancestor(fname)
+      end,
+      settings = {},
+    },
+  }
+end
+
+lspconfig.llmsp.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    llmsp = {
+      sourcegraph = {
+        url = "https://sourcegraph.sourcegraph.com",
+        accessToken = vim.env.SOURCEGRAPH_API_TOKEN,
+        repos = { -- any repos you want context for
+          "github.com/sourcegraph/sourcegraph",
+          "github.com/ergoplatform/oracle-core",
+        },
+      },
+    },
+  },
+}
+
+vim.api.nvim_create_user_command("CodyR", function(command)
+  local p = "file://" .. vim.fn.expand "%:p"
+
+  for _, client in pairs(vim.lsp.get_active_clients { name = "llmsp" }) do
+    client.request("workspace/executeCommand", {
+      command = "cody",
+      arguments = { p, command.line1 - 1, command.line2 - 1, command.args, true, true },
+    }, function()
+    end, 0)
+  end
+end, { range = 2, nargs = 1 })
+
+vim.api.nvim_create_user_command("CodyC", function(command)
+  local p = "file://" .. vim.fn.expand "%:p"
+
+  for _, client in pairs(vim.lsp.get_active_clients { name = "llmsp" }) do
+    client.request("workspace/executeCommand", {
+      command = "cody",
+      arguments = { p, command.line1 - 1, command.line2 - 1, command.args, false, true },
+    }, function()
+    end, 0)
+  end
+end, { range = 2, nargs = 1 })
+
+vim.api.nvim_create_user_command("CodyE", function(command)
+  local p = "file://" .. vim.fn.expand "%:p"
+
+  for _, client in pairs(vim.lsp.get_active_clients { name = "llmsp" }) do
+    client.request("workspace/executeCommand", {
+      command = "cody.explain",
+      arguments = { p, command.line1 - 1, command.line2 - 1, command.args },
+    }, function(_, result, _, _)
+      vim.lsp.util.open_floating_preview(result.message, "markdown", {
+        height = #result.message,
+        width = 80,
+        focus_id = "codyResponse",
+      })
+      -- Call it again so that it focuses the window immediately
+      vim.lsp.util.open_floating_preview(result.message, "markdown", {
+        height = #result.message,
+        width = 80,
+        focus_id = "codyResponse",
+      })
+    end, 0)
+  end
+end, { range = 2, nargs = 1 })
