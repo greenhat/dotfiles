@@ -1,8 +1,8 @@
 return {
-  -- Highlight, edit, and navigate code
   'nvim-treesitter/nvim-treesitter',
   dependencies = {
     'nvim-treesitter/nvim-treesitter-textobjects',
+    'RRethy/nvim-treesitter-textsubjects',
   },
   build = ":TSUpdate",
   config = function()
@@ -21,6 +21,14 @@ return {
           node_incremental = '<CR>',
           scope_incremental = '<TAB>',
           node_decremental = '<S-TAB>',
+        },
+      },
+      textsubjects = {
+        enable = true,
+        keymaps = {
+          [';'] = 'textsubjects-smart',
+          ['.'] = 'textsubjects-container-outer',
+          ['i.'] = 'textsubjects-container-inner',
         },
       },
       textobjects = {
