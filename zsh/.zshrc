@@ -128,17 +128,23 @@ case $TERM in
 esac
 
 # FZF
-# if [[ $host == archlinux ]]; then
-#     source /usr/share/fzf/key-bindings.zsh
-#     source /usr/share/fzf/completion.zsh
-# elif [[ $host == x1 ]]; then
+# fedora 
+if [[ -f /usr/share/fzf/shell/key-bindings.zsh ]]; then
     source /usr/share/fzf/shell/key-bindings.zsh
+fi
+# fedora 
+if [[ -f /usr/share/fzf/shell/completion.zsh ]]; then
     source /usr/share/fzf/shell/completion.zsh
-# else 
-#     # debian
-#     source /usr/share/doc/fzf/examples/key-bindings.zsh
-#     source /usr/share/doc/fzf/examples/completion.zsh
-# fi
+fi
+
+# debian
+if [[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ]]; then
+    source /usr/share/doc/fzf/examples/key-bindings.zsh
+fi
+# debian
+if [[ -f /usr/share/doc/fzf/examples/completion.zsh ]]; then
+    source /usr/share/doc/fzf/examples/completion.zsh
+fi
 
 export FZF_DEFAULT_OPTS='--layout=reverse'
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
