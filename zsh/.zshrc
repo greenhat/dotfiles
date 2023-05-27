@@ -128,25 +128,25 @@ case $TERM in
 esac
 
 # FZF
-if [[ $host == archlinux ]]; then
-    source /usr/share/fzf/key-bindings.zsh
-    source /usr/share/fzf/completion.zsh
-elif [[ $host == x1 ]]; then
+# if [[ $host == archlinux ]]; then
+#     source /usr/share/fzf/key-bindings.zsh
+#     source /usr/share/fzf/completion.zsh
+# elif [[ $host == x1 ]]; then
     source /usr/share/fzf/shell/key-bindings.zsh
     source /usr/share/fzf/shell/completion.zsh
-else 
-    # debian
-    source /usr/share/doc/fzf/examples/key-bindings.zsh
-    source /usr/share/doc/fzf/examples/completion.zsh
-fi
+# else 
+#     # debian
+#     source /usr/share/doc/fzf/examples/key-bindings.zsh
+#     source /usr/share/doc/fzf/examples/completion.zsh
+# fi
 
 export FZF_DEFAULT_OPTS='--layout=reverse'
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 export FZF_CTRL_T_OPTS="--preview 'batcat --style=numbers --color=always --line-range :500 {}'"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 
-alias pi="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
-alias pd="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns"
+# alias pi="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
+# alias pd="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns"
 
 # export RUST_BACKTRACE=1
 
