@@ -9,7 +9,7 @@ export PATH="$PATH:$(go env GOBIN):$(go env GOPATH)/bin"
 
 export EDITOR=nvim
 export VISUAL=nvim
-export BROWSER=/usr/bin/vivaldi-stable
+export BROWSER=/usr/bin/microsoft-edge-stable
 # export TERM=tmux-256color
 export TERM=xterm-256color
 export XCOMPOSEFILE=/tmp/compose
