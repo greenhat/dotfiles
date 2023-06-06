@@ -169,12 +169,12 @@ window:
 font:
   normal:
     family: JetBrains Mono
-    style: Semibold
+    style: Bold
     # style: Medium
   bold:
-    style: Bold
+    style: ExtraBold
   italic:
-    style: Italic
+    style: SemiBold Italic
   bold_italic:
     style: Bold Italic
   size: 10.0
