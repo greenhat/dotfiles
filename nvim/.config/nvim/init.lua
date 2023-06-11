@@ -32,9 +32,11 @@ require('lazy').setup("plugins", {
       if vim.g.vscode then
         if string.find(plugin.name, "treesitter") then
           return true
-        else
-          return false
         end
+        if string.find(plugin.name, "surround") then
+          return true
+        end
+        return false
       else
         return true
       end
@@ -476,4 +478,34 @@ else
   -- Commentary
   vim.keymap.set({ "x", "n", "o" }, "gc", "<Plug>VSCodeCommentary")
   vim.keymap.set("n", "gcc", "<Plug>VSCodeCommentaryLine")
+
+  vim.cmd([[
+" gf/gF . Map to go to definition for now
+nnoremap K <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
+nnoremap gh <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
+nnoremap gd <Cmd>call VSCodeNotify('editor.action.revealDeclaration')<CR>
+"nnoremap gf <Cmd>call vscodeGoToDefinition('revealDeclaration')<CR>
+"nnoremap gd <Cmd>call vscodeGoToDefinition('revealDefinition')<CR>
+"nnoremap <C-]> <Cmd>call vscodeGoToDefinition('revealDefinition')<CR>
+nnoremap <leader>o <Cmd>call VSCodeNotify('workbench.action.gotoSymbol')<CR>
+nnoremap gF <Cmd>call VSCodeNotify('editor.action.peekDeclaration')<CR>
+nnoremap gD <Cmd>call VSCodeNotify('editor.action.peekDefinition')<CR>
+nnoremap gr <Cmd>call VSCodeNotify('editor.action.referenceSearch.trigger')<CR>
+
+xnoremap K <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
+xnoremap gh <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
+"xnoremap gf <Cmd>call vscodeGoToDefinition('revealDeclaration')<CR>
+xnoremap gd <Cmd>call VSCodeNotify('editor.action.revealDeclaration')<CR>
+"xnoremap <C-]> <Cmd>call vscodeGoToDefinition('revealDefinition')<CR>
+xnoremap <leader>o <Cmd>call VSCodeNotify('workbench.action.gotoSymbol')<CR>
+xnoremap gF <Cmd>call VSCodeNotify('editor.action.peekDeclaration')<CR>
+xnoremap gD <Cmd>call VSCodeNotify('editor.action.peekDefinition')<CR>
+xnoremap gr <Cmd>call VSCodeNotify('editor.action.referenceSearch.trigger')<CR>
+
+" <C-w> gf opens definition on the side
+nnoremap <C-w>gf <Cmd>call VSCodeNotify('editor.action.revealDefinitionAside')<CR>
+nnoremap <C-w>gd <Cmd>call VSCodeNotify('editor.action.revealDefinitionAside')<CR>
+xnoremap <C-w>gf <Cmd>call VSCodeNotify('editor.action.revealDefinitionAside')<CR>
+xnoremap <C-w>gd <Cmd>call VSCodeNotify('editor.action.revealDefinitionAside')<CR>
+]])
 end
