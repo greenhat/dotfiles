@@ -507,5 +507,33 @@ nnoremap <C-w>gf <Cmd>call VSCodeNotify('editor.action.revealDefinitionAside')<C
 nnoremap <C-w>gd <Cmd>call VSCodeNotify('editor.action.revealDefinitionAside')<CR>
 xnoremap <C-w>gf <Cmd>call VSCodeNotify('editor.action.revealDefinitionAside')<CR>
 xnoremap <C-w>gd <Cmd>call VSCodeNotify('editor.action.revealDefinitionAside')<CR>
+ 
+nnoremap <leader>hr <Cmd>call VSCodeNotify('git.revertSelectedRanges')<CR>
+nnoremap <leader>gh <Cmd>call VSCodeNotify('githubLinker.copyUrl')<CR>
+"nnoremap <leader>a <Cmd>call VSCodeNotify('editor.action.quickFix')<CR>
+nnoremap L <Cmd>call VSCodeNotify('editor.action.smartSelect.expand')<CR>
+nnoremap H <Cmd>call VSCodeNotify('workbench.panel.chat.view.copilot.focus')<CR>
+nnoremap gy <Cmd>call VSCodeNotify('editor.action.goToTypeDefinition')<CR>
+nnoremap gY <Cmd>call VSCodeNotify('editor.action.peekTypeDefinition')<CR>
+nnoremap gi <Cmd>call VSCodeNotify('editor.action.goToImplementation')<CR>
+"nnoremap gr <Cmd>call VSCodeNotify('editor.action.goToReferences')<CR>
+"nnoremap gD <Cmd>call VSCodeNotify('editor.action.peekDefinition')<CR>
+"nnoremap K <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
+nnoremap <leader>rn <Cmd>call VSCodeNotify('editor.action.rename')<CR>
+nnoremap ]d <Cmd>call VSCodeNotify('editor.action.marker.next')<CR>
+nnoremap [d <Cmd>call VSCodeNotify('editor.action.marker.prev')<CR>
+nnoremap ]D <Cmd>call VSCodeNotify('editor.action.marker.nextInFiles')<CR>
+nnoremap [D <Cmd>call VSCodeNotify('editor.action.marker.prevInFiles')<CR>
+nnoremap <leader>j <Cmd>call VSCodeNotify('workbench.action.showAllSymbols')<CR>
+"nnoremap <leader>o <Cmd>call VSCodeNotify('workbench.action.gotoSymbol')<CR>
+nnoremap <leader>f <Cmd>call VSCodeNotify('workbench.action.quickOpenPreviousEditor')<CR>
+nnoremap s <Cmd>call VSCodeNotify('extension.aceJump')<CR>
+nnoremap gx <Cmd>call VSCodeNotify('editor.action.openLink')<CR>
+nnoremap <leader>to <Cmd>call VSCodeNotify('workbench.action.terminal.openDetectedLink')<CR>
+nnoremap [c <Cmd>call VSCodeNotify('workbench.action.editor.previousChange')<CR>
+nnoremap ]c <Cmd>call VSCodeNotify('workbench.action.editor.nextChange')<CR>
+nnoremap <leader>hd <Cmd>call VSCodeNotify('editor.action.dirtydiff.next')<CR>
+
+
 ]])
 end
