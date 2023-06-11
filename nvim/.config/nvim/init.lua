@@ -510,7 +510,7 @@ xnoremap <C-w>gd <Cmd>call VSCodeNotify('editor.action.revealDefinitionAside')<C
  
 nnoremap <leader>hr <Cmd>call VSCodeNotify('git.revertSelectedRanges')<CR>
 nnoremap <leader>gh <Cmd>call VSCodeNotify('githubLinker.copyUrl')<CR>
-"nnoremap <leader>a <Cmd>call VSCodeNotify('editor.action.quickFix')<CR>
+nnoremap <leader>a <Cmd>call VSCodeNotify('editor.action.quickFix')<CR>
 nnoremap L <Cmd>call VSCodeNotify('editor.action.smartSelect.expand')<CR>
 nnoremap H <Cmd>call VSCodeNotify('workbench.panel.chat.view.copilot.focus')<CR>
 nnoremap gy <Cmd>call VSCodeNotify('editor.action.goToTypeDefinition')<CR>
