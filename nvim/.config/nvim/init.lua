@@ -508,11 +508,14 @@ xnoremap gr <Cmd>call VSCodeNotify('editor.action.referenceSearch.trigger')<CR>
 "xnoremap <C-w>gf <Cmd>call VSCodeNotify('editor.action.revealDefinitionAside')<CR>
 "xnoremap <C-w>gd <Cmd>call VSCodeNotify('editor.action.revealDefinitionAside')<CR>
  
-nnoremap <leader>hr <Cmd>call VSCodeNotify('git.revertSelectedRanges')<CR>
-nnoremap <leader>gh <Cmd>call VSCodeNotify('githubLinker.copyUrl')<CR>
+vnoremap <leader>hr <Cmd>call VSCodeNotifyVisual('git.revertSelectedRanges')<CR>
+vnoremap <leader>gh <Cmd>call VSCodeNotifyVisual('githubLinker.copyUrl')<CR>
 nnoremap <leader>a <Cmd>call VSCodeNotify('editor.action.quickFix')<CR>
-nnoremap L <Cmd>call VSCodeNotify('editor.action.smartSelect.expand')<CR>
+vnoremap <leader>a <Cmd>call VSCodeNotifyVisual('editor.action.quickFix', 1)<CR>
+"nnoremap L <Cmd>call VSCodeNotify('editor.action.smartSelect.expand')<CR>
+"vnoremap L <Cmd>call VSCodeNotifyVisual('editor.action.smartSelect.expand', 1)<CR>
 nnoremap H <Cmd>call VSCodeNotify('workbench.panel.chat.view.copilot.focus')<CR>
+vnoremap H <Cmd>call VSCodeNotifyVisual('workbench.panel.chat.view.copilot.focus', 1)<CR>
 nnoremap gy <Cmd>call VSCodeNotify('editor.action.goToTypeDefinition')<CR>
 nnoremap gY <Cmd>call VSCodeNotify('editor.action.peekTypeDefinition')<CR>
 nnoremap gi <Cmd>call VSCodeNotify('editor.action.goToImplementation')<CR>
