@@ -70,9 +70,7 @@ vim.o.smartcase = true
 vim.wo.signcolumn = 'yes'
 
 -- Decrease update time
-vim.o.updatetime = 250
-vim.o.timeout = true
-vim.o.timeoutlen = 300
+-- vim.o.updatetime = 250
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
@@ -468,4 +466,13 @@ if not vim.g.vscode then
       end, 0)
     end
   end, { range = 2, nargs = 1 })
+else
+  -- undo/REDO via vscode
+  -- https://github.com/vscode-neovim/vscode-neovim/issues/1139
+  vim.keymap.set("n", "u", "<Cmd>call VSCodeNotify('undo')<CR>")
+  vim.keymap.set("n", "<C-r>", "<Cmd>call VSCodeNotify('redo')<CR>")
+
+  -- Commentary
+  vim.keymap.set({ "x", "n", "o" }, "gc", "<Plug>VSCodeCommentary")
+  vim.keymap.set("n", "gcc", "<Plug>VSCodeCommentaryLine")
 end
