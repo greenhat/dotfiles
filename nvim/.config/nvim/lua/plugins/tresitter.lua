@@ -6,13 +6,17 @@ return {
   },
   build = ":TSUpdate",
   config = function()
+    local highlight_enabled = true
+    if vim.g.vscode then
+      highlight_enabled = false
+    end
     -- [[ Configure Treesitter ]]
     -- See `:help nvim-treesitter`
     require('nvim-treesitter.configs').setup {
       -- Add languages to be installed here that you want installed for treesitter
       ensure_installed = { "lua", "rust", "scala", "toml", "bash", "c", "cmake", "comment", "cpp", "css", "dockerfile",
         "html", "java", "javascript", "jsdoc", "json", "kotlin", "python", "regex", "typescript", "yaml" },
-      highlight = { enable = true },
+      highlight = { enable = highlight_enabled },
       indent = { enable = true, disable = { 'python' } },
       incremental_selection = {
         enable = true,
