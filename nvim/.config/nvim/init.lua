@@ -66,23 +66,24 @@ vim.o.undofile = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
--- Keep signcolumn on by default
-vim.wo.signcolumn = 'yes'
-
--- Decrease update time
--- vim.o.updatetime = 250
-
--- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
-
-vim.o.termguicolors = true
-
 vim.o.incsearch = true
 vim.o.scrolloff = 3
 
-vim.o.foldmethod = 'expr'
-vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
-vim.o.foldenable = false
+if not vim.g.vscode then
+  -- Keep signcolumn on by default
+  vim.wo.signcolumn = 'yes'
+
+  -- Decrease update time
+  -- vim.o.updatetime = 250
+
+  -- Set completeopt to have a better completion experience
+  vim.o.completeopt = 'menuone,noselect'
+
+  vim.o.termguicolors = true
+  vim.o.foldmethod = 'expr'
+  vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
+  vim.o.foldenable = false
+end
 
 -- [[ Basic Keymaps ]]
 
