@@ -63,6 +63,7 @@ window:
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background and no title bar buttons
   #decorations: full
+  decorations: none
 
   # Background opacity
   #
@@ -177,7 +178,7 @@ font:
     style: SemiBold Italic
   bold_italic:
     style: Bold Italic
-  size: 10.0
+  size: 11.0
 
 # font:
 #   normal:
