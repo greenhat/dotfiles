@@ -508,6 +508,8 @@ xnoremap gr <Cmd>call VSCodeNotify('editor.action.referenceSearch.trigger')<CR>
 "xnoremap <C-w>gf <Cmd>call VSCodeNotify('editor.action.revealDefinitionAside')<CR>
 "xnoremap <C-w>gd <Cmd>call VSCodeNotify('editor.action.revealDefinitionAside')<CR>
  
+nnoremap <leader>hd <Cmd>call VSCodeNotify('editor.action.dirtydiff.next')<CR>
+nnoremap <leader>hr <Cmd>call VSCodeNotifyVisual('git.revertSelectedRanges')<CR>
 vnoremap <leader>hr <Cmd>call VSCodeNotifyVisual('git.revertSelectedRanges')<CR>
 vnoremap <leader>gh <Cmd>call VSCodeNotifyVisual('githubLinker.copyUrl')<CR>
 nnoremap <leader>a <Cmd>call VSCodeNotify('editor.action.quickFix')<CR>
@@ -535,7 +537,6 @@ nnoremap gx <Cmd>call VSCodeNotify('editor.action.openLink')<CR>
 nnoremap <leader>to <Cmd>call VSCodeNotify('workbench.action.terminal.openDetectedLink')<CR>
 nnoremap [c <Cmd>call VSCodeNotify('workbench.action.editor.previousChange')<CR>
 nnoremap ]c <Cmd>call VSCodeNotify('workbench.action.editor.nextChange')<CR>
-nnoremap <leader>hd <Cmd>call VSCodeNotify('editor.action.dirtydiff.next')<CR>
 
 
 ]])
