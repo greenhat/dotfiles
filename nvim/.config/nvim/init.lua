@@ -484,8 +484,8 @@ else
 nnoremap K <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
 nnoremap gh <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
 nnoremap gd <Cmd>call VSCodeNotify('editor.action.revealDeclaration')<CR>
-"nnoremap gf <Cmd>call vscodeGoToDefinition('revealDeclaration')<CR>
-"nnoremap gd <Cmd>call vscodeGoToDefinition('revealDefinition')<CR>
+nnoremap gf <Cmd>call VSCodeNotify('editor.action.revealDeclaration')<CR>
+nnoremap gd <Cmd>call VSCodeNotify('editor.action.revealDefinition')<CR>
 "nnoremap <C-]> <Cmd>call vscodeGoToDefinition('revealDefinition')<CR>
 nnoremap <leader>o <Cmd>call VSCodeNotify('workbench.action.gotoSymbol')<CR>
 nnoremap gF <Cmd>call VSCodeNotify('editor.action.peekDeclaration')<CR>
@@ -494,7 +494,7 @@ nnoremap gr <Cmd>call VSCodeNotify('editor.action.referenceSearch.trigger')<CR>
 
 xnoremap K <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
 xnoremap gh <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
-"xnoremap gf <Cmd>call vscodeGoToDefinition('revealDeclaration')<CR>
+xnoremap gf <Cmd>call VSCodeNotify('editor.action.revealDeclaration')<CR>
 xnoremap gd <Cmd>call VSCodeNotify('editor.action.revealDeclaration')<CR>
 "xnoremap <C-]> <Cmd>call vscodeGoToDefinition('revealDefinition')<CR>
 xnoremap <leader>o <Cmd>call VSCodeNotify('workbench.action.gotoSymbol')<CR>
@@ -521,16 +521,13 @@ vnoremap H <Cmd>call VSCodeNotifyVisual('workbench.panel.chat.view.copilot.focus
 nnoremap gy <Cmd>call VSCodeNotify('editor.action.goToTypeDefinition')<CR>
 nnoremap gY <Cmd>call VSCodeNotify('editor.action.peekTypeDefinition')<CR>
 nnoremap gi <Cmd>call VSCodeNotify('editor.action.goToImplementation')<CR>
-"nnoremap gr <Cmd>call VSCodeNotify('editor.action.goToReferences')<CR>
-"nnoremap gD <Cmd>call VSCodeNotify('editor.action.peekDefinition')<CR>
-"nnoremap K <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
 nnoremap <leader>rn <Cmd>call VSCodeNotify('editor.action.rename')<CR>
 nnoremap ]d <Cmd>call VSCodeNotify('editor.action.marker.next')<CR>
 nnoremap [d <Cmd>call VSCodeNotify('editor.action.marker.prev')<CR>
 nnoremap ]D <Cmd>call VSCodeNotify('editor.action.marker.nextInFiles')<CR>
 nnoremap [D <Cmd>call VSCodeNotify('editor.action.marker.prevInFiles')<CR>
 nnoremap <leader>j <Cmd>call VSCodeNotify('workbench.action.showAllSymbols')<CR>
-"nnoremap <leader>o <Cmd>call VSCodeNotify('workbench.action.gotoSymbol')<CR>
+nnoremap <leader>o <Cmd>call VSCodeNotify('workbench.action.gotoSymbol')<CR>
 nnoremap <leader>f <Cmd>call VSCodeNotify('workbench.action.quickOpenPreviousEditor')<CR>
 nnoremap s <Cmd>call VSCodeNotify('extension.aceJump')<CR>
 nnoremap gx <Cmd>call VSCodeNotify('editor.action.openLink')<CR>
