@@ -30,12 +30,12 @@ require('lazy').setup("plugins", {
       -- load only treesitter if running under vscode
       -- if plugin name contains "treesitter" return true
       if vim.g.vscode then
-        if string.find(plugin.name, "treesitter") then
-          return true
-        end
-        if string.find(plugin.name, "surround") then
-          return true
-        end
+        -- if string.find(plugin.name, "treesitter") then
+        --   return true
+        -- end
+        -- if string.find(plugin.name, "surround") then
+        --   return true
+        -- end
         return false
       else
         return true
