@@ -30,12 +30,12 @@ require('lazy').setup("plugins", {
       -- load only treesitter if running under vscode
       -- if plugin name contains "treesitter" return true
       if vim.g.vscode then
-        -- if string.find(plugin.name, "treesitter") then
-        --   return true
-        -- end
-        -- if string.find(plugin.name, "surround") then
-        --   return true
-        -- end
+        if string.find(plugin.name, "treesitter") then
+          return true
+        end
+        if string.find(plugin.name, "surround") then
+          return true
+        end
         return false
       else
         return true
@@ -512,8 +512,8 @@ nnoremap <leader>hd <Cmd>call VSCodeNotify('editor.action.dirtydiff.next')<CR>
 nnoremap <leader>hr <Cmd>call VSCodeNotifyVisual('git.revertSelectedRanges', 0)<CR>
 vnoremap <leader>hr <Cmd>call VSCodeNotifyVisual('git.revertSelectedRanges', 0)<CR>
 vnoremap <leader>gh <Cmd>call VSCodeNotifyVisual('githubLinker.copyUrl', 1)<CR>
-nnoremap <leader>a <Cmd>call VSCodeNotify('editor.action.quickFix')<CR>
-vnoremap <leader>a <Cmd>call VSCodeNotifyVisual('editor.action.quickFix', 1)<CR>
+"nnoremap <leader>a <Cmd>call VSCodeNotify('editor.action.quickFix')<CR>
+"vnoremap <leader>a <Cmd>call VSCodeNotifyVisual('editor.action.quickFix', 1)<CR>
 "nnoremap L <Cmd>call VSCodeNotify('editor.action.smartSelect.expand')<CR>
 "vnoremap L <Cmd>call VSCodeNotifyVisual('editor.action.smartSelect.expand', 1)<CR>
 nnoremap H <Cmd>call VSCodeNotify('workbench.panel.chat.view.copilot.focus')<CR>
@@ -522,10 +522,10 @@ nnoremap gy <Cmd>call VSCodeNotify('editor.action.goToTypeDefinition')<CR>
 nnoremap gY <Cmd>call VSCodeNotify('editor.action.peekTypeDefinition')<CR>
 nnoremap gi <Cmd>call VSCodeNotify('editor.action.goToImplementation')<CR>
 nnoremap <leader>rn <Cmd>call VSCodeNotify('editor.action.rename')<CR>
-nnoremap ]d <Cmd>call VSCodeNotify('editor.action.marker.next')<CR>
-nnoremap [d <Cmd>call VSCodeNotify('editor.action.marker.prev')<CR>
-nnoremap ]D <Cmd>call VSCodeNotify('editor.action.marker.nextInFiles')<CR>
-nnoremap [D <Cmd>call VSCodeNotify('editor.action.marker.prevInFiles')<CR>
+"nnoremap ]d <Cmd>call VSCodeNotify('editor.action.marker.next')<CR>
+"nnoremap [d <Cmd>call VSCodeNotify('editor.action.marker.prev')<CR>
+"nnoremap ]D <Cmd>call VSCodeNotify('editor.action.marker.nextInFiles')<CR>
+"nnoremap [D <Cmd>call VSCodeNotify('editor.action.marker.prevInFiles')<CR>
 nnoremap <leader>j <Cmd>call VSCodeNotify('workbench.action.showAllSymbols')<CR>
 nnoremap <leader>o <Cmd>call VSCodeNotify('workbench.action.gotoSymbol')<CR>
 nnoremap <leader>f <Cmd>call VSCodeNotify('workbench.action.quickOpenPreviousEditor')<CR>
