@@ -490,7 +490,8 @@ nnoremap gd <Cmd>call VSCodeNotify('editor.action.revealDefinition')<CR>
 nnoremap <leader>o <Cmd>call VSCodeNotify('workbench.action.gotoSymbol')<CR>
 nnoremap gF <Cmd>call VSCodeNotify('editor.action.peekDeclaration')<CR>
 nnoremap gD <Cmd>call VSCodeNotify('editor.action.peekDefinition')<CR>
-nnoremap gr <Cmd>call VSCodeNotify('editor.action.referenceSearch.trigger')<CR>
+"nnoremap gr <Cmd>call VSCodeNotify('editor.action.referenceSearch.trigger')<CR>
+nnoremap gr <Cmd>call VSCodeNotify('editor.action.goToReferences')<CR>
 
 xnoremap K <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
 xnoremap gh <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
@@ -500,7 +501,8 @@ xnoremap gd <Cmd>call VSCodeNotify('editor.action.revealDeclaration')<CR>
 xnoremap <leader>o <Cmd>call VSCodeNotify('workbench.action.gotoSymbol')<CR>
 xnoremap gF <Cmd>call VSCodeNotify('editor.action.peekDeclaration')<CR>
 xnoremap gD <Cmd>call VSCodeNotify('editor.action.peekDefinition')<CR>
-xnoremap gr <Cmd>call VSCodeNotify('editor.action.referenceSearch.trigger')<CR>
+"xnoremap gr <Cmd>call VSCodeNotify('editor.action.referenceSearch.trigger')<CR>
+xnoremap gr <Cmd>call VSCodeNotify('editor.action.goToReferences')<CR>
 
 " <C-w> gf opens definition on the side
 "nnoremap <C-w>gf <Cmd>call VSCodeNotify('editor.action.revealDefinitionAside')<CR>
