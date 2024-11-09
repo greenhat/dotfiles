@@ -17,7 +17,7 @@ return {
         cwd_only = true,
       }
     }
-    vim.keymap.set('n', '<leader>f', require('fzf-lua').files, { desc = 'Files' })
+    vim.keymap.set('n', '<leader>e', require('fzf-lua').files, { desc = 'Files' })
     vim.keymap.set('n', '<leader>b', require('fzf-lua').buffers, { desc = 'Buffers' })
     vim.keymap.set('n', '<leader>sp', require('fzf-lua').live_grep_glob, { desc = 'Live grep with glob' })
     vim.keymap.set('n', '<leader>sw', require('fzf-lua').grep_cword, { desc = 'Grep word under cursor' })

@@ -180,7 +180,7 @@ autoload -z edit-command-line
 zle -N edit-command-line
 bindkey "^X^E" edit-command-line
 
-# source $HOME/.secrets
+source $HOME/.secrets
 
 fixssh() {
   eval $(tmux show-environment -s | grep '^SSH_AUTH_SOCK')
