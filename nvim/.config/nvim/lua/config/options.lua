@@ -3,3 +3,6 @@
 -- Add any additional options here
 
 -- vim.g.lazyvim_picker = "fzf-lua"
+
+vim.opt.relativenumber = false
+vim.opt.number = false
