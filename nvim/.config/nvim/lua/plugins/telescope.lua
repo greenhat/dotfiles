@@ -31,6 +31,7 @@ return {
       },
       { "<leader>;", "<cmd>Telescope command_history<cr>", desc = "Command History" },
       { "<leader>e", LazyVim.pick("files"), desc = "Find Files (Root Dir)" },
+      { "<leader>a", "<cmd>Telescope resume<cr>", desc = "Resume" },
     },
   },
 }
