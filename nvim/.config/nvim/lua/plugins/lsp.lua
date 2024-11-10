@@ -19,6 +19,21 @@ return {
       desc = "Goto Symbol (Workspace)",
     }
     keys[#keys + 1] = {
+      "gD",
+      function()
+        require("telescope.builtin").lsp_definitions({ jump_type = "vsplit" })
+      end,
+      desc = "Goto Definition",
+      has = "definition",
+    }
+    keys[#keys + 1] = {
+      "gY",
+      function()
+        require("telescope.builtin").lsp_type_definitions({ jump_type = "vsplit" })
+      end,
+      desc = "Goto T[y]pe Definition",
+    }
+    keys[#keys + 1] = {
       "gi",
       function()
         require("telescope.builtin").lsp_implementations({ reuse_win = true })

@@ -25,7 +25,8 @@ return {
     keys = {
       {
         "<leader><space>",
-        "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>",
+        -- "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>", -- selects the last used buffer
+        "<cmd>Telescope buffers sort_mru=true <cr>",
         desc = "Switch Buffer",
       },
       { "<leader>;", "<cmd>Telescope command_history<cr>", desc = "Command History" },
