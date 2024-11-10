@@ -36,9 +36,16 @@ return {
       has = "definition",
     }
     keys[#keys + 1] = {
-      "gY",
+      "gy",
       function()
         require("telescope.builtin").lsp_type_definitions({ jump_type = "vsplit" })
+      end,
+      desc = "Goto T[y]pe Definition in vsplit",
+    }
+    keys[#keys + 1] = {
+      "gY",
+      function()
+        require("telescope.builtin").lsp_type_definitions()
       end,
       desc = "Goto T[y]pe Definition",
     }
