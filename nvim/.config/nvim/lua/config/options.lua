@@ -6,3 +6,5 @@
 
 vim.opt.relativenumber = false
 vim.opt.number = false
+
+vim.opt.wrap = true
