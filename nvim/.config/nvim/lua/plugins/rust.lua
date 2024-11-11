@@ -22,6 +22,9 @@ return {
                 enable = false,
               },
             },
+            references = {
+              excludeImports = true,
+            },
             -- cargo = {
             --   allFeatures = true,
             --   loadOutDirsFromCheck = true,
