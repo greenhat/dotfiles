@@ -42,6 +42,9 @@ return {
             --     ["async-recursion"] = { "async_recursion" },
             --   },
             -- },
+            check = {
+              features = {},
+            },
           },
         },
       },
