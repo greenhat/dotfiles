@@ -9,3 +9,6 @@ vim.opt.number = false
 
 --- wrapping makes lines jiggly when typing
 vim.opt.wrap = false
+
+vim.g.markdown_syntax_conceal = 0
+vim.wo.conceallevel = 0
