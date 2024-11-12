@@ -44,6 +44,7 @@ return {
             -- },
             check = {
               features = {},
+              command = "clippy",
             },
           },
         },
