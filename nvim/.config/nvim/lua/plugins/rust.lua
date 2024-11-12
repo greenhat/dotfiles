@@ -46,6 +46,11 @@ return {
               features = {},
               command = "clippy",
             },
+            diagnostics = {
+              disabled = {
+                "inactive-code",
+              },
+            },
           },
         },
       },
