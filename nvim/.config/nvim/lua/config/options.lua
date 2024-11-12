@@ -7,4 +7,5 @@
 vim.opt.relativenumber = false
 vim.opt.number = false
 
-vim.opt.wrap = true
+--- wrapping makes lines jiggly when typing
+vim.opt.wrap = false
