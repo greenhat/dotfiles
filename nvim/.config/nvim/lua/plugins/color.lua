@@ -22,7 +22,7 @@ return {
       style = "day",
       styles = {
         comments = { italic = false },
-        keywords = { italic = true },
+        keywords = { italic = false },
         functions = {},
         variables = {},
       },
