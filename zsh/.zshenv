@@ -9,7 +9,7 @@ export PATH
 export EDITOR=nvim
 export VISUAL=nvim
 # export TERM=tmux-256color
-export TERM=xterm-256color
+# export TERM=xterm-256color
 export XCOMPOSEFILE=/tmp/compose
 export CLICOLOR=1
 export BAT_THEME="GitHub"

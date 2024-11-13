@@ -12,7 +12,19 @@ return {
       overrides = {
         -- LspReferenceText = { fg = "#ebdbb2", bg = "#3c3836" },
         -- LspReferenceText = { link = "GruvboxOrangeBold" },
-        -- you need to set LspReferenceRead and LspReferenceWrite as well
+        -- you need to set LspReferenceRead and LspReferenceWrite
+      },
+    },
+  },
+  {
+    "folke/tokyonight.nvim",
+    opts = {
+      style = "day",
+      styles = {
+        comments = { italic = false },
+        keywords = { italic = true },
+        functions = {},
+        variables = {},
       },
     },
   },
@@ -21,7 +33,8 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "gruvbox",
+      -- colorscheme = "gruvbox",
+      colorscheme = "tokyonight",
     },
   },
 }
