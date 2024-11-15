@@ -12,3 +12,6 @@ vim.opt.wrap = false
 
 vim.g.markdown_syntax_conceal = 0
 vim.wo.conceallevel = 0
+
+-- Disable blink-cmp-copilot (Copilot completion in blink-cmp)
+vim.g.ai_cmp = false
