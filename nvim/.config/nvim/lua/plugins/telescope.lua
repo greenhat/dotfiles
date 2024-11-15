@@ -52,7 +52,7 @@ return {
       { "<leader>;", "<cmd>Telescope command_history<cr>", desc = "Command History" },
       -- { "<leader>e", LazyVim.pick("files"), desc = "Find Files (Root Dir)" },
       { "<leader>a", LazyVim.pick("resume"), desc = "Resume" },
-      { "<leader>sp", "<cmd>Telescope lazy_plugins", desc = "Telescope ext Lazy Plugins" },
+      { "<leader>sp", "<cmd>Telescope lazy_plugins<cr>", desc = "Telescope ext Lazy Plugins" },
       { "<leader>e", "<cmd>Telescope frecency workspace=CWD<cr>", desc = "Telescope ext Frecency" },
       { "<leader>/", "<cmd>Telescope egrepify<cr>", desc = "Telecope ext Egrepify" },
       { "<leader>r", "<cmd>Telescope pickers<cr>", desc = "Cached Pickers" },
