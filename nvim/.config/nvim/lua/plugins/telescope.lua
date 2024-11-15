@@ -4,6 +4,7 @@ return {
     dependencies = {
       { "polirritmico/telescope-lazy-plugins.nvim" },
       { "nvim-telescope/telescope-frecency.nvim" },
+      { "fdschmidt93/telescope-egrepify.nvim" },
     },
     opts = {
       defaults = {
@@ -49,6 +50,7 @@ return {
       { "<leader>a", LazyVim.pick("resume"), desc = "Resume" },
       { "<leader>sp", "<cmd>Telescope lazy_plugins", desc = "Telescope ext Lazy Plugins" },
       { "<leader>e", "<cmd>Telescope frecency workspace=CWD<cr>", desc = "Telescope ext Frecency" },
+      { "<leader>/", "<cmd>Telescope egrepify<cr>", desc = "Telecope ext Egrepify" },
     },
   },
 }
