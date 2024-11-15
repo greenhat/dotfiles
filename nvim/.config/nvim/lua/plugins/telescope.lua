@@ -26,6 +26,10 @@ return {
         -- path_display = {
         --   "shorten",
         -- },
+        cache_picker = {
+          num_pickers = 100,
+          ignore_empty_prompt = true,
+        },
       },
       extensions = {
         frecency = {
@@ -51,6 +55,7 @@ return {
       { "<leader>sp", "<cmd>Telescope lazy_plugins", desc = "Telescope ext Lazy Plugins" },
       { "<leader>e", "<cmd>Telescope frecency workspace=CWD<cr>", desc = "Telescope ext Frecency" },
       { "<leader>/", "<cmd>Telescope egrepify<cr>", desc = "Telecope ext Egrepify" },
+      { "<leader>r", "<cmd>Telescope pickers<cr>", desc = "Cached Pickers" },
     },
   },
 }
