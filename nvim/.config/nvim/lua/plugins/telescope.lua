@@ -18,6 +18,7 @@ return {
             ["<Esc>"] = "close",
             ["<C-c>"] = false,
             ["<M-r>"] = "select_default",
+            ["<M-e>"] = "select_default",
           },
           n = {
             -- ...

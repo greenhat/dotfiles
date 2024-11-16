@@ -60,5 +60,7 @@ return {
     keys[#keys + 1] =
       -- { "<leader>t", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" }, has = "codeAction" }
       { "<M-r>", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v", "i" }, has = "codeAction" }
+    keys[#keys + 1] =
+      { "<M-e>", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v", "i" }, has = "codeAction" }
   end,
 }
