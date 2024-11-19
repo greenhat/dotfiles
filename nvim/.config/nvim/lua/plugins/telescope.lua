@@ -1,11 +1,6 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
-    dependencies = {
-      { "polirritmico/telescope-lazy-plugins.nvim" },
-      { "nvim-telescope/telescope-frecency.nvim" },
-      { "fdschmidt93/telescope-egrepify.nvim" },
-    },
     opts = {
       defaults = {
         sorting_strategy = "ascending",
@@ -32,15 +27,6 @@ return {
           ignore_empty_prompt = true,
         },
       },
-      extensions = {
-        frecency = {
-          matcher = "fuzzy",
-          -- default sorting function to combine recency and fzy score
-          -- scoring_function = function(recency, fzy_score)
-          --   return (10 / (recency == 0 and 1 or recency)) - 1 / fzy_score
-          -- end,
-        },
-      },
     },
 
     keys = {
@@ -57,6 +43,47 @@ return {
       { "<leader>e", "<cmd>Telescope frecency workspace=CWD<cr>", desc = "Telescope ext Frecency" },
       { "<leader>/", "<cmd>Telescope egrepify<cr>", desc = "Telecope ext Egrepify" },
       { "<leader>r", "<cmd>Telescope pickers<cr>", desc = "Cached Pickers" },
+      {
+        "<leader>t",
+        function()
+          require("telescope").extensions.tmux.pane_file_paths({
+            grep_cmd = "rg",
+            -- regex = "",
+          })
+        end,
+        desc = "Telescope ext Tmux file paths",
+      },
+    },
+  },
+  {
+    "trevarj/telescope-tmux.nvim",
+    dependencies = {
+      { "nvim-telescope/telescope.nvim" },
+    },
+  },
+  {
+    "polirritmico/telescope-lazy-plugins.nvim",
+    dependencies = {
+      { "nvim-telescope/telescope.nvim" },
+    },
+  },
+  {
+    "nvim-telescope/telescope-frecency.nvim",
+    dependencies = {
+      { "nvim-telescope/telescope.nvim" },
+    },
+    opts = {
+      matcher = "fuzzy",
+      -- default sorting function to combine recency and fzy score
+      -- scoring_function = function(recency, fzy_score)
+      --   return (10 / (recency == 0 and 1 or recency)) - 1 / fzy_score
+      -- end,
+    },
+  },
+  {
+    "fdschmidt93/telescope-egrepify.nvim",
+    dependencies = {
+      { "nvim-telescope/telescope.nvim" },
     },
   },
 }
