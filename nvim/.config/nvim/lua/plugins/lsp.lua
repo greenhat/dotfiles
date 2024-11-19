@@ -29,9 +29,17 @@ return {
       desc = "Goto Symbol (Workspace)",
     }
     keys[#keys + 1] = {
-      "gD",
+      "gd",
       function()
         require("telescope.builtin").lsp_definitions({ jump_type = "vsplit" })
+      end,
+      desc = "Goto Definition",
+      has = "definition",
+    }
+    keys[#keys + 1] = {
+      "gD",
+      function()
+        require("telescope.builtin").lsp_definitions()
       end,
       desc = "Goto Definition",
       has = "definition",
@@ -53,14 +61,23 @@ return {
     keys[#keys + 1] = {
       "gi",
       function()
-        require("telescope.builtin").lsp_implementations({ reuse_win = true })
+        require("telescope.builtin").lsp_implementations({ reuse_win = false })
       end,
       desc = "Goto Implementation",
     }
-    keys[#keys + 1] =
-      -- { "<leader>t", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" }, has = "codeAction" }
-      { "<M-r>", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v", "i" }, has = "codeAction" }
-    keys[#keys + 1] =
-      { "<M-e>", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v", "i" }, has = "codeAction" }
+    keys[#keys + 1] = {
+      "<M-r>",
+      vim.lsp.buf.code_action,
+      desc = "Code Action",
+      mode = { "n", "v", "i" },
+      has = "codeAction",
+    }
+    keys[#keys + 1] = {
+      "<M-e>",
+      vim.lsp.buf.code_action,
+      desc = "Code Action",
+      mode = { "n", "v", "i" },
+      has = "codeAction",
+    }
   end,
 }
