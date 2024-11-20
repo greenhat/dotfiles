@@ -13,7 +13,7 @@ return {
   keys = {
     {
       "<leader>gn",
-      "<cmd>Neogit<CR>",
+      "<cmd>wa | Neogit<CR>",
       desc = "Neogit",
     },
   },
