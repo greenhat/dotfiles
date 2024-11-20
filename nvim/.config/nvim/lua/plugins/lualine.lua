@@ -11,6 +11,7 @@ return {
     local opts = {
       sections = {},
       winbar = {
+        -- lualine_a = { "mode" },
         lualine_c = {
           LazyVim.lualine.root_dir(),
           {
@@ -24,6 +25,21 @@ return {
           },
           { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
           { LazyVim.lualine.pretty_path() },
+        },
+
+        lualine_x = {
+            -- stylua: ignore
+            {
+              function() return require("noice").api.status.command.get() end,
+              cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
+              color = function() return LazyVim.ui.fg("Statement") end,
+            },
+            -- stylua: ignore
+            {
+              function() return require("noice").api.status.mode.get() end,
+              cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
+              color = function() return LazyVim.ui.fg("Constant") end,
+            },
         },
         lualine_y = {
           -- { "progress", separator = " ", padding = { left = 1, right = 0 } },
