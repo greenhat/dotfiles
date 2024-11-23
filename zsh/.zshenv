@@ -4,6 +4,7 @@ path=("$HOME/bin" "$path[@]")
 path=("/usr/local/sbin" "$path[@]") # brew
 path=("$HOME/.cargo/bin" "$path[@]") # rust
 path=("/Applications/Visual Studio Code.app/Contents/Resources/app/bin" "$path[@]") # vscode's code
+path=("$HOME/go/bin" "$path[@]") # go
 export PATH
 
 export EDITOR=nvim
