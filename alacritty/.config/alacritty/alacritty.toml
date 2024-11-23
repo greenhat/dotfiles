@@ -1,0 +1,111 @@
+
+[[keyboard.bindings]]
+action = "ToggleFullscreen"
+key = "F11"
+
+[[keyboard.bindings]]
+action = "CreateNewWindow"
+key = "N"
+mods = "Control|Alt"
+
+[general]
+live_config_reload = true
+
+# [colors.bright]
+# black = "0x928374"
+# blue = "0x076678"
+# cyan = "0x427b58"
+# green = "0x79740e"
+# magenta = "0x8f3f71"
+# red = "0x9d0006"
+# white = "0x3c3836"
+# yellow = "0xb57614"
+#
+# [colors.normal]
+# black = "0xfbf1c7"
+# blue = "0x458588"
+# cyan = "0x689d6a"
+# green = "0x98971a"
+# magenta = "0xb16286"
+# red = "0xcc241d"
+# white = "0x7c6f64"
+# yellow = "0xd79921"
+#
+# [colors.primary]
+# background = "0xf9f5d7"
+# foreground = "0x3c3836"
+
+# TokyoNight Alacritty Colors
+# Default colors
+[colors.primary]
+background = '#e1e2e7'
+foreground = '#3760bf'
+
+#[colors.cursor]
+#cursor = '#3760bf'
+#text = '#e1e2e7'
+
+# Normal colors
+[colors.normal]
+black = '#b4b5b9'
+red = '#f52a65'
+green = '#587539'
+yellow = '#8c6c3e'
+blue = '#2e7de9'
+magenta = '#9854f1'
+cyan = '#007197'
+white = '#6172b0'
+
+# Bright colors
+[colors.bright]
+black = '#a1a6c5'
+red = '#f52a65'
+green = '#587539'
+yellow = '#8c6c3e'
+blue = '#2e7de9'
+magenta = '#9854f1'
+cyan = '#007197'
+white = '#3760bf'
+
+# Indexed Colors
+[[colors.indexed_colors]]
+index = 16
+color = '#b15c00'
+
+[[colors.indexed_colors]]
+index = 17
+color = '#c64343'
+
+[cursor]
+thickness = 0.15
+
+[cursor.style]
+shape = "Beam"
+
+[font]
+size = 15.0
+
+[font.bold]
+style = "ExtraBold"
+
+[font.bold_italic]
+style = "Bold Italic"
+
+[font.italic]
+style = "SemiBold Italic"
+
+[font.normal]
+family = "Iosevka Fixed"
+style = "Bold"
+
+[window]
+decorations = "none"
+dynamic_padding = true
+dynamic_title = true
+title = "Alacritty"
+
+[window.class]
+general = "Alacritty"
+instance = "Alacritty"
+
+[keyboard]
