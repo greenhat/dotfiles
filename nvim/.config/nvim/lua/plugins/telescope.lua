@@ -47,7 +47,7 @@ return {
         "<leader>t",
         function()
           require("telescope").extensions.tmux.pane_file_paths({
-            grep_cmd = "rg",
+            grep_cmd = "rg -o",
             -- regex = "",
           })
         end,
@@ -56,7 +56,10 @@ return {
     },
   },
   {
-    "trevarj/telescope-tmux.nvim",
+    -- "trevarj/telescope-tmux.nvim",
+    "telescope-tmux.nvim",
+    name = "telescope-tmux.nvim",
+    dev = true,
     dependencies = {
       { "nvim-telescope/telescope.nvim" },
     },
