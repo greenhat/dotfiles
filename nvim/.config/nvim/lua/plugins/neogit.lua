@@ -10,6 +10,11 @@ return {
     -- "echasnovski/mini.pick", -- optional
   },
   config = true,
+  opts = {
+    commit_editor = {
+      staged_diff_split_kind = "vsplit",
+    },
+  },
   keys = {
     {
       "<leader>gn",
