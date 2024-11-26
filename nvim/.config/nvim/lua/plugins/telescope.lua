@@ -40,7 +40,8 @@ return {
       -- { "<leader>e", LazyVim.pick("files"), desc = "Find Files (Root Dir)" },
       { "<leader>a", LazyVim.pick("resume"), desc = "Resume" },
       { "<leader>sp", "<cmd>Telescope lazy_plugins<cr>", desc = "Telescope ext Lazy Plugins" },
-      { "<leader>e", "<cmd>Telescope frecency workspace=CWD<cr>", desc = "Telescope ext Frecency" },
+      -- { "<leader>e", "<cmd>Telescope frecency workspace=CWD<cr>", desc = "Telescope ext Frecency" },
+      { "<leader>e", LazyVim.pick("files"), desc = "Find Files (Root Dir)" },
       { "<leader>/", "<cmd>Telescope egrepify<cr>", desc = "Telecope ext Egrepify" },
       { "<leader>r", "<cmd>Telescope pickers<cr>", desc = "Cached Pickers" },
       {
@@ -70,19 +71,19 @@ return {
       { "nvim-telescope/telescope.nvim" },
     },
   },
-  {
-    "nvim-telescope/telescope-frecency.nvim",
-    dependencies = {
-      { "nvim-telescope/telescope.nvim" },
-    },
-    opts = {
-      matcher = "fuzzy",
-      -- default sorting function to combine recency and fzy score
-      -- scoring_function = function(recency, fzy_score)
-      --   return (10 / (recency == 0 and 1 or recency)) - 1 / fzy_score
-      -- end,
-    },
-  },
+  -- {
+  --   "nvim-telescope/telescope-frecency.nvim",
+  --   dependencies = {
+  --     { "nvim-telescope/telescope.nvim" },
+  --   },
+  --   opts = {
+  --     matcher = "fuzzy",
+  --     -- default sorting function to combine recency and fzy score
+  --     -- scoring_function = function(recency, fzy_score)
+  --     --   return (10 / (recency == 0 and 1 or recency)) - 1 / fzy_score
+  --     -- end,
+  --   },
+  -- },
   {
     "fdschmidt93/telescope-egrepify.nvim",
     dependencies = {
