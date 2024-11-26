@@ -10,3 +10,11 @@ map({ "i", "x", "n", "s" }, "<D-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 -- unmap move line up and down
 vim.keymap.del({ "i", "x", "n", "s" }, "<M-j>")
 vim.keymap.del({ "i", "x", "n", "s" }, "<M-k>")
+
+map({ "n", "x" }, "<leader>gy", function()
+  Snacks.gitbrowse({
+    open = function(url)
+      vim.fn.setreg("+", url)
+    end,
+  })
+end, { desc = "Git Browse (copy)" })
