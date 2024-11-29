@@ -35,7 +35,19 @@ return {
   --   end,
   -- },
   {
-    "EdenEast/nightfox.nvim", -- lazy
+    "EdenEast/nightfox.nvim",
+    opts = {
+      options = {
+        inverse = {
+          match_paren = true,
+        },
+      },
+      palettes = {
+        dayfox = {
+          fg3 = "#d0d0d0", -- Line numbers, fold columns
+        },
+      },
+    },
   },
   -- {
   --   "sainnhe/gruvbox-material",
