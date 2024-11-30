@@ -4,7 +4,7 @@
 
 -- vim.g.lazyvim_picker = "fzf-lua"
 
-vim.opt.relativenumber = false
+-- vim.opt.relativenumber = false
 -- vim.opt.number = false
 
 --- wrapping makes lines jiggly when typing? no, seems like no line numbers in the gutter makes it jiggly
