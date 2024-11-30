@@ -39,12 +39,12 @@ return {
     opts = {
       options = {
         inverse = {
-          match_paren = true,
+          match_paren = false,
         },
       },
       palettes = {
         dayfox = {
-          fg3 = "#d0d0d0", -- Line numbers, fold columns
+          -- fg3 = "#d0d0d0", -- Line numbers, fold columns
         },
       },
     },
