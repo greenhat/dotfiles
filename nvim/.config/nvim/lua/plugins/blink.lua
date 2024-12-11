@@ -1,13 +1,15 @@
 return {
   "saghen/blink.cmp",
   opts = {
-    -- completion = {
-    --   menu = {
-    --     auto_show = false,
-    --   },
-    -- },
+    completion = {
+      menu = {
+        auto_show = false,
+      },
+    },
     keymap = {
-      preset = "default",
+      -- preset = "default",
+
+      ["<C-e>"] = { "show", "show_documentation", "hide_documentation" },
       -- accept word
       ["<M-Tab>"] = {
         function()
