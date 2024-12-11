@@ -27,13 +27,29 @@ return {
   --     },
   --   },
   -- },
-  -- {
-  --   "zenbones-theme/zenbones.nvim",
-  --   dependencies = "rktjmp/lush.nvim",
-  --   config = function()
-  --     vim.g.zenbones_italic_comments = false
-  --   end,
-  -- },
+  {
+    "zenbones-theme/zenbones.nvim",
+    dependencies = "rktjmp/lush.nvim",
+    config = function()
+      vim.g.zenbones_italic_comments = false
+      vim.g.zenbones_lightness = "bright"
+      -- vim.g.zenbones_darken_non_text = 99
+      -- vim.g.zenbones_darken_comments = 30
+      vim.api.nvim_create_autocmd({ "ColorScheme" }, {
+        pattern = "zenbones",
+        callback = function()
+          local lush = require("lush")
+          local base = require("zenbones")
+          local specs = lush.parse(function()
+            return {
+              Constant({ base.Constant, gui = "" }),
+            }
+          end)
+          lush.apply(lush.compile(specs))
+        end,
+      })
+    end,
+  },
   {
     "EdenEast/nightfox.nvim",
     opts = {
@@ -71,9 +87,9 @@ return {
       -- colorscheme = "tokyonight",
       --
       -- damn italics for types and constants
-      -- colorscheme = "zenbones",
+      colorscheme = "zenbones",
       --
-      colorscheme = "dayfox",
+      -- colorscheme = "dayfox",
     },
   },
 }
