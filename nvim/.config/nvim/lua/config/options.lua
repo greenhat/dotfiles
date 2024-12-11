@@ -23,3 +23,10 @@ vim.opt.laststatus = 3
 --  hi! link StatusLineNC Normal
 --  set statusline=%{repeat('─',winwidth('.'))}
 --  ]])
+
+-- remove "-" for trailing whitespace
+vim.opt.listchars = {
+  tab = "> ",
+  trail = " ",
+  nbsp = "+",
+}
