@@ -1,39 +1,7 @@
-return {}
--- return {
---   "folke/trouble.nvim",
---
---   keys = {
---     {
---       "[q",
---       function()
---         if require("trouble").is_open() then
---           require("trouble").prev({ skip_groups = true, jump = true })
---           -- vim.diagnostic.open_float()
---           vim.diagnostic.goto_prev()
---         else
---           local ok, err = pcall(vim.cmd.cprev)
---           if not ok then
---             vim.notify(err, vim.log.levels.ERROR)
---           end
---         end
---       end,
---       desc = "My Previous Trouble/Quickfix Item",
---     },
---     {
---       "]q",
---       function()
---         if require("trouble").is_open() then
---           require("trouble").next({ skip_groups = true, jump = true })
---           -- vim.diagnostic.open_float()
---           vim.diagnostic.goto_next()
---         else
---           local ok, err = pcall(vim.cmd.cnext)
---           if not ok then
---             vim.notify(err, vim.log.levels.ERROR)
---           end
---         end
---       end,
---       desc = "My Next Trouble/Quickfix Item",
---     },
---   },
--- }
+return {
+  "folke/trouble.nvim",
+
+  keys = {
+    { "<leader>i", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)" },
+  },
+}
