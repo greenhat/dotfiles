@@ -30,3 +30,5 @@ vim.opt.listchars = {
   trail = " ",
   nbsp = "+",
 }
+
+vim.g.snacks_animate = false
