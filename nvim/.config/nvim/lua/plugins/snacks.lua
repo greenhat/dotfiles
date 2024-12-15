@@ -4,5 +4,7 @@ return {
     words = {
       modes = { "n" },
     },
+    indent = { enabled = false },
+    scroll = { enabled = false },
   },
 }
