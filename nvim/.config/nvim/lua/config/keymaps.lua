@@ -18,3 +18,6 @@ map({ "n", "x" }, "<leader>gy", function()
     end,
   })
 end, { desc = "Git Browse (copy)" })
+
+-- readline like keymaps on macos
+map({ "i" }, "<M-BS>", "<C-w>", { desc = "delete word backward" })
