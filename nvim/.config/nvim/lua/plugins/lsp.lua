@@ -30,11 +30,12 @@ return {
     }
     keys[#keys + 1] = {
       "gd",
-      function()
-        require("telescope.builtin").lsp_definitions({ jump_type = "vsplit" })
-      end,
-      desc = "Goto Definition",
-      has = "definition",
+      false,
+      --   function()
+      --     require("telescope.builtin").lsp_definitions({ jump_type = "vsplit" })
+      --   end,
+      --   desc = "Goto Definition",
+      --   has = "definition",
     }
     keys[#keys + 1] = {
       "gD",
@@ -46,10 +47,11 @@ return {
     }
     keys[#keys + 1] = {
       "gy",
-      function()
-        require("telescope.builtin").lsp_type_definitions({ jump_type = "vsplit" })
-      end,
-      desc = "Goto T[y]pe Definition in vsplit",
+      false,
+      -- function()
+      --   require("telescope.builtin").lsp_type_definitions({ jump_type = "vsplit" })
+      -- end,
+      -- desc = "Goto T[y]pe Definition in vsplit",
     }
     keys[#keys + 1] = {
       "gY",
