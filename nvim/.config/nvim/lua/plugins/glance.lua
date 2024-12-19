@@ -2,6 +2,7 @@ return {
   "dnlhc/glance.nvim",
   opts = function()
     local opts = {
+      height = 30,
       mappings = {
         list = {
           ["<C-v>"] = require("glance").actions.jump_vsplit,
