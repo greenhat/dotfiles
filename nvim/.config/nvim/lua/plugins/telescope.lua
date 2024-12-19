@@ -51,8 +51,10 @@ return {
       {
         "<leader><space>",
         -- "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>", -- selects the last used buffer
-        "<cmd>Telescope buffers sort_mru=true <cr>",
-        desc = "Switch Buffer",
+        -- "<cmd>Telescope buffers sort_mru=true<cr>", -- selects the last used buffer
+        -- desc = "Switch Buffer",
+        "<cmd>lua require('telescope').extensions.smart_open.smart_open { cwd_only = true, filename_first = false, }<cr>",
+        desc = "Smart open",
       },
       { "<leader>;", "<cmd>Telescope command_history<cr>", desc = "Command History" },
       -- { "<leader>e", LazyVim.pick("files"), desc = "Find Files (Root Dir)" },
@@ -106,6 +108,17 @@ return {
     "fdschmidt93/telescope-egrepify.nvim",
     dependencies = {
       { "nvim-telescope/telescope.nvim" },
+    },
+  },
+  {
+    "danielfalk/smart-open.nvim",
+    dependencies = {
+      { "nvim-telescope/telescope.nvim" },
+      { "kkharji/sqlite.lua" },
+      -- Only required if using match_algorithm fzf
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+      -- Optional.  If installed, native fzy will be used when match_algorithm is fzy
+      { "nvim-telescope/telescope-fzy-native.nvim" },
     },
   },
 }
