@@ -1,0 +1,8 @@
+theme = Github
+window-decoration = false
+# macos-titlebar-style = hidden
+# gtk-titlebar = false
+# gtk-adwaita = false
+
+font-family = "Iosevka Fixed SemiBold"
+font-size = 14
