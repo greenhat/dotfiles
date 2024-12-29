@@ -2,7 +2,7 @@ theme = zenbones_light
 
 font-family = "TX-02"
 font-size = 14
-# font-thicken = true
+font-thicken = true
 
 shell-integration = zsh
 adjust-cursor-thickness = 3
