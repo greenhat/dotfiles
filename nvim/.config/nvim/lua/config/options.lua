@@ -32,3 +32,5 @@ vim.opt.listchars = {
 }
 
 vim.g.snacks_animate = false
+
+vim.opt.sidescrolloff = 0
