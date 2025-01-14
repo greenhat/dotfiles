@@ -61,7 +61,7 @@ return {
       { "<leader>a", LazyVim.pick("resume"), desc = "Resume" },
       { "<leader>sp", "<cmd>Telescope lazy_plugins<cr>", desc = "Telescope ext Lazy Plugins" },
       -- { "<leader>e", "<cmd>Telescope frecency workspace=CWD<cr>", desc = "Telescope ext Frecency" },
-      { "<leader>e", LazyVim.pick("files"), desc = "Find Files (Root Dir)" },
+      -- { "<leader>e", LazyVim.pick("files"), desc = "Find Files (Root Dir)" },
       { "<leader>/", "<cmd>Telescope egrepify<cr>", desc = "Telecope ext Egrepify" },
       { "<leader>r", "<cmd>Telescope pickers<cr>", desc = "Cached Pickers" },
       {
@@ -74,6 +74,8 @@ return {
         end,
         desc = "Telescope ext Tmux file paths",
       },
+      { "<leader>e", "<cmd>Telescope diagnostics severity=error<cr>", desc = "Workspace errors" },
+      { "<leader>i", "<cmd>Telescope diagnostics<cr>", desc = "Workspace diagnostics" },
     },
   },
   {
