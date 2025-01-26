@@ -8,6 +8,7 @@ return {
   --   })
   -- end,
   opts = function()
+    local max_path_len = 100
     local opts = {
       sections = {},
       winbar = {
@@ -24,7 +25,7 @@ return {
             },
           },
           { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-          { LazyVim.lualine.pretty_path() },
+          { LazyVim.lualine.pretty_path({ length = max_path_len }) },
         },
 
         lualine_x = {
@@ -50,7 +51,7 @@ return {
         lualine_c = {
           LazyVim.lualine.root_dir(),
           { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-          { LazyVim.lualine.pretty_path() },
+          { LazyVim.lualine.pretty_path({ length = max_path_len }) },
         },
         lualine_y = {
           -- { "progress", separator = " ", padding = { left = 1, right = 0 } },
