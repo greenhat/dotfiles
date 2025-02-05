@@ -23,7 +23,7 @@ return {
       function()
         require("telescope.builtin").lsp_dynamic_workspace_symbols({
           symbols = LazyVim.config.get_kind_filter(),
-          path_display = "hidden",
+          -- path_display = "hidden",
         })
       end,
       desc = "Goto Symbol (Workspace)",
