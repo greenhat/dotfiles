@@ -38,6 +38,12 @@ return {
       --   has = "definition",
     }
     keys[#keys + 1] = {
+      "gl",
+      vim.lsp.buf.declaration,
+      desc = "Goto declaration",
+      has = "declaration",
+    }
+    keys[#keys + 1] = {
       "gD",
       function()
         require("telescope.builtin").lsp_definitions()
