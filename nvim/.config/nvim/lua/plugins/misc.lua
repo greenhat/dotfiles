@@ -13,4 +13,8 @@ return {
     --   { "n", "gk", "<cmd>Hardtime<CR>", desc = "Hardtime" },
     -- },
   },
+  {
+    "akinsho/git-conflict.nvim",
+    config = true,
+  },
 }
