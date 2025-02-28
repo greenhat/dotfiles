@@ -34,3 +34,13 @@ vim.opt.listchars = {
 vim.g.snacks_animate = false
 
 vim.opt.sidescrolloff = 0
+
+-- `config` in the plugin does not work, so do it here
+vim.g.firenvim_config = {
+  -- config values, like in my case:
+  localSettings = {
+    [".*"] = {
+      takeover = "never",
+    },
+  },
+}
