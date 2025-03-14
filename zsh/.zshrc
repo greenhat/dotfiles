@@ -71,7 +71,11 @@ SAVEHIST=100000
 # as each line is added, the history file is checked to see if anything was written out by another shell, 
 # and if so it is included in the history of the current shell too. This means that zsh's 
 # running in different windows but on the same host (or more generally with the same home directory) share the same history.
-setopt SHARE_HISTORY  # End of lines configured by zsh-newuser-install
+# setopt SHARE_HISTORY  # End of lines configured by zsh-newuser-install
+
+setopt    appendhistory     #Append history to the history file (no overwriting)
+setopt    sharehistory      #Share history across terminals
+setopt    incappendhistory  #Immediately append to the history file, not just when a term is killed
 
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
