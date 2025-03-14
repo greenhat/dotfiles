@@ -46,3 +46,5 @@ vim.g.firenvim_config = {
 }
 -- set background (needed for firenvim)
 vim.opt.background = "light"
+
+vim.opt.autoread = true
