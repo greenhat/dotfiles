@@ -10,21 +10,21 @@ return {
   opts = function()
     local max_path_len = 100
     local opts = {
-      sections = {},
-      winbar = {
-        -- lualine_a = { "mode" },
+      sections = {
+        lualine_a = {},
+        lualine_b = {},
         lualine_c = {
-          LazyVim.lualine.root_dir(),
-          {
-            "diagnostics",
-            symbols = {
-              error = LazyVim.config.icons.diagnostics.Error,
-              warn = LazyVim.config.icons.diagnostics.Warn,
-              info = LazyVim.config.icons.diagnostics.Info,
-              hint = LazyVim.config.icons.diagnostics.Hint,
-            },
-          },
-          { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+          -- LazyVim.lualine.root_dir(),
+          -- {
+          --   "diagnostics",
+          --   symbols = {
+          --     error = LazyVim.config.icons.diagnostics.Error,
+          --     warn = LazyVim.config.icons.diagnostics.Warn,
+          --     info = LazyVim.config.icons.diagnostics.Info,
+          --     hint = LazyVim.config.icons.diagnostics.Hint,
+          --   },
+          -- },
+          -- { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
           { LazyVim.lualine.pretty_path({ length = max_path_len }) },
         },
 
@@ -43,14 +43,36 @@ return {
             },
         },
         lualine_y = {
+          {
+            "diagnostics",
+            symbols = {
+              error = LazyVim.config.icons.diagnostics.Error,
+              warn = LazyVim.config.icons.diagnostics.Warn,
+              info = LazyVim.config.icons.diagnostics.Info,
+              hint = LazyVim.config.icons.diagnostics.Hint,
+            },
+          },
+        },
+        lualine_z = {
+          -- { "progress", separator = " ", padding = { left = 1, right = 0 } },
+          { "location", padding = { left = 0, right = 1 } },
+        },
+      },
+      winbar = {
+        lualine_c = {
+          -- LazyVim.lualine.root_dir(),
+          -- { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+          { LazyVim.lualine.pretty_path({ length = max_path_len }) },
+        },
+        lualine_y = {
           -- { "progress", separator = " ", padding = { left = 1, right = 0 } },
           { "location", padding = { left = 0, right = 1 } },
         },
       },
       inactive_winbar = {
         lualine_c = {
-          LazyVim.lualine.root_dir(),
-          { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+          -- LazyVim.lualine.root_dir(),
+          -- { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
           { LazyVim.lualine.pretty_path({ length = max_path_len }) },
         },
         lualine_y = {
