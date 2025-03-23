@@ -9,6 +9,7 @@ return {
   -- end,
   opts = function()
     local max_path_len = 100
+    local icons = LazyVim.config.icons
     local opts = {
       sections = {
         lualine_a = {},
@@ -43,13 +44,15 @@ return {
             },
         },
         lualine_y = {
+
           {
             "diagnostics",
+            sources = { "nvim_workspace_diagnostic" },
             symbols = {
-              error = LazyVim.config.icons.diagnostics.Error,
-              warn = LazyVim.config.icons.diagnostics.Warn,
-              info = LazyVim.config.icons.diagnostics.Info,
-              hint = LazyVim.config.icons.diagnostics.Hint,
+              error = icons.diagnostics.Error,
+              warn = icons.diagnostics.Warn,
+              info = icons.diagnostics.Info,
+              hint = icons.diagnostics.Hint,
             },
           },
         },
@@ -64,6 +67,17 @@ return {
           -- { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
           { LazyVim.lualine.pretty_path({ length = max_path_len }) },
         },
+        lualine_x = {
+          {
+            "diagnostics",
+            symbols = {
+              error = LazyVim.config.icons.diagnostics.Error,
+              warn = LazyVim.config.icons.diagnostics.Warn,
+              info = LazyVim.config.icons.diagnostics.Info,
+              hint = LazyVim.config.icons.diagnostics.Hint,
+            },
+          },
+        },
         lualine_y = {
           -- { "progress", separator = " ", padding = { left = 1, right = 0 } },
           { "location", padding = { left = 0, right = 1 } },
@@ -74,6 +88,17 @@ return {
           -- LazyVim.lualine.root_dir(),
           -- { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
           { LazyVim.lualine.pretty_path({ length = max_path_len }) },
+        },
+        lualine_x = {
+          {
+            "diagnostics",
+            symbols = {
+              error = LazyVim.config.icons.diagnostics.Error,
+              warn = LazyVim.config.icons.diagnostics.Warn,
+              info = LazyVim.config.icons.diagnostics.Info,
+              hint = LazyVim.config.icons.diagnostics.Hint,
+            },
+          },
         },
         lualine_y = {
           -- { "progress", separator = " ", padding = { left = 1, right = 0 } },
