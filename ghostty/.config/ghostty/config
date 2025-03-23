@@ -25,3 +25,4 @@ keybind = super+r=text:\x1br
 
 clipboard-read = allow
 clipboard-write = allow
+copy-on-select = clipboard
