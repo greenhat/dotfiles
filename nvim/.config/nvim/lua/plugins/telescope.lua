@@ -81,9 +81,9 @@ return {
   {
     -- "trevarj/telescope-tmux.nvim",
     "telescope-tmux.nvim",
-    { url = "git@github.com:greenhat/telescope-tmux.nvim.git" },
     name = "telescope-tmux.nvim",
     -- dev = true,
+    { url = "git@github.com:greenhat/telescope-tmux.nvim.git", branch = "support-rust-test" },
     dependencies = {
       { "nvim-telescope/telescope.nvim" },
     },
