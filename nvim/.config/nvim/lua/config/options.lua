@@ -48,43 +48,15 @@ vim.g.firenvim_config = {
 vim.opt.background = "light"
 
 vim.opt.autoread = true
-
--- -- always use OSC 52 (otherwise will be wl-copy on wayland)
--- vim.g.clipboard = {
---   name = "OSC 52",
---   copy = {
---     ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
---     ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
---   },
---   paste = {
---     ["+"] = require("vim.ui.clipboard.osc52").paste("+"),
---     ["*"] = require("vim.ui.clipboard.osc52").paste("*"),
---   },
--- }
-
--- https://github.com/neovim/neovim/discussions/28010
-
-if os.getenv("SSH_TTY") == nil then
-  -- vim.o.clipboard.append("unnamedplus")
-else
-  vim.o.clipboard = "unnamedplus"
-
-  local function paste()
-    return {
-      vim.fn.split(vim.fn.getreg(""), "\n"),
-      vim.fn.getregtype(""),
-    }
-  end
-
-  vim.g.clipboard = {
-    name = "OSC 52",
-    copy = {
-      ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
-      ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
-    },
-    paste = {
-      ["+"] = paste,
-      ["*"] = paste,
-    },
-  }
-end
+-- always use OSC 52 (otherwise will be wl-copy on wayland)
+vim.g.clipboard = {
+  name = "OSC 52",
+  copy = {
+    ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+    ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+  },
+  paste = {
+    ["+"] = require("vim.ui.clipboard.osc52").paste("+"),
+    ["*"] = require("vim.ui.clipboard.osc52").paste("*"),
+  },
+}
