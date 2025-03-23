@@ -62,24 +62,29 @@ vim.opt.autoread = true
 --   },
 -- }
 
--- -- https://github.com/neovim/neovim/discussions/28010
-vim.o.clipboard = "unnamedplus"
+-- https://github.com/neovim/neovim/discussions/28010
 
-local function paste()
-  return {
-    vim.fn.split(vim.fn.getreg(""), "\n"),
-    vim.fn.getregtype(""),
+if os.getenv("SSH_TTY") == nil then
+  -- vim.o.clipboard.append("unnamedplus")
+else
+  vim.o.clipboard = "unnamedplus"
+
+  local function paste()
+    return {
+      vim.fn.split(vim.fn.getreg(""), "\n"),
+      vim.fn.getregtype(""),
+    }
+  end
+
+  vim.g.clipboard = {
+    name = "OSC 52",
+    copy = {
+      ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+      ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+    },
+    paste = {
+      ["+"] = paste,
+      ["*"] = paste,
+    },
   }
 end
-
-vim.g.clipboard = {
-  name = "OSC 52",
-  copy = {
-    ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
-    ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
-  },
-  paste = {
-    ["+"] = paste,
-    ["*"] = paste,
-  },
-}
