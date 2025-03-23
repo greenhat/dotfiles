@@ -22,3 +22,6 @@ keybind = super+o=text:\x1bo
 keybind = super+t=text:\x1bt
 keybind = super+s=text:\x1bs
 keybind = super+r=text:\x1br
+
+clipboard-read = allow
+clipboard-write = allow
