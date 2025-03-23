@@ -48,15 +48,37 @@ vim.g.firenvim_config = {
 vim.opt.background = "light"
 
 vim.opt.autoread = true
--- always use OSC 52 (otherwise will be wl-copy on wayland)
-vim.g.clipboard = {
-  name = "OSC 52",
-  copy = {
-    ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
-    ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
-  },
-  paste = {
-    ["+"] = require("vim.ui.clipboard.osc52").paste("+"),
-    ["*"] = require("vim.ui.clipboard.osc52").paste("*"),
-  },
-}
+
+if vim.g.started_by_firenvim == true then
+  -- leave default clipboard for firenvim
+else
+  if vim.env.TMUX ~= nil then
+    local copy = { "tmux", "load-buffer", "-w", "-" }
+    local paste = { "bash", "-c", "tmux refresh-client -l && sleep 0.05 && tmux save-buffer -" }
+    vim.g.clipboard = {
+      name = "tmux",
+      copy = {
+        ["+"] = copy,
+        ["*"] = copy,
+      },
+      paste = {
+        ["+"] = paste,
+        ["*"] = paste,
+      },
+      cache_enabled = 0,
+    }
+  else
+    -- use OSC 52 (otherwise the default will be wl-copy on wayland)
+    vim.g.clipboard = {
+      name = "OSC 52",
+      copy = {
+        ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+        ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+      },
+      paste = {
+        ["+"] = require("vim.ui.clipboard.osc52").paste("+"),
+        ["*"] = require("vim.ui.clipboard.osc52").paste("*"),
+      },
+    }
+  end
+end
