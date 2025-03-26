@@ -14,3 +14,4 @@ export VISUAL=nvim
 export XCOMPOSEFILE=/tmp/compose
 export CLICOLOR=1
 export BAT_THEME="GitHub"
+export GOOSE_CLI_THEME=light
