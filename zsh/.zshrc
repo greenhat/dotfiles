@@ -130,30 +130,33 @@ case $TERM in
         # }
         ;;
 esac
-
-# FZF
-# fedora 
-if [[ -f /usr/share/fzf/shell/key-bindings.zsh ]]; then
-    source /usr/share/fzf/shell/key-bindings.zsh
-fi
-# fedora 
-if [[ -f /usr/share/fzf/shell/completion.zsh ]]; then
-    source /usr/share/fzf/shell/completion.zsh
-fi
-
-# debian
-if [[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ]]; then
-    source /usr/share/doc/fzf/examples/key-bindings.zsh
-fi
-# debian
-if [[ -f /usr/share/doc/fzf/examples/completion.zsh ]]; then
-    source /usr/share/doc/fzf/examples/completion.zsh
-fi
+#
+# # FZF
+# # fedora 
+# if [[ -f /usr/share/fzf/shell/key-bindings.zsh ]]; then
+#     source /usr/share/fzf/shell/key-bindings.zsh
+# fi
+# # fedora 
+# if [[ -f /usr/share/fzf/shell/completion.zsh ]]; then
+#     source /usr/share/fzf/shell/completion.zsh
+# fi
+#
+# # debian
+# if [[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ]]; then
+#     source /usr/share/doc/fzf/examples/key-bindings.zsh
+# fi
+# # debian
+# if [[ -f /usr/share/doc/fzf/examples/completion.zsh ]]; then
+#     source /usr/share/doc/fzf/examples/completion.zsh
+# fi
 
 export FZF_DEFAULT_OPTS='--layout=reverse'
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 export FZF_CTRL_T_OPTS="--preview 'batcat --style=numbers --color=always --line-range :500 {}'"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+
+# Set up fzf key bindings and fuzzy completion (fzf 0.48.0 or later)
+source <(fzf --zsh)
 
 # alias pi="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
 # alias pd="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns"
