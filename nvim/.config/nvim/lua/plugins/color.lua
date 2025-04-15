@@ -78,6 +78,17 @@ return {
   -- },
 
   {
+    "miikanissi/modus-themes.nvim",
+    priority = 1000,
+    opts = {
+      -- variant = "tinted",
+      styles = {
+        comments = { italic = true },
+        keywords = { italic = false },
+      },
+    },
+  },
+  {
     "LazyVim/LazyVim",
     opts = {
       -- colorscheme = "gruvbox",
@@ -89,7 +100,8 @@ return {
       -- damn italics for types and constants
       -- colorscheme = "zenbones",
       --
-      colorscheme = "dayfox",
+      -- colorscheme = "dayfox",
+      colorscheme = "modus_operandi",
     },
   },
 }
