@@ -87,9 +87,9 @@ return {
       -- colorscheme = "tokyonight",
       --
       -- damn italics for types and constants
-      colorscheme = "zenbones",
+      -- colorscheme = "zenbones",
       --
-      -- colorscheme = "dayfox",
+      colorscheme = "dayfox",
     },
   },
 }
