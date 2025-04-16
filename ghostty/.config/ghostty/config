@@ -1,3 +1,5 @@
+# cmd + shift + , to reload configuration
+
 theme = zenbones_light
 
 font-family = "TX-02"
@@ -22,6 +24,11 @@ keybind = super+o=text:\x1bo
 keybind = super+t=text:\x1bt
 keybind = super+s=text:\x1bs
 keybind = super+r=text:\x1br
+
+keybind = super+l=text:\x1bl
+keybind = super+h=text:\x1bh
+keybind = super+j=text:\x1bj
+keybind = super+k=text:\x1bk
 
 clipboard-read = allow
 clipboard-write = allow
