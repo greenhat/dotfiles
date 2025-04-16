@@ -98,10 +98,10 @@ return {
       -- colorscheme = "tokyonight",
       --
       -- damn italics for types and constants
-      -- colorscheme = "zenbones",
+      colorscheme = "zenbones",
       --
       -- colorscheme = "dayfox",
-      colorscheme = "modus_operandi",
+      -- colorscheme = "modus_operandi",
     },
   },
 }
