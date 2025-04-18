@@ -3,21 +3,28 @@
 theme = zenbones_light
 
 font-family = "TX-02"
-font-size = 11.7
+# font-size = 11.7
+font-size = 13
+window-inherit-font-size = false
+window-colorspace = display-p3
+window-decoration = false
+window-padding-balance = true
 font-thicken = true
 font-thicken-strength = 64
+
+maximize = true
 
 shell-integration = zsh
 adjust-cursor-thickness = 3
 
 macos-option-as-alt = true
-macos-titlebar-style = hidden
+# macos-titlebar-style = hidden
 
-gtk-titlebar = false
-gtk-adwaita = false
-gtk-tabs-location = hidden
-# GNOME specific config (window-decoration)
-config-file = ?gnome-config
+# gtk-titlebar = false
+# gtk-adwaita = false
+# gtk-tabs-location = hidden
+# # GNOME specific config (window-decoration)
+# config-file = ?gnome-config
 
 # kitten show-key
 # cmd/win + X -> alt + X
