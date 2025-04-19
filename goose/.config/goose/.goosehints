@@ -1,2 +1,14 @@
-Prefer `rg` to `grep`.
-Do not disable tests or change them to make them always pass.
+# Shell tools
+
+Prefer `rg` instead of `grep`.
+Use `gh` cli tool to access github.com (view issues, PRs, etc.).
+
+# Coding best practices
+
+Use TDD.
+First, write tests based on expected input/output pairs. Don't use mocks.
+Second, run tests and confirm they fail. Don't write any implementation code.
+Third, write the implementation code that passes the tests.
+
+Do not disable tests, overfit them or change tests to make them always pass.
+
