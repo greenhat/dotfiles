@@ -1,0 +1,2 @@
+Prefer `rg` to `grep`.
+Do not disable tests or change them to make them always pass.

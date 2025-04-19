@@ -1,0 +1,39 @@
+OPENAI_HOST: https://api.openai.com
+OPENAI_BASE_PATH: v1/chat/completions
+extensions:
+  developer:
+    display_name: Developer
+    enabled: true
+    name: developer
+    timeout: 300
+    type: builtin
+  miden_mcp:
+    args:
+    - /Users/green/src/miden/mcp/dist/index.js
+    cmd: node
+    description: null
+    enabled: false
+    name: miden_mcp
+    timeout: 300
+    type: stdio
+  rust_docs:
+    args:
+    - /home/green/src/my/rust-docs-mcp-server/src
+    cmd: bunx
+    description: null
+    enabled: false
+    name: rust_docs
+    timeout: 300
+    type: stdio
+  tavily:
+    args:
+    - -y
+    - tavily-mcp
+    cmd: npx
+    description: null
+    enabled: true
+    name: tavily
+    timeout: 300
+    type: stdio
+GOOSE_MODEL: o4-mini
+GOOSE_PROVIDER: openai
