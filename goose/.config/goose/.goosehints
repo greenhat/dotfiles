@@ -1,3 +1,7 @@
+# Editing tools
+
+Prefer using diff editing tool instead of writing the whole file.
+
 # Shell tools
 
 Prefer `rg` instead of `grep`.
@@ -12,3 +16,4 @@ Third, write the implementation code that passes the tests.
 
 Do not disable tests, overfit them or change tests to make them always pass.
 
+After finishing the implementation (code changes) always build the project and fix the compilation errors.
