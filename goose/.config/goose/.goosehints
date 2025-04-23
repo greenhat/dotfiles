@@ -1,6 +1,6 @@
 # Editing tools
 
-Prefer using diff editing tool instead of writing the whole file.
+Always use diff editing tool `str_replace` instead of writing the whole file.
 
 # Shell tools
 
