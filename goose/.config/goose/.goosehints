@@ -4,8 +4,8 @@ Always use diff editing tool `str_replace` instead of writing the whole file.
 
 # Shell tools
 
-Prefer `rg` instead of `grep`.
-Use `gh` cli tool to access github.com (view issues, PRs, etc.).
+Prefer using `rg` instead of `grep`.
+Use `gh` cli tool to view issues, read PRs and PR code diffs, etc.
 
 # Coding best practices
 
@@ -16,4 +16,6 @@ Third, write the implementation code that passes the tests.
 
 Do not disable tests, overfit them or change tests to make them always pass.
 
-After finishing the implementation (code changes) always build the project and fix the compilation errors.
+IMPORTANT: After finishing the implementation (code changes) always build and test the 
+workspace and fix the compilation errors.
+
