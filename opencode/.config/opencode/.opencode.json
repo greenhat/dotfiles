@@ -1,0 +1,16 @@
+{
+  "agents": {
+    "coder": {
+      "model": "gemini-2.5",
+      "maxTokens": 5000
+    },
+    "task": {
+      "model": "gemini-2.5",
+      "maxTokens": 5000
+    },
+    "title": {
+      "model": "gemini-2.5",
+      "maxTokens": 80
+    }
+  }
+}
