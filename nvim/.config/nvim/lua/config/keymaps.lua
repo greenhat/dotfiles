@@ -27,3 +27,10 @@ map({ "i" }, "<M-BS>", "<C-w>", { desc = "delete word backward" })
 -- map("n", "<M-j>", "<C-w>j", { desc = "Go to Lower Window" })
 -- map("n", "<M-k>", "<C-w>k", { desc = "Go to Upper Window" })
 -- map("n", "<M-l>", "<C-w>l", { desc = "Go to Right Window" })
+
+map(
+  "n",
+  "<Leader>xc",
+  ":call setreg('+', expand('%:.') .. ':' .. line('.'))<CR>",
+  { desc = "Copy the current file path" }
+)
