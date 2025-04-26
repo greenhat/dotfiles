@@ -9,7 +9,10 @@ Use `gh` cli tool to view issues, read PRs and PR code diffs, etc.
 
 # Coding best practices
 
-Use TDD.
+## Testing. 
+
+### Use TDD.
+
 First, write tests based on expected input/output pairs. Don't use mocks.
 Second, run tests and confirm they fail. Don't write any implementation code.
 Third, write the implementation code that passes the tests.
@@ -18,4 +21,19 @@ Do not disable tests, overfit them or change tests to make them always pass.
 
 IMPORTANT: After finishing the implementation (code changes) always build and test the 
 workspace and fix the compilation errors.
+
+## Error-handling
+
+The error handling should be in sync with the rest of the code in this crate.
+
+## Assertions
+
+Put asserts in the code where they make sense.
+
+## Documentation
+
+Do not put obvious comments in the code. Put the comment only if the code is
+doing a non-obvious thing.
+
+Always document functions, types, and structs.
 
