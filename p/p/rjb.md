@@ -1,7 +1,8 @@
 First, read the task description from the file `task.md` in the current
-directory. Understand the goal described in that task.
-Next, Read the code changes in the current branch. Make sure to figure out
-against which branch the current branch is first.
+directory. Understand the goal described in that task. 
+Next, Read the code changes in the current branch (ignore `.wat`,`.hir`,
+`.masm`, `.lock` files). Run `git paren-branch` to print the
+name of the parent branch.
 Now, review these code changes based on the following criteria:
 1. Task Fulfillment: Do the changes correctly and completely address the
    requirements described in `task.md`?
@@ -16,5 +17,6 @@ comment. There should be no comments in the code explaining obvious things.
 6. Naming: Are new names descriptive and unambiguous? 
 
 Provide detailed feedback, referencing the task context and specific code lines
-from the diff. Your review will be passed as the feedback to the coding AI
-agent that made the code changes. Save it in the file `review.md`.
+from the diff. Only include what you suggest to change/fix, skip the positive feedback
+where everything is fine. Your review will be passed as the feedback to the
+coding AI agent that made the code changes. Save it in the file `review.md`.
