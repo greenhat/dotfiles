@@ -1,7 +1,7 @@
 First, read the task description from the file `task.md` in the current
 directory. Understand the goal described in that task. 
 Next, Read the code changes in the current branch (ignore `.wat`,`.hir`,
-`.masm`, `.lock` files). Run `git paren-branch` to print the
+`.masm`, `.lock` files). Run `git parent-branch` to print the
 name of the parent branch.
 Now, review these code changes based on the following criteria:
 1. Task Fulfillment: Do the changes correctly and completely address the
