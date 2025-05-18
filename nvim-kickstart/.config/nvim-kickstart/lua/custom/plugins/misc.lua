@@ -1,10 +1,10 @@
 return {
   {
-    "m4xshen/hardtime.nvim",
-    dependencies = { "MunifTanjim/nui.nvim" },
+    'm4xshen/hardtime.nvim',
+    dependencies = { 'MunifTanjim/nui.nvim' },
     opts = {},
-    command = "Hardtime",
-    event = "BufEnter",
+    command = 'Hardtime',
+    event = 'BufEnter',
     -- "n" gets remapped
     -- keys = {
     --   { "n", "j", "<cmd>Hardtime<CR>", desc = "Hardtime" },
@@ -14,17 +14,17 @@ return {
     -- },
   },
   {
-    "akinsho/git-conflict.nvim",
+    'akinsho/git-conflict.nvim',
     config = true,
   },
   {
     -- https://github.com/folke/lazy.nvim/discussions/463
-    "glacambre/firenvim",
+    'glacambre/firenvim',
     -- cond = not not vim.g.started_by_firenvim,
     lazy = not vim.g.started_by_firenvim,
     module = false,
     build = function()
-      vim.fn["firenvim#install"](0)
+      vim.fn['firenvim#install'](0)
     end,
     -- DOES NOT WORK
     -- configure FireNvim here:
@@ -38,11 +38,11 @@ return {
     --     },
     --   }
     -- end,
-    { "noice.nvim", cond = not vim.g.started_by_firenvim },
-    { "lualine.nvim", cond = not vim.g.started_by_firenvim }, -- not useful in the browser
+    -- { "noice.nvim", cond = not vim.g.started_by_firenvim },
+    { 'lualine.nvim', cond = not vim.g.started_by_firenvim }, -- not useful in the browser
   },
   {
-    "alexghergh/nvim-tmux-navigation",
+    'alexghergh/nvim-tmux-navigation',
     lazy = false,
     -- config = function()
     --   local nvim_tmux_nav = require("nvim-tmux-navigation")
@@ -63,32 +63,32 @@ return {
     },
     keys = {
       {
-        "<M-h>",
+        '<M-h>',
         function()
-          require("nvim-tmux-navigation").NvimTmuxNavigateLeft()
+          require('nvim-tmux-navigation').NvimTmuxNavigateLeft()
         end,
-        desc = "tmux nav left",
+        desc = 'tmux nav left',
       },
       {
-        "<M-j>",
+        '<M-j>',
         function()
-          require("nvim-tmux-navigation").NvimTmuxNavigateDown()
+          require('nvim-tmux-navigation').NvimTmuxNavigateDown()
         end,
-        desc = "tmux nav down",
+        desc = 'tmux nav down',
       },
       {
-        "<M-k>",
+        '<M-k>',
         function()
-          require("nvim-tmux-navigation").NvimTmuxNavigateUp()
+          require('nvim-tmux-navigation').NvimTmuxNavigateUp()
         end,
-        desc = "tmux nav up",
+        desc = 'tmux nav up',
       },
       {
-        "<M-l>",
+        '<M-l>',
         function()
-          require("nvim-tmux-navigation").NvimTmuxNavigateRight()
+          require('nvim-tmux-navigation').NvimTmuxNavigateRight()
         end,
-        desc = "tmux nav right",
+        desc = 'tmux nav right',
       },
     },
   },

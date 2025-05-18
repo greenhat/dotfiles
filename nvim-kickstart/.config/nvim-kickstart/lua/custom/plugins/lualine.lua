@@ -1,5 +1,5 @@
 return {
-  "nvim-lualine/lualine.nvim",
+  'nvim-lualine/lualine.nvim',
   -- enabled = false,
   -- init = function()
   --   require("lualine").hide({
@@ -45,8 +45,8 @@ return {
         lualine_y = {
 
           {
-            "diagnostics",
-            sources = { "nvim_workspace_diagnostic" },
+            'diagnostics',
+            sources = { 'nvim_workspace_diagnostic' },
             -- symbols = {
             --   error = icons.diagnostics.Error,
             --   warn = icons.diagnostics.Warn,
@@ -57,7 +57,7 @@ return {
         },
         lualine_z = {
           -- { "progress", separator = " ", padding = { left = 1, right = 0 } },
-          { "location", padding = { left = 0, right = 1 } },
+          { 'location', padding = { left = 0, right = 1 } },
         },
       },
       winbar = {
@@ -68,7 +68,7 @@ return {
         },
         lualine_x = {
           {
-            "diagnostics",
+            'diagnostics',
             -- symbols = {
             --   error = LazyVim.config.icons.diagnostics.Error,
             --   warn = LazyVim.config.icons.diagnostics.Warn,
@@ -79,7 +79,7 @@ return {
         },
         lualine_y = {
           -- { "progress", separator = " ", padding = { left = 1, right = 0 } },
-          { "location", padding = { left = 0, right = 1 } },
+          { 'location', padding = { left = 0, right = 1 } },
         },
       },
       inactive_winbar = {
@@ -90,7 +90,7 @@ return {
         },
         lualine_x = {
           {
-            "diagnostics",
+            'diagnostics',
             -- symbols = {
             --   error = LazyVim.config.icons.diagnostics.Error,
             --   warn = LazyVim.config.icons.diagnostics.Warn,
@@ -101,7 +101,7 @@ return {
         },
         lualine_y = {
           -- { "progress", separator = " ", padding = { left = 1, right = 0 } },
-          { "location", padding = { left = 0, right = 1 } },
+          { 'location', padding = { left = 0, right = 1 } },
         },
       },
     }
