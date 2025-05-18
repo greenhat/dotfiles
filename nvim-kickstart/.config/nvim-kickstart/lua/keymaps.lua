@@ -6,7 +6,12 @@
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set(
+  'n',
+  '<leader>q',
+  vim.diagnostic.setloclist,
+  { desc = 'Open diagnostic [Q]uickfix list' }
+)
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -50,5 +55,34 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.hl.on_yank()
   end,
 })
+
+local map = vim.keymap.set
+
+map({ 'i', 'x', 'n', 's' }, '<M-s>', '<cmd>w<cr><esc>', { desc = 'Save File' })
+map({ 'i', 'x', 'n', 's' }, '<D-s>', '<cmd>w<cr><esc>', { desc = 'Save File' })
+
+-- map({ 'n', 'x' }, '<leader>gy', function()
+--   Snacks.gitbrowse {
+--     open = function(url)
+--       vim.fn.setreg('+', url)
+--     end,
+--   }
+-- end, { desc = 'Git Browse (copy)' })
+
+-- readline like keymaps on macos
+map({ 'i' }, '<M-BS>', '<C-w>', { desc = 'delete word backward' })
+
+-- -- Move to window using the <cmd> hjkl keys
+-- map("n", "<M-h>", "<C-w>h", { desc = "Go to Left Window" })
+-- map("n", "<M-j>", "<C-w>j", { desc = "Go to Lower Window" })
+-- map("n", "<M-k>", "<C-w>k", { desc = "Go to Upper Window" })
+-- map("n", "<M-l>", "<C-w>l", { desc = "Go to Right Window" })
+
+map(
+  'n',
+  '<Leader>xc',
+  ":call setreg('+', expand('%:.') .. ':' .. line('.'))<CR>",
+  { desc = 'Copy the current file path' }
+)
 
 -- vim: ts=2 sts=2 sw=2 et
