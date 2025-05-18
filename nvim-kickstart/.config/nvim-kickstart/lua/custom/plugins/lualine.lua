@@ -25,34 +25,34 @@ return {
           --   },
           -- },
           -- { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-          { LazyVim.lualine.pretty_path({ length = max_path_len }) },
+          -- { LazyVim.lualine.pretty_path({ length = max_path_len }) },
         },
 
         lualine_x = {
-            -- stylua: ignore
-            -- {
-            --   function() return require("noice").api.status.command.get() end,
-            --   cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
-            --   color = function() return { fg = Snacks.util.color("Statement") } end,
-            -- },
-            -- -- stylua: ignore
-            -- {
-            --   function() return require("noice").api.status.mode.get() end,
-            --   cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
-            --   color = function() return { fg = Snacks.util.color("Constant") } end,
-            -- },
+          -- stylua: ignore
+          -- {
+          --   function() return require("noice").api.status.command.get() end,
+          --   cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
+          --   color = function() return { fg = Snacks.util.color("Statement") } end,
+          -- },
+          -- -- stylua: ignore
+          -- {
+          --   function() return require("noice").api.status.mode.get() end,
+          --   cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
+          --   color = function() return { fg = Snacks.util.color("Constant") } end,
+          -- },
         },
         lualine_y = {
 
           {
             "diagnostics",
             sources = { "nvim_workspace_diagnostic" },
-            symbols = {
-              error = icons.diagnostics.Error,
-              warn = icons.diagnostics.Warn,
-              info = icons.diagnostics.Info,
-              hint = icons.diagnostics.Hint,
-            },
+            -- symbols = {
+            --   error = icons.diagnostics.Error,
+            --   warn = icons.diagnostics.Warn,
+            --   info = icons.diagnostics.Info,
+            --   hint = icons.diagnostics.Hint,
+            -- },
           },
         },
         lualine_z = {
@@ -64,17 +64,17 @@ return {
         lualine_c = {
           -- LazyVim.lualine.root_dir(),
           -- { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-          { LazyVim.lualine.pretty_path({ length = max_path_len }) },
+          -- { LazyVim.lualine.pretty_path({ length = max_path_len }) },
         },
         lualine_x = {
           {
             "diagnostics",
-            symbols = {
-              error = LazyVim.config.icons.diagnostics.Error,
-              warn = LazyVim.config.icons.diagnostics.Warn,
-              info = LazyVim.config.icons.diagnostics.Info,
-              hint = LazyVim.config.icons.diagnostics.Hint,
-            },
+            -- symbols = {
+            --   error = LazyVim.config.icons.diagnostics.Error,
+            --   warn = LazyVim.config.icons.diagnostics.Warn,
+            --   info = LazyVim.config.icons.diagnostics.Info,
+            --   hint = LazyVim.config.icons.diagnostics.Hint,
+            -- },
           },
         },
         lualine_y = {
@@ -86,17 +86,17 @@ return {
         lualine_c = {
           -- LazyVim.lualine.root_dir(),
           -- { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-          { LazyVim.lualine.pretty_path({ length = max_path_len }) },
+          -- { LazyVim.lualine.pretty_path({ length = max_path_len }) },
         },
         lualine_x = {
           {
             "diagnostics",
-            symbols = {
-              error = LazyVim.config.icons.diagnostics.Error,
-              warn = LazyVim.config.icons.diagnostics.Warn,
-              info = LazyVim.config.icons.diagnostics.Info,
-              hint = LazyVim.config.icons.diagnostics.Hint,
-            },
+            -- symbols = {
+            --   error = LazyVim.config.icons.diagnostics.Error,
+            --   warn = LazyVim.config.icons.diagnostics.Warn,
+            --   info = LazyVim.config.icons.diagnostics.Info,
+            --   hint = LazyVim.config.icons.diagnostics.Hint,
+            -- },
           },
         },
         lualine_y = {
