@@ -1,16 +1,19 @@
 {
   "agents": {
     "coder": {
-      "model": "gemini-2.5",
-      "maxTokens": 5000
+      "maxTokens": 5000,
+      "model": "gemini-2.5"
     },
     "task": {
-      "model": "gemini-2.5",
-      "maxTokens": 5000
+      "maxTokens": 5000,
+      "model": "gemini-2.5"
     },
     "title": {
-      "model": "gemini-2.5",
-      "maxTokens": 80
+      "maxTokens": 80,
+      "model": "gemini-2.5"
     }
+  },
+  "tui": {
+    "theme": "gruvbox"
   }
 }
