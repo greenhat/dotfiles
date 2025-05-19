@@ -16,7 +16,7 @@ vim.wo.conceallevel = 0
 -- Disable blink-cmp-copilot (Copilot completion in blink-cmp)
 vim.g.ai_cmp = false
 
--- vim.opt.laststatus = 3
+vim.opt.laststatus = 2
 
 -- vim.cmd([[
 --  hi! link StatusLine Normal
