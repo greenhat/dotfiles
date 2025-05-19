@@ -92,4 +92,13 @@ return {
       },
     },
   },
+  {
+    'olimorris/persisted.nvim',
+    lazy = false,
+    -- event = 'BufReadPre', -- Ensure the plugin loads only when a buffer has been loaded
+    opts = {
+      use_git_branch = true,
+      autoload = true,
+    },
+  },
 }
