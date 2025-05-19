@@ -26,9 +26,20 @@ return {
           -- },
           -- { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
           -- { LazyVim.lualine.pretty_path({ length = max_path_len }) },
+          {
+            'filename',
+            -- 0: Just the filename
+            -- 1: Relative path
+            -- 2: Absolute path
+            -- 3: Absolute path, with tilde as the home directory
+            -- 4: Filename and parent dir, with tilde as the home directory
+            path = 1,
+          },
         },
 
         lualine_x = {
+          -- { 'mode' },
+
           -- stylua: ignore
           -- {
           --   function() return require("noice").api.status.command.get() end,
@@ -65,6 +76,7 @@ return {
           -- LazyVim.lualine.root_dir(),
           -- { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
           -- { LazyVim.lualine.pretty_path({ length = max_path_len }) },
+          { 'filename', path = 1 },
         },
         lualine_x = {
           {
@@ -87,6 +99,7 @@ return {
           -- LazyVim.lualine.root_dir(),
           -- { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
           -- { LazyVim.lualine.pretty_path({ length = max_path_len }) },
+          { 'filename', path = 1 },
         },
         lualine_x = {
           {
