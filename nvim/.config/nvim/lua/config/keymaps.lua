@@ -7,9 +7,11 @@ local map = vim.keymap.set
 map({ "i", "x", "n", "s" }, "<M-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 map({ "i", "x", "n", "s" }, "<D-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 
--- unmap move line up and down
-vim.keymap.del({ "i", "x", "n", "s" }, "<M-j>")
-vim.keymap.del({ "i", "x", "n", "s" }, "<M-k>")
+-- unmap the lazyvim window navigation in favor of <M-hjkl> mapped to nvim-tmux-navigation
+vim.keymap.del({ "n" }, "<C-h>")
+vim.keymap.del({ "n" }, "<C-j>")
+vim.keymap.del({ "n" }, "<C-k>")
+vim.keymap.del({ "n" }, "<C-l>")
 
 map({ "n", "x" }, "<leader>gy", function()
   Snacks.gitbrowse({
