@@ -71,4 +71,9 @@ vim.o.scrolloff = 10
 -- See `:help 'confirm'`
 vim.o.confirm = true
 
+-- Preserve equal sized splits
+vim.cmd [[
+  autocmd VimResized * wincmd =
+]]
+
 -- vim: ts=2 sts=2 sw=2 et
