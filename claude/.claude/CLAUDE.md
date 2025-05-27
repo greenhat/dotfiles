@@ -1,6 +1,8 @@
-# Available shell tools
+# Available tools
 
 Github CLI `gh` is available to view issues, read PRs and PR code diffs, etc.
+
+Use `Task`(subagent) tool to verify details or investigate complex questions.
 
 # Coding best practices
 
