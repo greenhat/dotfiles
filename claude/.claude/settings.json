@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh:*)",
+      "Bash(cargo:*)",
+      "Bash(grep:*)",
+      "Bash(rg:*)",
+      "Bash(awk:*)",
+      "Bash(env)",
+      "Bash(ls:*)"
+    ],
+    "deny": []
+  }
+}
