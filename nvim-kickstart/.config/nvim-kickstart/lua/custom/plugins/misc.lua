@@ -101,4 +101,26 @@ return {
       autoload = true,
     },
   },
+  -- {
+  --   'kylechui/nvim-surround',
+  --   version = '^3.0.0', -- Use for stability; omit to use `main` branch for the latest features
+  --   event = 'VeryLazy',
+  --   config = function()
+  --     require('nvim-surround').setup {
+  --       keymaps = {
+  --         insert = '<C-g>s',
+  --         insert_line = '<C-g>S',
+  --         normal = 'gsy',
+  --         normal_cur = 'gsys',
+  --         normal_line = 'gsyS',
+  --         normal_cur_line = 'gsySS',
+  --         visual = 'gss',
+  --         visual_line = 'gsS',
+  --         delete = 'gsd',
+  --         change = 'gsc',
+  --         change_line = 'gsC',
+  --       },
+  --     }
+  --   end,
+  -- },
 }
