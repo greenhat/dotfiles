@@ -89,4 +89,7 @@ map('n', '<Leader>qq', '<cmd>qa<cr><esc>', { desc = 'Quit' })
 
 map('n', '<Leader><tab>s', '<cmd>tab split<cr>', { desc = 'open in new tab' })
 
+map('n', '<Leader>bd', '<cmd>bprevious <bar> bdelete #<CR>', { desc = 'close buffer' })
+map('n', '<Leader>bd', '<cmd>%bd|e#<CR>', { desc = 'close all but the current buffer' })
+
 -- vim: ts=2 sts=2 sw=2 et
