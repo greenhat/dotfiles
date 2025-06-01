@@ -87,4 +87,6 @@ map(
 
 map('n', '<Leader>qq', '<cmd>qa<cr><esc>', { desc = 'Quit' })
 
+map('n', '<Leader><tab>s', '<cmd>tab split<cr>', { desc = 'open in new tab' })
+
 -- vim: ts=2 sts=2 sw=2 et
