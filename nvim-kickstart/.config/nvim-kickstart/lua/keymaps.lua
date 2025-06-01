@@ -8,7 +8,7 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 -- Diagnostic keymaps
 vim.keymap.set(
   'n',
-  '<leader>q',
+  '<leader>qx',
   vim.diagnostic.setloclist,
   { desc = 'Open diagnostic [Q]uickfix list' }
 )
@@ -84,5 +84,7 @@ map(
   ":call setreg('+', expand('%:.') .. ':' .. line('.'))<CR>",
   { desc = 'Copy the current file path' }
 )
+
+map('n', '<Leader>qq', '<cmd>qa<cr><esc>', { desc = 'Quit' })
 
 -- vim: ts=2 sts=2 sw=2 et
