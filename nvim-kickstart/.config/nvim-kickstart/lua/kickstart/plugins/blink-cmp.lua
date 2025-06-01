@@ -68,7 +68,6 @@ return {
         ['<M-Tab>'] = {
           function()
             if require('copilot.suggestion').is_visible() then
-              LazyVim.create_undo()
               require('copilot.suggestion').accept_word()
               return true
             end
