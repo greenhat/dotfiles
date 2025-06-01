@@ -5,6 +5,14 @@
 --
 -- Use the `dependencies` key to specify the dependencies of a particular plugin
 
+local fzf_opts = {
+  fuzzy = true, -- false will only do exact matching
+  override_generic_sorter = true, -- override the generic sorter
+  override_file_sorter = true, -- override the file sorter
+  case_mode = 'smart_case', -- or "ignore_case" or "respect_case"
+  -- the default case_mode is "smart_case"
+}
+
 return {
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
@@ -55,16 +63,43 @@ return {
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
         --
-        -- defaults = {
-        --   mappings = {
-        --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-        --   },
-        -- },
-        -- pickers = {}
+        defaults = {
+          sorting_strategy = 'ascending',
+          layout_config = {
+            prompt_position = 'top',
+          },
+          -- ...
+          mappings = {
+            i = {
+              ['<Esc>'] = 'close',
+              ['<C-c>'] = false,
+              ['<M-r>'] = 'select_default',
+              ['<M-e>'] = 'select_default',
+            },
+            n = {
+              -- ...
+            },
+          },
+          -- path_display = {
+          --   "shorten",
+          -- },
+          cache_picker = {
+            num_pickers = 100,
+            ignore_empty_prompt = true,
+          },
+        },
+        -- via https://github.com/nvim-telescope/telescope.nvim/issues/2104
+        pickers = {
+          -- Manually set sorter, for some reason not picked up automatically
+          lsp_dynamic_workspace_symbols = {
+            sorter = require('telescope').extensions.fzf.native_fzf_sorter(fzf_opts),
+          },
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
           },
+          fzf = fzf_opts,
         },
       }
 
@@ -82,8 +117,18 @@ return {
       vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
-      vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-      vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+      vim.keymap.set(
+        'n',
+        '<leader>s.',
+        builtin.oldfiles,
+        { desc = '[S]earch Recent Files ("." for repeat)' }
+      )
+      vim.keymap.set(
+        'n',
+        '<leader><leader>',
+        builtin.buffers,
+        { desc = '[ ] Find existing buffers' }
+      )
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
