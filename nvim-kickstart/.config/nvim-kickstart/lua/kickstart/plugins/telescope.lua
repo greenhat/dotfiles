@@ -53,6 +53,15 @@ return {
           { 'nvim-telescope/telescope-fzy-native.nvim' },
         },
       },
+      {
+        'telescope-tmux.nvim',
+        name = 'telescope-tmux.nvim',
+        -- dev = true,
+        { url = 'git@github.com:greenhat/telescope-tmux.nvim.git', branch = 'support-rust-test' },
+        dependencies = {
+          { 'nvim-telescope/telescope.nvim' },
+        },
+      },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
