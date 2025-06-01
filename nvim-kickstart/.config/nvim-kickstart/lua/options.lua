@@ -76,4 +76,16 @@ vim.cmd [[
   autocmd VimResized * wincmd =
 ]]
 
+-- `config` in the plugin does not work, so do it here
+vim.g.firenvim_config = {
+  -- config values, like in my case:
+  localSettings = {
+    ['.*'] = {
+      takeover = 'never',
+    },
+  },
+}
+-- set background (needed for firenvim)
+vim.opt.background = 'light'
+
 -- vim: ts=2 sts=2 sw=2 et
