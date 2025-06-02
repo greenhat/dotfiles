@@ -189,7 +189,12 @@ return {
         '<cmd>Telescope diagnostics severity=error<cr>',
         { desc = 'Workspace errors' }
       )
-      map('n', '<leader>i', '<cmd>Telescope diagnostics<cr>', { desc = 'Workspace diagnostics' })
+      map(
+        'n',
+        '<leader>i',
+        '<cmd>Telescope diagnostics severity_bound=warn<cr>',
+        { desc = 'Workspace diagnostics' }
+      )
 
       -- -- Slightly advanced example of overriding default behavior and theme
       -- vim.keymap.set('n', '<leader>/', function()
