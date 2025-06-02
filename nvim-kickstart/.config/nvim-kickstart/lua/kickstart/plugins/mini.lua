@@ -55,6 +55,13 @@ return {
         },
       }
 
+      require('mini.pairs').setup {
+        modes = { insert = true, command = false, terminal = false },
+        mappings = {
+          ["'"] = false,
+        },
+      }
+
       -- -- Simple and easy statusline.
       -- --  You could remove this setup call if you don't like it,
       -- --  and try some other statusline plugin
