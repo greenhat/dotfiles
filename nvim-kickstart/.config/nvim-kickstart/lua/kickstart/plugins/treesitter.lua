@@ -102,5 +102,15 @@ return {
       -- return { mode = 'cursor', max_lines = 3 }
     end,
   },
+
+  {
+    'folke/ts-comments.nvim',
+    opts = {
+      lang = {
+        wit = '// %s',
+      },
+    },
+    event = 'VeryLazy',
+  },
 }
 -- vim: ts=2 sts=2 sw=2 et
