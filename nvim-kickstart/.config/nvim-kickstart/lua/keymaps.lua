@@ -92,4 +92,6 @@ map('n', '<Leader><tab>s', '<cmd>tab split<cr>', { desc = 'open in new tab' })
 map('n', '<Leader>bd', '<cmd>bprevious <bar> bdelete #<CR>', { desc = 'close buffer' })
 map('n', '<Leader>bo', '<cmd>%bd|e#<CR>', { desc = 'close all but the current buffer' })
 
+map('n', '<Leader>uw', '<cmd>set wrap!<CR>', { desc = 'toggle word wrap' })
+
 -- vim: ts=2 sts=2 sw=2 et

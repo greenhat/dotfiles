@@ -88,4 +88,7 @@ vim.g.firenvim_config = {
 -- set background (needed for firenvim)
 vim.opt.background = 'light'
 
+-- word wrap
+vim.wo.wrap = false
+
 -- vim: ts=2 sts=2 sw=2 et
