@@ -81,5 +81,26 @@ return {
     --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
     --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   },
+
+  -- Show context of the current function
+  {
+    'nvim-treesitter/nvim-treesitter-context',
+    -- event = 'LazyFile',
+    opts = function()
+      local tsc = require 'treesitter-context'
+      -- Snacks.toggle({
+      -- name = 'Treesitter Context',
+      -- get = tsc.enabled,
+      -- set = function(state)
+      -- if state then
+      tsc.enable()
+      -- else
+      -- tsc.disable()
+      -- end
+      -- end,
+      -- }):map '<leader>ut'
+      -- return { mode = 'cursor', max_lines = 3 }
+    end,
+  },
 }
 -- vim: ts=2 sts=2 sw=2 et
