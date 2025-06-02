@@ -65,6 +65,8 @@ return {
     event = { 'BufRead Cargo.toml' },
 
     opts = {
+      enable_update_available_warning = false,
+      -- loading_indicator = false,
       completion = {
         crates = {
           enabled = true,
