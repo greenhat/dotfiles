@@ -94,4 +94,10 @@ map('n', '<Leader>bo', '<cmd>%bd|e#<CR>', { desc = 'close all but the current bu
 
 map('n', '<Leader>uw', '<cmd>set wrap!<CR>', { desc = 'toggle word wrap' })
 
+map(
+  'n',
+  '<Leader>uf',
+  '<cmd>FormatDisable!<CR>',
+  { desc = 'Disable formatting for current buffer' }
+)
 -- vim: ts=2 sts=2 sw=2 et
