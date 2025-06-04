@@ -186,4 +186,8 @@ return {
       { '=P', '<Plug>(YankyPutBeforeFilter)', desc = 'Put before applying a filter' },
     },
   },
+  {
+    'Apeiros-46B/qalc.nvim',
+    opt = {},
+  },
 }
