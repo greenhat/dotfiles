@@ -197,3 +197,4 @@ fixssh() {
 eval "$(starship init zsh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+alias claude="/Users/green/.claude/local/claude"
