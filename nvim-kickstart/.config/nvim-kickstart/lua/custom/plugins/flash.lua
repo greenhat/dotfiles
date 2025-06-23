@@ -14,6 +14,11 @@ return {
         label = 'FlashCurrent',
       },
     },
+    modes = {
+      char = {
+        enabled = false,
+      },
+    },
   },
   keys = {
     {
