@@ -95,9 +95,9 @@ vim.cmd [[
   " trigger `autoread` when files changes on disk
     set autoread
     autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
-  " notification after file change
-    autocmd FileChangedShellPost *
-      \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
+  " reload the file after file change
+    autocmd FileChangedShellPost *  execute 'RustLsp reloadWorkspace'
+      " \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 ]]
 
 -- vim: ts=2 sts=2 sw=2 et
