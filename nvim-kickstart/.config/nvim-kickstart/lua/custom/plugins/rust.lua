@@ -49,6 +49,13 @@ vim.g.rustaceanvim = {
             'inactive-code',
           },
         },
+        workspace = {
+          symbol = {
+            search = {
+              excludeImports = true,
+            },
+          },
+        },
       },
     },
   },
