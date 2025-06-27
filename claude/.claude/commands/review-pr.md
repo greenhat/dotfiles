@@ -1,4 +1,4 @@
-Do a code review for the PR I'm about to submit.
+Do a code review for the PR I'm about to submit. Think very hard.
 
 Read the code changes in the current branch (ignore `.wat`,`.hir`,
 `.masm`, `.lock` files). Run `git parent-branch` to print the
@@ -22,3 +22,4 @@ Any commented out code that looks like it was forgotten and should be removed?
 Provide detailed feedback, referencing the task context and specific code lines
 from the diff. Only include what you suggest to change/fix, skip the positive feedback
 where everything is fine. 
+Think very hard.
