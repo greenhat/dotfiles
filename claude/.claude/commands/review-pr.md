@@ -10,6 +10,7 @@ Now, review these code changes based on the following criteria:
    handling in particular.
 - Readability: How easily comprehensible is the resulted code? Any need for splitting
    the functions to make them more comprehensible? 
+- Maintainability: Do you see any ways to improve the maintainability of the new/changed code?
 - Documentation: Modules, functions, types and structs should be documented.
    If the code is doing a non-obvious thing, it should be explained in the
 comment. There should be no comments in the code explaining obvious things.
