@@ -17,3 +17,4 @@ export BAT_THEME="GitHub"
 export GOOSE_CLI_THEME=light
 # gh cli style for light theme
 export GLAMOUR_STYLE=light
+export CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR=1
