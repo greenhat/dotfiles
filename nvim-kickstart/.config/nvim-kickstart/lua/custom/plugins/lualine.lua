@@ -12,7 +12,20 @@ return {
     local opts = {
       sections = {
         lualine_a = {},
-        lualine_b = {},
+        lualine_b = {
+          {
+            'macro',
+            fmt = function()
+              local reg = vim.fn.reg_recording()
+              if reg ~= '' then
+                return 'Recording @' .. reg
+              end
+              return nil
+            end,
+            color = { fg = '#aa0000' },
+            draw_empty = false,
+          },
+        },
         lualine_c = {
           -- LazyVim.lualine.root_dir(),
           -- {
