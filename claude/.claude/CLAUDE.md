@@ -24,3 +24,6 @@ codebase with `cargo make format-rust`.
 
 Always document functions and types.
 
+## Miden VM assembly (MASM)
+
+Before reading or writing any Miden VM assembly (MASM) code load the instruction reference from https://raw.githubusercontent.com/0xMiden/miden-vm/refs/heads/next/docs/src/user_docs/assembly/instruction_reference.md
