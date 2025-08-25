@@ -169,6 +169,14 @@ return {
         { desc = 'Smart open' }
       )
 
+      map(
+        'n',
+        '<leader>,',
+        '<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>', -- selects the last used buffer
+        -- '<cmd>Telescope buffers sort_mru=true<cr>', -- selects the last used buffer
+        { desc = 'Switch Buffer' }
+      )
+
       map('n', '<leader>;', '<cmd>Telescope command_history<cr>', { desc = 'Command History' })
       -- { "<leader>e", LazyVim.pick("files"), desc = "Find Files (Root Dir)" },
       map('n', '<leader>a', builtin.resume, { desc = 'Resume' })
