@@ -5,9 +5,8 @@ vim.g.rustaceanvim = {
         vim.cmd.RustLsp 'renderDiagnostic'
       end, { desc = 'Render diagnostic', buffer = bufnr })
       vim.keymap.set('n', ']r', '<cmd>RustLsp relatedDiagnostics<cr>')
-      -- vim.keymap.set("n", "<leader>dr", function()
-      --   vim.cmd.RustLsp("debuggables")
-      -- end, { desc = "Rust Debuggables", buffer = bufnr })
+      vim.keymap.set('n', '<leader>dd', '<cmd>RustLsp! debug<cr>', { desc = 'Debug last debug' })
+      vim.keymap.set('n', '<leader>du', '<cmd>RustLsp debug<cr>', { desc = 'Debug under cursor' })
     end,
     default_settings = {
       -- rust-analyzer language server configuration

@@ -202,4 +202,44 @@ return {
   {
     'tpope/vim-fugitive',
   },
+  {
+    'mfussenegger/nvim-dap',
+    dependencies = {
+      'igorlfs/nvim-dap-view',
+      config = function()
+        local map = vim.keymap.set
+        map(
+          'n',
+          '<leader>dv',
+          "<cmd>lua require'dap-view'.toggle()<cr>",
+          { desc = 'Toggle DAP view' }
+        )
+      end,
+    },
+    config = function()
+      local dap = require 'dap'
+      dap.defaults.fallback.terminal_win_cmd = '100vsplit new'
+      -- dap.defaults.fallback.focus_terminal = true
+
+      local map = vim.keymap.set
+
+      map(
+        'n',
+        '<leader>db',
+        "<cmd>lua require'dap'.toggle_breakpoint()<cr>",
+        { desc = 'Toggle breakpoint' }
+      )
+      map('n', '<leader>dn', "<cmd>lua require'dap'.continue()<cr>", { desc = 'Debug continue' })
+      map('n', '<leader>de', "<cmd>lua require'dap'.step_over()<cr>", { desc = 'Debug step over' })
+      map('n', '<leader>di', "<cmd>lua require'dap'.step_into()<cr>", { desc = 'Debug step into' })
+      map('n', '<leader>do', "<cmd>lua require'dap'.step_out()<cr>", { desc = 'Debug step out' })
+      map('n', '<leader>dt', "<cmd>lua require'dap'.terminate()<cr>", { desc = 'Debug terminate' })
+      map(
+        'n',
+        '<leader>dh',
+        "<cmd>lua require('dap.ui.widgets').hover()<cr>",
+        { desc = 'Debug: view expression under cursor' }
+      )
+    end,
+  },
 }
