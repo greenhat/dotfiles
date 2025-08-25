@@ -5,7 +5,7 @@ Read the code changes in the current branch (ignore `.wat`,`.hir`,
 name of the parent branch.
 
 Now, review these code changes based on the following criteria:
-- Correctness: Are there potential bugs, logical errors, or edge cases missed?
+- Correctness: Are there potential bugs, logical errors, or edge cases missed? For a code change, also find and analyze the full code of the function/class.
 - Style: Does the code changes adhere to the style this crate is written in? Error
    handling in particular.
 - Readability: How easily comprehensible is the resulted code? Any need for splitting
