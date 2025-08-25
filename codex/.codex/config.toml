@@ -1,0 +1,14 @@
+model_reasoning_effort = "high"
+
+preferred_auth_method = "apikey"
+
+[profiles.yolo]
+approval_policy = "never"
+sandbox_mode    = "danger-full-access"
+
+[sandbox_danger_full_access]
+network_access = true
+
+
+
+
