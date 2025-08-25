@@ -55,6 +55,13 @@ vim.g.rustaceanvim = {
             },
           },
         },
+        document = {
+          symbol = {
+            search = {
+              excludeLocals = true,
+            },
+          },
+        },
       },
     },
   },
