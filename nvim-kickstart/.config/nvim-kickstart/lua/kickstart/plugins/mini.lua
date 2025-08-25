@@ -55,12 +55,12 @@ return {
         },
       }
 
-      require('mini.pairs').setup {
-        modes = { insert = true, command = false, terminal = false },
-        mappings = {
-          ["'"] = false,
-        },
-      }
+      -- require('mini.pairs').setup {
+      --   modes = { insert = true, command = false, terminal = false },
+      --   mappings = {
+      --     ["'"] = false,
+      --   },
+      -- }
 
       -- for oil.nvim
       require('mini.icons').setup()
