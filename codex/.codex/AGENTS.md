@@ -8,8 +8,9 @@ Use faster ripgrep `rg` instead of slow `grep`.
 ## Testing. 
 
 IMPORTANT: After finishing the implementation (code changes) always build and
-test the workspace with `cargo make test` and fix the compilation errors. Use
-`MIDENC_TRACE=trace` env var to set logging level.
+test the workspace with `cargo make test` and fix the compilation errors. 
+Use `MIDENC_TRACE=trace` env var to set logging level (enable only when running individual test, it's too slow).
+Use `UPDATE_EXPECT=1` env var when running the tests to update .wat, .hir, .masm expected files in tests.
 
 After you are finished run and fix clippy warnings with `cargo make clippy` and format the
 codebase with `cargo make format-rust`.
