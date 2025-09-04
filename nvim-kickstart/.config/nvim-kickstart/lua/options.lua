@@ -100,4 +100,8 @@ vim.cmd [[
       " \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 ]]
 
+vim.cmd [[
+  autocmd VimLeave * set guicursor= | call chansend(v:stderr, "\x1b[6 q")
+]]
+
 -- vim: ts=2 sts=2 sw=2 et

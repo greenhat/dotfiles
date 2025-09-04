@@ -180,7 +180,7 @@ alias vi='NVIM_APPNAME="nvim-kickstart" nvim'
 #             Ps = 4  -> steady underline.
 #             Ps = 5  -> blinking bar (xterm).
 #             Ps = 6  -> steady bar (xterm).
-printf '\033[5 q'
+printf '\033[6 q'
 
 # edit command line in your editor
 # https://unix.stackexchange.com/questions/6620/how-to-edit-command-line-in-full-screen-editor-in-zsh
