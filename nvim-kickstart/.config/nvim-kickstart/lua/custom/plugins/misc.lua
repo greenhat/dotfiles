@@ -242,4 +242,7 @@ return {
       )
     end,
   },
+  {
+    'tpope/vim-rsi',
+  },
 }
