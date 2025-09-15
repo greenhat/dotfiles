@@ -94,10 +94,13 @@ vim.wo.wrap = false
 vim.cmd [[
   " trigger `autoread` when files changes on disk
     set autoread
-    autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
+
+  " messes up with q/ and q:
+  " autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
+
   " reload the file after file change
     autocmd FileChangedShellPost *  execute 'RustLsp reloadWorkspace'
-      " \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
+  " \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 ]]
 
 vim.cmd [[
