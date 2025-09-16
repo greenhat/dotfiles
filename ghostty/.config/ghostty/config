@@ -1,6 +1,7 @@
 # cmd + shift + , to reload configuration
 
-theme = zenbones_light
+# theme = zenbones_light
+theme = Zenbones Light
 
 font-family = "TX-02"
 # font-size = 11.7
