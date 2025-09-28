@@ -1,6 +1,6 @@
-model_reasoning_effort = "high"
-
 preferred_auth_method = "apikey"
+# model = "gpt-5"
+# model_reasoning_effort = "high"
 
 [profiles.yolo]
 approval_policy = "never"
