@@ -73,7 +73,7 @@ SAVEHIST=100000
 # running in different windows but on the same host (or more generally with the same home directory) share the same history.
 # setopt SHARE_HISTORY  # End of lines configured by zsh-newuser-install
 
-# setopt    APPEND_HISTORY     #Append history to the history file (no overwriting)
+setopt    APPEND_HISTORY     #Append history to the history file (no overwriting)
 setopt    SHARE_HISTORY      #Share history across terminals
 setopt    INC_APPEND_HISTORY  #Immediately append to the history file, not just when a term is killed
 
