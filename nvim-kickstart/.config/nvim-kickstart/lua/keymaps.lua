@@ -100,4 +100,7 @@ map(
   '<cmd>FormatDisable!<CR>',
   { desc = 'Disable formatting for current buffer' }
 )
+
+map('n', 's', '/', { desc = 'Search' })
+
 -- vim: ts=2 sts=2 sw=2 et
