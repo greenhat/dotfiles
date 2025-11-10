@@ -7,7 +7,7 @@ Now, review these code changes based on the following criteria:
 - Style: Does the code changes adhere to the style this crate is written in? Error handling in particular.
 - Readability: How easily comprehensible is the resulted code? Any need for splitting the functions to make them more comprehensible? 
 - Maintainability: Do you see any ways to improve the maintainability of the new/changed code?
-- Documentation: Modules, functions, types and structs should be documented. If the code is doing a non-obvious thing, it should be explained in the comment. There should be no comments in the code explaining obvious things.
+- Documentation: Modules, functions, types and structs should be documented. Need to add code comments to tricky, non-obvious parts of the code?
 - Naming: Are new names descriptive and unambiguous? 
 - Clean up: Any `dbg!` (including commented out) in the new code besides tests? Any commented out code that looks like it was forgotten and should be removed?
 - Any `TODO:` left in the new code?

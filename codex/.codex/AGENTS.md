@@ -18,6 +18,7 @@ codebase with `cargo make format-rust`.
 ## Documentation
 
 Always document functions and types.
+Add code comments to tricky parts of the code.
 
 ## Miden VM assembly (MASM)
 
