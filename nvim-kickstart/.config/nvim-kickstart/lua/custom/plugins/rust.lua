@@ -85,12 +85,12 @@ return {
           enabled = true,
         },
       },
-      lsp = {
-        enabled = true,
-        actions = true,
-        completion = true,
-        hover = true,
-      },
+      -- lsp = {
+      --   enabled = true,
+      --   actions = true,
+      --   completion = true,
+      --   hover = true,
+      -- },
     },
   },
 }
