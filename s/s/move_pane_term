@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+  cat <<'EOF'
+Usage: move_pane_term
+
+Moves the current tmux pane into a new tmux window in session "term".
+The new window is named after the window the pane came from.
+EOF
+}
+
+if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
+  usage
+  exit 0
+fi
+
+command -v tmux >/dev/null || { echo "Error: tmux not found in PATH" >&2; exit 127; }
+
+session="term"
+
+src_pane_id="${TMUX_PANE:-}"
+if [[ -z "$src_pane_id" ]]; then
+  src_pane_id="$(tmux display-message -p -F '#{pane_id}' 2>/dev/null || true)"
+fi
+
+if [[ -z "$src_pane_id" ]]; then
+  echo "Error: must be run from inside an attached tmux client" >&2
+  exit 2
+fi
+
+if ! tmux has-session -t "$session" 2>/dev/null; then
+  echo "Error: tmux session \"$session\" does not exist" >&2
+  exit 2
+fi
+
+src_window_name="$(tmux display-message -p -t "$src_pane_id" -F '#{window_name}')"
+if [[ -z "$src_window_name" ]]; then
+  echo "Error: failed to determine source window name" >&2
+  exit 2
+fi
+
+tmux break-pane -s "$src_pane_id" -t "${session}:" -n "$src_window_name"
