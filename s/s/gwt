@@ -1,0 +1,90 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+  cat <<'EOF'
+Usage: git-wt-tmux [NAME]
+
+Creates (or reuses) a git worktree for branch NAME, opens a new tmux window in
+the current session named NAME, and starts it in that worktree directory.
+
+Directory:
+  - Defaults to the parent of your current directory: ../<NAME>
+  - Override base dir with WT_BASE=/path
+
+Examples:
+  git-wt-tmux feature/foo
+  WT_BASE=~/src/wt git-wt-tmux fix-123
+EOF
+}
+
+if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
+  usage
+  exit 0
+fi
+
+name="${1:-}"
+if [[ -z "$name" ]]; then
+  read -r -p "Worktree/branch name: " name
+fi
+
+if [[ -z "$name" ]]; then
+  echo "Error: missing NAME" >&2
+  usage >&2
+  exit 2
+fi
+
+if [[ -z "${TMUX:-}" ]]; then
+  echo "Error: not inside tmux (TMUX is not set)" >&2
+  exit 2
+fi
+
+command -v git >/dev/null || { echo "Error: git not found in PATH" >&2; exit 127; }
+command -v tmux >/dev/null || { echo "Error: tmux not found in PATH" >&2; exit 127; }
+
+repo_root="$(git rev-parse --show-toplevel 2>/dev/null || true)"
+if [[ -z "$repo_root" ]]; then
+  echo "Error: not inside a git repository" >&2
+  exit 2
+fi
+
+git -C "$repo_root" check-ref-format --branch "$name" >/dev/null 2>&1 || {
+  echo "Error: invalid branch name: $name" >&2
+  exit 2
+}
+
+existing_worktree="$(
+  git -C "$repo_root" worktree list --porcelain |
+    awk -v ref="refs/heads/$name" '
+      $1=="worktree"{path=substr($0,10)}
+      $1=="branch" && $2==ref{print path; exit}
+    '
+)"
+
+dir_name="${name//\//-}"
+
+cwd_parent="$(cd .. && pwd -P)"
+base_dir="${WT_BASE:-$cwd_parent}"
+if [[ -n "${WT_BASE:-}" ]]; then
+  mkdir -p "$base_dir"
+  base_dir="$(cd "$base_dir" && pwd -P)"
+fi
+
+worktree_dir="$base_dir/$dir_name"
+
+if [[ -n "$existing_worktree" ]]; then
+  worktree_dir="$existing_worktree"
+else
+  if [[ -e "$worktree_dir" ]]; then
+    echo "Error: worktree path already exists: $worktree_dir" >&2
+    exit 2
+  fi
+
+  # Prefer creating a new branch; fall back to using an existing one.
+  if ! git -C "$repo_root" worktree add -b "$name" "$worktree_dir" >/dev/null; then
+    git -C "$repo_root" worktree add "$worktree_dir" "$name" >/dev/null
+  fi
+fi
+
+window_id="$(tmux new-window -P -F '#{window_id}' -n "$name" -c "$worktree_dir")"
+tmux select-window -t "$window_id" >/dev/null
