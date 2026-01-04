@@ -168,7 +168,7 @@ export MANWIDTH=999
 
 alias rng='TERM=xterm-kitty ranger'
 alias tmux='tmux -u'
-alias vi='NVIM_APPNAME="nvim-kickstart" nvim'
+alias vi='nvim'
 
 # Set cursor style for tmux
 # CSI Ps SP q
