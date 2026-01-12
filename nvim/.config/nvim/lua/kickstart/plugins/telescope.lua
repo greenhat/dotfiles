@@ -120,6 +120,12 @@ return {
           lsp_dynamic_workspace_symbols = {
             sorter = require('telescope').extensions.fzf.native_fzf_sorter(fzf_opts),
           },
+          live_grep = {
+            file_ignore_patterns = { 'node_modules', '.git', '.venv', 'target' },
+            additional_args = function(_)
+              return { '--hidden' }
+            end,
+          },
         },
         extensions = {
           ['ui-select'] = {
@@ -154,7 +160,7 @@ return {
       vim.keymap.set('n', '<leader>sc', builtin.commands, { desc = '[S]earch [C]ommands' })
       -- vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
       -- vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
-      -- vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
+      vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
       -- vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       -- vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       -- vim.keymap.set(
