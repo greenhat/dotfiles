@@ -89,7 +89,7 @@ vim.g.firenvim_config = {
 vim.opt.background = 'light'
 
 -- word wrap
-vim.wo.wrap = false
+vim.wo.wrap = true
 
 vim.cmd [[
   " trigger `autoread` when files changes on disk
