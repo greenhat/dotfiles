@@ -262,4 +262,9 @@ return {
       map('n', '<leader>sr', '<cmd>GrugFar<cr>', { desc = 'Grug-far' })
     end,
   },
+  {
+    'esmuellert/codediff.nvim',
+    dependencies = { 'MunifTanjim/nui.nvim' },
+    cmd = 'CodeDiff',
+  },
 }
