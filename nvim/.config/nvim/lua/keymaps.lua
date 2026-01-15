@@ -103,4 +103,6 @@ map(
 
 map('n', 's', '/', { desc = 'Search' })
 
+map('n', '<C-w>gc', '<cmd>tabc<cr>', { desc = 'Close tab' })
+
 -- vim: ts=2 sts=2 sw=2 et
