@@ -12,8 +12,11 @@
     ],
     "deny": []
   },
+  "model": "opus",
   "feedbackSurveyState": {
     "lastShownTime": 1754042174429
   },
-  "model": "opus"
+  "enabledPlugins": {
+    "rust-analyzer-lsp@claude-plugins-official": true
+  }
 }
