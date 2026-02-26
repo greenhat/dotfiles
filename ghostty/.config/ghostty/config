@@ -68,3 +68,6 @@ copy-on-select = clipboard
 # cursor-color = #000000
 # selection-background = #dfa0f0
 # selection-foreground = #000000
+
+
+macos-non-native-fullscreen = true
