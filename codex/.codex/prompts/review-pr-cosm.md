@@ -1,6 +1,6 @@
 Do a code review for the PR I'm about to submit. 
 
-Read the code changes in the current branch (ignore `.wat`,`.hir`, `.masm`, `.lock` files). Run `git parent-branch` to print the name of the parent branch.
+Read the code changes in the current branch (ignore `.wat`,`.hir`, `.masm`, `.lock` files). Run `git parent-branch` to print the name of the parent branch. The changes might not yet be committed.
 
 Now, review these code changes based on the following criteria:
 - Style: Does the code changes adhere to the style this crate is written in? Error handling in particular.

@@ -23,3 +23,9 @@ Add code comments to tricky parts of the code.
 
 Github CLI `gh` is available to view issues, read PRs and PR code diffs, etc.
 Use faster ripgrep `rg` instead of slow `grep`.
+
+# git commit rules
+
+Never commit `review.md` file. 
+Before each commit run and fix clippy warnings with `cargo make clippy` and format the
+codebase with `cargo make format-rust`.

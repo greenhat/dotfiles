@@ -10,7 +10,7 @@ Steps:
    Use these as `YYYY-MM-DD` dates for GitHub search qualifiers.
 3) Collect activity in `org:0xMiden` authored by `greenhat`, ignoring comments/reviews/other noise. Only include:
    - Landed PRs: PRs merged in the date range
-   - Opened PRs: PRs created in the date range
+   - Opened PRs: PRs created in the date range (do not include the ones that are in "Landed PRs" group)
    - Opened issues: issues created in the date range
 
    Use GitHub search (via `gh api search/issues`) and paginate if needed:
