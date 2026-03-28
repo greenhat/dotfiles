@@ -7,6 +7,7 @@ return {
     -- "nvim-telescope/telescope.nvim", -- optional
     -- "ibhagwan/fzf-lua", -- optional
     -- "echasnovski/mini.pick", -- optional
+    'm00qek/baleia.nvim',
   },
   config = true,
   opts = {
@@ -18,6 +19,7 @@ return {
       codediff = true,
     },
     diff_viewer = 'codediff',
+    log_pager = { 'delta', '--width', '117' },
   },
   keys = {
     {
