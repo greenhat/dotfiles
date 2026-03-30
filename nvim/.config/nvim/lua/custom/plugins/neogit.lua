@@ -19,7 +19,7 @@ return {
       codediff = true,
     },
     diff_viewer = 'codediff',
-    log_pager = { 'delta', '--width', '117' },
+    -- log_pager = { 'delta', '--width', '117' },
   },
   keys = {
     {
