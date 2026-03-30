@@ -1,8 +1,20 @@
-Do a code review for the PR I'm about to submit. 
+---
+name: review-pr
+description: Use when asked to review the current branch or a PR before submission. Compares the work against `git parent-branch`, ignores generated `.wat`, `.hir`, `.masm`, and `.lock` files, fans review out to focused subagents, and writes actionable numbered findings to `review.md`.
+---
 
-Read the code changes in the current branch (ignore `.wat`,`.hir`, `.masm`, `.lock` files). Run `git parent-branch` to print the name of the parent branch. The changes might not yet be committed.
+# Review PR
 
-Now, review these code changes based on the following criteria:
+Use this skill for a pre-submit review of the current branch.
+
+## Workflow
+
+Run each of the following questions in a separate subagent with `xhigh` reasoning effort:
+- Look at the big picture (system design, architecture). Do you see a better way to implement this?
+- Correctness: Are there potential bugs, logical errors, or edge cases missed? For a code change, also find and analyze the full code of the function/class.
+- Suggestions: Do you have any suggestions on how to improve the code?
+
+Run the following questions (all of them) in one separate subagent with `high` reasoning effort:
 - Style: Does the code changes adhere to the style this crate is written in? Error handling in particular.
 - Readability: How easily comprehensible is the resulted code? Any need for splitting the functions to make them more comprehensible? 
 - Maintainability: Do you see any ways to improve the maintainability of the new/changed code?
@@ -13,4 +25,4 @@ Now, review these code changes based on the following criteria:
 - Suggestions: Do you have any suggestions on how to improve the code?
 
 Provide detailed feedback, referencing the task context and specific code lines from the diff. Only include what you suggest to change/fix, skip the positive feedback where everything is fine. 
-Use numbered list.
+Use numbered list and write it to a file `review.md` (append if there is one).

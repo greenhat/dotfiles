@@ -1,0 +1,4 @@
+interface:
+  display_name: "PR Review"
+  short_description: "Review the current branch before opening a PR"
+  default_prompt: "Use $review-pr to review the current branch before I submit a PR."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "PR Description"
+  short_description: "Draft a PR description for the current branch"
+  default_prompt: "Use $write-pr-desc to draft a PR description for the current branch."
