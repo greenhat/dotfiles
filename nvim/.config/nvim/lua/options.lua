@@ -107,4 +107,11 @@ vim.cmd [[
   autocmd VimLeave * set guicursor= | call chansend(v:stderr, "\x1b[6 q")
 ]]
 
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'rust' },
+  callback = function()
+    vim.treesitter.start()
+  end,
+})
+
 -- vim: ts=2 sts=2 sw=2 et
