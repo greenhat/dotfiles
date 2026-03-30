@@ -7,7 +7,7 @@ return {
     -- "nvim-telescope/telescope.nvim", -- optional
     -- "ibhagwan/fzf-lua", -- optional
     -- "echasnovski/mini.pick", -- optional
-    'm00qek/baleia.nvim',
+    -- 'm00qek/baleia.nvim',
   },
   config = true,
   opts = {
