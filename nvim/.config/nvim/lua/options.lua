@@ -107,11 +107,19 @@ vim.cmd [[
   autocmd VimLeave * set guicursor= | call chansend(v:stderr, "\x1b[6 q")
 ]]
 
+-- From https://github.com/nvim-treesitter/nvim-treesitter/issues/8221#issuecomment-3436658280
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'rust' },
-  callback = function()
-    vim.treesitter.start()
+  callback = function(args)
+    local treesitter = require 'nvim-treesitter'
+    local lang = vim.treesitter.language.get_lang(args.match)
+    if vim.list_contains(treesitter.get_available(), lang) then
+      if not vim.list_contains(treesitter.get_installed(), lang) then
+        treesitter.install(lang):wait()
+      end
+      vim.treesitter.start(args.buf)
+    end
   end,
+  desc = 'Enable nvim-treesitter and install parser if not installed',
 })
 
 -- vim: ts=2 sts=2 sw=2 et
