@@ -1,4 +1,4 @@
 interface:
   display_name: "0xMiden Work Log"
-  short_description: "Append last week's 0xMiden GitHub activity to the work log"
-  default_prompt: "Use $update-work-log-last-week-0xmiden to update /Users/green/Documents/miden/work_log.md from last week's 0xMiden GitHub activity."
+  short_description: "Append last week's activity and this week's Next items to the work log"
+  default_prompt: "Use $update-work-log-last-week-0xmiden to update /Users/green/Documents/miden/work_log.md from last week's 0xMiden GitHub activity and the current Next items in 0xMiden project 7."
