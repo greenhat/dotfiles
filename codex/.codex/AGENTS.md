@@ -3,7 +3,7 @@
 ## Testing. 
 
 IMPORTANT: After finishing the implementation (code changes) always build and
-test the workspace with `cargo make test` and fix the compilation errors. 
+test the workspace with `cargo make test` and fix the errors. 
 
 Set `RUST_MIN_STACK = 16777216` env var if there is a stack overflow error in the VM.
 
