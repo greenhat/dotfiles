@@ -25,4 +25,4 @@ Run the following questions (all of them) in one separate subagent with `high` r
 - Suggestions: Do you have any suggestions on how to improve the code?
 
 Provide detailed feedback, referencing the task context and specific code lines from the diff. Only include what you suggest to change/fix, skip the positive feedback where everything is fine. 
-Use numbered list and write it to a file `review.md` (append if there is one).
+Number each note and write them in a readable form to a file `review.md` (append if there is one).
