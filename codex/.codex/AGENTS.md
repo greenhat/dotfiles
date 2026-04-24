@@ -1,13 +1,15 @@
 # Coding best practices
 
+## Core Principles
+
+- Find root causes. No temporary fixes. 
+- Elegance: Changes must be concise and maintainable, while minimizing impact on the codebase.
+- Minimal Impact: Changes should only touch what's necessary. 
+
 ## Testing. 
 
 IMPORTANT: After finishing the implementation (code changes) always build and
 test the workspace with `cargo make test` and fix the errors. 
-
-Set `RUST_MIN_STACK = 16777216` env var if there is a stack overflow error in the VM.
-
-Use `MIDENC_TRACE=trace` env var to set logging level (enable only when running individual test, it's too slow) to debug issues in the compilation pipeline.
 
 Use `UPDATE_EXPECT=1` env var when running the tests to update .wat, .hir, .masm expected files in tests.
 
@@ -16,7 +18,8 @@ codebase with `cargo make format-rust`.
 
 ## Documentation
 
-Always document functions and types. Don't explain the implementation.
+Always document modules, functions and types. 
+Don't explain the implementation.
 Add code comments to tricky parts of the code.
 
 # git commit rules

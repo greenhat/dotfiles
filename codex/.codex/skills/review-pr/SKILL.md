@@ -9,12 +9,12 @@ Use this skill for a pre-submit review of the current branch.
 
 ## Workflow
 
-Run each of the following questions in a separate subagent with `xhigh` reasoning effort:
-- Look at the big picture (system design, architecture). Do you see a better way to implement this?
+Run each of the following questions in a separate subagent with a full size model (no `-mini`) and `xhigh` reasoning effort:
+- Look at the big picture (system design, architecture). Is there a better, more elegant way?
 - Correctness: Are there potential bugs, logical errors, or edge cases missed? For a code change, also find and analyze the full code of the function/class.
 - Suggestions: Do you have any suggestions on how to improve the code?
 
-Run the following questions (all of them) in one separate subagent with `high` reasoning effort:
+Run the following questions (all of them) in one separate subagent with a full size model (no `-mini`) and `high` reasoning effort:
 - Style: Does the code changes adhere to the style this crate is written in? Error handling in particular.
 - Readability: How easily comprehensible is the resulted code? Any need for splitting the functions to make them more comprehensible? 
 - Maintainability: Do you see any ways to improve the maintainability of the new/changed code?

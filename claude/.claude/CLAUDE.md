@@ -1,19 +1,15 @@
-# Available tools
-
-Github CLI `gh` is available to view issues, read PRs and PR code diffs, etc.
-Use faster ripgrep `rg` instead of slow `grep`.
-
 # Coding best practices
+
+## Core Principles
+
+- Find root causes. No temporary fixes. 
+- Elegance: Changes must be concise and maintainable, while minimizing impact on the codebase.
+- Minimal Impact: Changes should only touch what's necessary. 
 
 ## Testing. 
 
 IMPORTANT: After finishing the implementation (code changes) always build and
-test the workspace with `cargo make test` and fix the compilation errors. 
-
-Set `RUST_MIN_STACK = 16777216` env var for a stack overflow workaround in the VM.
-
-Use `MIDENC_TRACE` env var instead of `RUST_LOG` to set logging level (enable only when running individual tests, it's too slow).
-For example, `MIDENC_TRACE=executor=trace` prints only trace level messages when executing the MASM code.
+test the workspace with `cargo make test` and fix the errors. 
 
 Use `UPDATE_EXPECT=1` env var when running the tests to update .wat, .hir, .masm expected files in tests.
 
@@ -22,6 +18,10 @@ codebase with `cargo make format-rust`.
 
 ## Documentation
 
-Always document functions and types. Don't explain the implementation.
+Always document modules, functions and types. 
+Don't explain the implementation.
 Add code comments to tricky parts of the code.
 
+# git commit rules
+
+Never commit `review.md` file. 
