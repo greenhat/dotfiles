@@ -20,6 +20,8 @@ adjust-cell-height = -1
 maximize = true
 
 shell-integration = zsh
+shell-integration-features = no-cursor
+cursor-style = bar
 adjust-cursor-thickness = 3
 
 macos-option-as-alt = true
