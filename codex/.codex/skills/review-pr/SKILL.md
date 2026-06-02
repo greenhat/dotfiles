@@ -1,6 +1,6 @@
 ---
 name: review-pr
-description: Use when asked to review the current branch or a PR before submission. Compares the work against `git parent-branch`, ignores generated `.wat`, `.hir`, `.masm`, and `.lock` files, fans review out to focused subagents, and writes actionable numbered findings to `review.md`.
+description: Use when asked to review the current branch or a PR before submission. Compares the work against `next` branch or specified, ignores generated `.wat`, `.hir`, `.masm`, and `.lock` files, fans review out to focused subagents, and writes actionable numbered findings to `review.md`.
 ---
 
 # Review PR
@@ -24,5 +24,11 @@ Run the following questions (all of them) in one separate subagent with a full s
 - Any `TODO:` left in the new code?
 - Suggestions: Do you have any suggestions on how to improve the code?
 
-Provide detailed feedback, referencing the task context and specific code lines from the diff. Only include what you suggest to change/fix, skip the positive feedback where everything is fine. 
-Number each note and write them in a readable form to a file `review.md` (append if there is one).
+Ask an expert (oracle).
+Provide the nedeed context (diff, files, etc.) and ask the oracle:
+- Look at the big picture (system design, architecture). Is there a better, more elegant way?
+- Correctness: Are there potential bugs, logical errors, or edge cases missed? For a code change, also find and analyze the full code of the function/class.
+- Suggestions: Do you have any suggestions on how to improve the code?
+
+Analyze all the outputs, test the ideas if needed and provide your feedback. Combine everything into one `review.md` file sorted by severity (high/medium/low) and explained in details with the context. With each issue mark if it was discovered by an expert (oracle). For the high/medium severity issues include all the referenced code fragments with the file names and line numbers. Number each note and write them in a readable form to a file `review.md` (append if there is one).
+Only include what you suggest to change/fix, skip the positive feedback where everything is fine. 
